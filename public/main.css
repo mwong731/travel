@@ -20,8 +20,9 @@ nav{
 
 #profilePicture{
     border-radius:50%;
-    height:50px;
-    margin-left:20px
+    height:30px;
+    margin-left:20px;
+    margin-top:10px;
 }
 
 #navbarDropdown{
@@ -110,5 +111,71 @@ nav{
         background-color:#eb0045;
         color:white;
         font-size:25px;
+    }
+}
+
+/* =========== city ==========*/
+.cityBanner{
+    width:100vw;
+    height:50vh;
+}
+
+#city-floating-box{
+    width:30vw;
+    height:20vh;
+    background-color:white;
+    opacity:0.85;
+    z-index:1;
+    position: absolute;
+    border-radius:40px;
+    top:25vh;
+}
+
+#learn-more{
+    font-size:13px;
+    opacity:1;
+    border:1px solid #eb0045;
+    color:#eb0045;
+    background-color:transparent;
+}
+
+#learn-more:hover{
+    border:1px solid #eb0045;
+    background-color:#eb0045;
+    color:white;
+}
+
+#city-name{
+    opacity:1;
+}
+
+#city-attraction{
+    padding:20px;
+}
+
+#city-filter{
+    border:1px solid #eb0045;
+    background-color:#eb0045;
+    color:white;
+    width:80px;
+    height:35px;
+}
+
+.city-attraction-image{
+    /* object-fit: cover; */
+    overflow: hidden;
+   height: 30vh; 
+ 
+}
+
+@media only screen and (max-width: 480px) {
+    .cityBanner{
+        height:40vh;
+    }
+
+    #city-floating-box{
+        width:60vw;
+        height:20vh;
+        top:20vh;
     }
 }
