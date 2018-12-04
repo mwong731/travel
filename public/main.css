@@ -1,0 +1,27 @@
+body{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+/* Navbar */
+nav{
+    height:60px;
+    padding:10px;
+    background-color:#ffc425;
+}
+
+#navBarLogo{
+    height:30px;
+    margin-right: 10px;
+}
+
+#profilePicture{
+    border-radius:50%;
+    height:30px;
+}
+
+/* bodyBox */
+#bodyBox{
+    margin-top:60px;
+}
+
