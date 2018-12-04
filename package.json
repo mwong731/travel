@@ -1,0 +1,23 @@
+{
+  "name": "travel",
+  "version": "1.0.0",
+  "description": "Group project 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ynmwong/travel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ynmwong/travel/issues"
+  },
+  "homepage": "https://github.com/ynmwong/travel#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0"
+  }
+}
