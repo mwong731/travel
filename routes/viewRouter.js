@@ -8,5 +8,7 @@ module.exports = class ViewRouter{
         // router.get('/users',(req,res)=>res.render("users"));
         // router.get('/groups',(req,res)=>res.render("groups"));
         return router;
+
+      
     }
 }
