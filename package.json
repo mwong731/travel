@@ -18,6 +18,8 @@
   "homepage": "https://github.com/ynmwong/travel#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "knex": "^0.15.2",
+    "sqlite3": "^4.0.4"
   }
 }
