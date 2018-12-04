@@ -2,10 +2,13 @@ body{
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.container-fluid{
+    /* height:100vh; */
+}
 
-/* Navbar */
+/* =========== Navbar ==========*/
 nav{
-    height:60px;
+    height:10vh;
     padding:20px 50px 20px 50px;
     background-color:#ffc425;
 }
@@ -17,17 +20,95 @@ nav{
 
 #profilePicture{
     border-radius:50%;
-    height:40px;
+    height:50px;
     margin-left:20px
 }
 
-/* bodyBox */
+#navbarDropdown{
+    border: 2px border #eb0045 ;
+    color:#eb0045 ;
+    font-size: 20px;
+}
+
+/* =========== bodyBox ==========*/
 #bodyBox{
-    margin-top:60px;
+    padding-top:10vh;
+    height:90vh
 }
 
-/* index */
-.city{
+/* =========== index ==========*/
+.index{
+    padding:20px;
+    height:90vh;
+}
+
+#indexBanner{
+    height:25vh;
+}
+
+#chooseCity{
+    height:20vh;
+}
+
+.indexPhotoCol{
+    padding:10px;
+    display: flex;
+    justify-content: center;
+}
+
+#cityButton{
+    height:60px;
+    width:250px;
+    background-color:#eb0045;
+    color:white;
+    font-size:30px;
+}
+
+#cityButton:hover{
+    background-color:white;
+    color:#eb0045;
+    border: 2px solid #eb0045;
+}
+
+.city-drop-item{
+    width:250px;
+    background-color:white;
+    color:#eb0045;
+    font-size:30px;
+}
+.city-drop-item:hover{
+    background-color:#eb0045 !important;
+    color:white;
+}
+
+.city-img{
+    object-fit: cover;
+    overflow: hidden;
+    max-height: 20vw; 
+    max-width : 20vw;  
+}
+
+@media only screen and (max-width: 480px) {
+    #indexBanner{
+        height:20vh;
+    }
+
+    #chooseCity{
+        height:15vh;
+    }
+
+    .city-img{
+        object-fit: cover;
+        overflow: hidden;
+        max-height: 20vh; 
+        max-width : 20vh;  
+    }
     
+    #cityButton{
+        height:50px;
+        width:250px;
+        background-color:#eb0045;
+        color:white;
+        font-size:25px;
+    }
 }
-
