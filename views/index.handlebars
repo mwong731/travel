@@ -1,33 +1,47 @@
-<div class="row">
+<div class="index">
+<div class="row justify-content-center">
    
-   <img class="img-fluid" src="./assets/banner.png">
+   <img class="img-fluid" id="indexBanner" src="./assets/banner.png">
 
   
 </div>
 
-<div class="row"></div>
-<form>
-       <select name="city" id="city">
-           <option value="choose">Choose a city</option>
-            <option value="tokyo">Tokyo</option>
-            <option value="osaka">Osaka</option>
-        
-        </select>
-   </form>
+<div class="row justify-content-center">
+<div class="dropdown d-flex align-items-center" id="chooseCity">
+  <button id="cityButton" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Choose a city
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item city-drop-item" href="#">Tokyo</a>
+    <a class="dropdown-item city-drop-item" href="#">Osaka</a>
+    <a class="dropdown-item city-drop-item" href="#">Fukuoka</a>
+    <a class="dropdown-item city-drop-item" href="#">Hiroshima</a>
+  </div>
+</div>
 
 </div>
 
-<div class="row">
-    <div class="col">
-        <img class="city img-fluid" src="./assets/garden3.jpeg">
+<div class="row no-gutters cityImageRow">
+    <div class="indexPhotoCol col-lg-3 col-6">
+   
+            <img src="./assets/garden3.jpeg" class="city-img" >
+   
     </div>
-   <div class="col">
-        <img class="city img-fluid" src="./assets/garden3.jpeg">
+    <div class="indexPhotoCol col-lg-3 col-6">
+   
+            <img src="./assets/garden3.jpeg" class="city-img" >
+   
     </div>
-    <div class="col">
-        <img class="city img-fluid" src="./assets/garden3.jpeg">
+    <div class="indexPhotoCol col-lg-3 col-6">
+   
+            <img src="./assets/garden3.jpeg" class="city-img" >
+   
     </div>
-    <div class="col">
-        <img class="city img-fluid" src="./assets/garden3.jpeg">
+    <div class="indexPhotoCol col-lg-3 col-6">
+   
+            <img src="./assets/garden3.jpeg" class="city-img" >
+   
     </div>
+   
+</div>
 </div>

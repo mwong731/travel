@@ -1,41 +1,32 @@
 module.exports = class planService {
-   constructor() {
-      this.knex = require('knex')({
-         client: 'postgresql',
-         connection: {
-            database: "test1",
-            user: "dereklin",
-            password: ""
-         }
-      });
+   constructor(knex) {
+      this.knex = knex;
    }
-
-   insertPlan(ID, userID) {
-      return knex('plan').insert([
-         { id: ID, userid: userID }
+   
+   insertPlan( userID , Name) {
+      return this.knex('plan').insert([
+         { userid: userID , name: Name}
       ]);
    }
 
-   insertAttractioninplan(planID, attractionID) {
-      //need modify later 
-      return knex('plan').insert([
-         { planid: planID, attractionid: attractionID }
+   insertAttractioninplan(planID, attractionID , date ,Time) {
+      return this.knex('attractioninplan').insert([
+         { planid: planID, attractionid: attractionID , date:date , time:Time}
       ]);
    }
 
-   deleteCommentByID(ID) {
-      return new Promise((resolve, reject) => {
-         knex('plan').where('id', ID).del();
-         
-         resolve();
-      });
-      
+   deletePlanByID(ID) {
+      return deleteAllAttractionInPlanByPlanID(ID).then(()=>{
+         return this.knex('plan').where('id', ID).del();
+      })
    }
 
-   deleteAttractioninplanByID(ID) {
-      //need modify later 
-      return knex('attractioninplan').where('id', ID).del();
+   deleteAttractioninPlanByID(ID) {
+      return this.knex('attractioninplan').where('id', ID).del();
    }
 
+   deleteAllAttractionInPlanByPlanID(PlanID) {
+      return this.knex('attractioninplan').where('planid',PlanID).del();
+   }
 
 }

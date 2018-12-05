@@ -1,15 +1,8 @@
 
 module.exports = class AttractionService {
-
-    constructor() {
-        this.knex = require('knex')({
-            client: 'postgresql',
-            connection: {
-                database: "test1",
-                user: "dereklin",
-                password: ""
-            }
-        });
+    //done!!
+    constructor(knex) {
+        this.knex = knex;
     }
 
     listAttractionInCityID(cityID) {
@@ -18,16 +11,28 @@ module.exports = class AttractionService {
             .where("cityid", cityID);
     }
 
+    //no use
+    listAttraction() {
+        return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
+            .from("attraction");
+    }
+
     getAttractionInAttractionID(attractionID) {
         return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
             .from("attraction")
             .where("id", attractionID);
     }
-
-    updateAttractionWithID(attractionID, cityid, type, latitude, longitude, image) {
+    // updateAttractionWithID input can be null
+    updateAttractionWithID(attractionID, cityid, name , description ,type, latitude, longitude, image) {
         let insertObject = new Object();
         if (cityid != null) {
             insertObject.cityid = cityid;
+        }
+        if (name != null) {
+            insertObject.name = name;
+        }
+        if (description != null) {
+            insertObject.description = description;
         }
         if (type != null) {
             insertObject.type = type;
@@ -41,15 +46,26 @@ module.exports = class AttractionService {
         if (image != null) {
             insertObject.image = image;
         }
-        return this.knex('attraction').update(insertObject).where("id", attractionID);
+        return this.knex('attraction').update(insertObject).where("id", attractionID).catch((err) => {
+            console.log(err);
+        });
     }
 
     deleteAttraction(attractionID) {
-        return knex('attraction').where('id', attractionID).del();
+        //this.knex('bookmark').where('attractionid', attractionID).del();
+        return this.knex('bookmark').where('attractionid', attractionID).del().then(() => {
+            return this.knex('attractioncomment').where('attractionid', attractionID).del();
+        }).then(() => {
+            return this.knex('attractioninplan').where('attractionid', attractionID).del();
+        }).then(() => {
+            return this.knex('attraction').where('id', attractionID).del();
+        }).catch((err)=>{
+            console.log(err);
+        })  
     }
-
+    // insert() input(latitude , longitude) can be null
     insert(cityid, type, latitude, longitude, image) {
-        return knex('attraction').insert([
+        return this.knex('attraction').insert([
             { cityid: cityid, type: type, latitude: latitude, longitude: longitude, image: image }
         ]);
     }

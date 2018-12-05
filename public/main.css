@@ -2,10 +2,13 @@ body{
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.container-fluid{
+    /* height:100vh; */
+}
 
-/* Navbar */
+/* =========== Navbar ==========*/
 nav{
-    height:60px;
+    height:10vh;
     padding:20px 50px 20px 50px;
     background-color:#ffc425;
 }
@@ -17,17 +20,285 @@ nav{
 
 #profilePicture{
     border-radius:50%;
-    height:40px;
-    margin-left:20px
+    height:30px;
+    margin-left:20px;
+    margin-top:10px;
 }
 
-/* bodyBox */
+#navbarDropdown{
+    border: 2px border #eb0045 ;
+    color:#eb0045 ;
+    font-size: 20px;
+}
+
+/* =========== bodyBox ==========*/
 #bodyBox{
-    margin-top:60px;
+    padding-top:10vh;
+    height:90vh
 }
 
-/* index */
-.city{
+/* =========== index ==========*/
+.index{
+    padding:20px;
+    height:90vh;
+}
+
+#indexBanner{
+    height:25vh;
+}
+
+#chooseCity{
+    height:20vh;
+}
+
+.indexPhotoCol{
+    padding:10px;
+    display: flex;
+    justify-content: center;
+}
+
+#cityButton{
+    height:60px;
+    width:250px;
+    background-color:#eb0045;
+    color:white;
+    font-size:30px;
+}
+
+#cityButton:hover{
+    background-color:white;
+    color:#eb0045;
+    border: 2px solid #eb0045;
+}
+
+.city-drop-item{
+    width:250px;
+    background-color:white;
+    color:#eb0045;
+    font-size:30px;
+}
+.city-drop-item:hover{
+    background-color:#eb0045 !important;
+    color:white;
+}
+
+.city-img{
+    object-fit: cover;
+    overflow: hidden;
+    max-height: 20vw; 
+    max-width : 20vw;  
+}
+
+@media only screen and (max-width: 480px) {
+    #indexBanner{
+        height:20vh;
+    }
+
+    #chooseCity{
+        height:15vh;
+    }
+
+    .city-img{
+        object-fit: cover;
+        overflow: hidden;
+        max-height: 20vh; 
+        max-width : 20vh;  
+    }
     
+    #cityButton{
+        height:50px;
+        width:250px;
+        background-color:#eb0045;
+        color:white;
+        font-size:25px;
+    }
 }
 
+/* =========== city ==========*/
+.cityBanner{
+    width:100vw;
+    height:50vh;
+}
+
+#city-floating-box{
+    width:30vw;
+    height:20vh;
+    background-color:white;
+    opacity:0.85;
+    z-index:1;
+    position: absolute;
+    border-radius:40px;
+    top:25vh;
+}
+
+#learn-more{
+    font-size:13px;
+    opacity:1;
+    border:1px solid #eb0045;
+    color:#eb0045;
+    background-color:transparent;
+}
+
+#learn-more:hover{
+    border:1px solid #eb0045;
+    background-color:#eb0045;
+    color:white;
+}
+
+#city-name{
+    opacity:1;
+}
+
+#city-attraction{
+    padding:20px 20px 10px 20px;
+}
+
+#city-filter{
+    border:1px solid #eb0045;
+    background-color:#eb0045;
+    color:white;
+    width:80px;
+    height:35px;
+}
+
+#city-filter:hover{
+    border:1px solid #eb0045;
+    background-color:white;
+    color:#eb0045;
+}
+
+.city-attraction-image{
+    object-fit: cover;
+   height: 30vh; 
+   width:100%;
+ 
+}
+
+.attraction-row{
+   
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.attraction-col{
+    padding-left:10px !important;
+    padding-right:10px !important;
+    margin-bottom:20px;
+}
+
+.image-overlay {
+    opacity: 0.9;
+    background-color:white;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    padding: 10px 15px 10px 15px;
+  }
+
+.empty-heart{
+    margin-left:10px;
+    color:#eb0045;
+}
+
+.empty-heart:hover{
+    transition:ease 0.5s;
+    text-shadow:1px 1px 5px #6b6b6b;
+}
+
+.attraction-name{
+    font-size:20px;
+}
+
+@media only screen and (max-width: 480px) {
+    .cityBanner{
+        height:40vh;
+    }
+
+    #city-floating-box{
+        width:60vw;
+        height:20vh;
+        top:20vh;
+    }
+}
+
+/* ========= Attraction ========== */
+.title-box{
+    padding:15px 20px 10px 20px;
+}
+
+
+#attractionCarousel{
+    height:50vh !important;
+}
+
+.carousel-image{
+    object-fit: cover;
+    height: 50vh; 
+    width:100%;
+}
+
+.info-and-map{
+    padding:15px 15px 0 15px;;
+    height:30vh;
+}
+
+#attraction-info{
+    padding:15px;
+    border: #ccc solid 1px;
+    border-radius: 15px;
+}
+
+#attraction-info-text{
+    font-size: 13px;
+}
+
+.review-row{
+    padding:15px;
+}
+
+.review-box{
+    border: #ccc solid 1px;
+    border-radius: 15px;
+    padding:15px;
+}
+
+.fa-star{
+    color:#ffc425;
+}
+
+.comment-box{
+    margin-top:10px;
+}
+
+.review-username{
+    font-weight: bold;
+}
+
+.btn-primary{
+    border:1px solid #eb0045;
+    background-color:#eb0045;
+    color:white;
+    margin-top: 15px;
+}
+
+.btn-primary:hover{
+    border:1px solid #eb0045;
+    background-color:white;
+    color:#eb0045;
+}
+
+#add-comment-box{
+    margin-top: 15px;
+    display:none;
+}
+
+#comment-textfield{
+    width:50vw;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 480px) {
+    #comment-textfield{
+        width:80vw;
+    }
+}

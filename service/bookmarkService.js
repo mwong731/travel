@@ -1,14 +1,7 @@
 module.exports = class bookmarkService {
 
    constructor() {
-      this.knex = require('knex')({
-         client: 'postgresql',
-         connection: {
-            database: "test1",
-            user: "dereklin",
-            password: ""
-         }
-      });
+      this.knex = knex;
    }
 
    insertBookmark(userID, attractionID) {

@@ -1,9 +1,13 @@
 const express = require('express');
 const hb = require('express-handlebars');
+<<<<<<< HEAD
 const bodyParser = require('body-parser');
 const expressSession = require('express-session')
 const passport = require('passport');
 const passportSetup = require('./config/passport-setup');
+=======
+const db = require('./database-init.js').knex;
+>>>>>>> 50d063a64b51bba79928586243cf9dc592abafc3
 
 //Set up app(unpackage express)
 let app = express();
