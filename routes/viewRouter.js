@@ -7,7 +7,7 @@ module.exports = class ViewRouter{
         router.get('/',(req,res)=>res.render("index")); //render index.handlebar inside main's body
         router.get('/city',(req,res)=>res.render("city"));
         router.get('/attraction',(req,res)=>res.render("attraction"));
-        // router.get('/groups',(req,res)=>res.render("groups"));
+        router.get('/edit-attraction',(req,res)=>res.render("edit-attraction"));
         return router;
 
       

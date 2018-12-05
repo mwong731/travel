@@ -302,3 +302,25 @@ nav{
         width:80vw;
     }
 }
+
+/* ========  Add attraction =========*/
+.edit-title{
+    padding:20px 20px 0  20px;
+}
+
+.edit-form{
+    padding:10px 20px 10px 20px;
+}
+
+#edit-form-right{
+    border: 1px #ccc dashed;   
+    padding:10px; 
+}
+
+#edit-attraction-city,#edit-attraction-name{
+    margin-bottom:10px;
+}
+
+#submit-attraction{
+    
+}
