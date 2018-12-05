@@ -6,7 +6,8 @@ exports.up = function (knex, Promise) {
          table.string("email");
          table.string("password");
          table.enu("usertype", ["user", "admin"]);
-         table.enu("gender", ["m", "f", "other"]);
+         table.enu("gender", ["m", "f"]);
+         table.date('birthday');
          table.integer("age");
          table.string("facebookid");
          table.string("googleid");
@@ -23,6 +24,8 @@ exports.up = function (knex, Promise) {
          table.increments();
          table.integer('cityid');
          table.foreign('cityid').references('city.id');
+         table.string('name');
+         table.string('description');
          table.enu("type", ['shop', 'restaurant', 'sleep', 'go']);
          table.float("latitude");
          table.float("longitude");

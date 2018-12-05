@@ -1,40 +1,32 @@
 module.exports = class planService {
-   constructor() {
+   constructor(knex) {
       this.knex = knex;
    }
    
-   insertPlan(ID, userID) {
-      return knex('plan').insert([
-         { id: ID, userid: userID }
+   insertPlan( userID , Name) {
+      return this.knex('plan').insert([
+         { userid: userID , name: Name}
       ]);
    }
 
-   // need change
-   insertAttractioninplan(planID, attractionID) {
-      //need modify later 
-      return knex('plan').insert([
-         { planid: planID, attractionid: attractionID }
+   insertAttractioninplan(planID, attractionID , date ,Time) {
+      return this.knex('attractioninplan').insert([
+         { planid: planID, attractionid: attractionID , date:date , time:Time}
       ]);
    }
 
    deletePlanByID(ID) {
-      return new Promise((resolve, reject) => {
-         deleteAllAttractionInPlanByPlanID(PlanID).then(()=>{
-            knex('plan').where('id', ID).del();
-         });
-         resolve();
-      });
+      return deleteAllAttractionInPlanByPlanID(ID).then(()=>{
+         return this.knex('plan').where('id', ID).del();
+      })
    }
 
-   deleteAttractioninPlanByPlanID(ID) {
-      //need modify later 
-      return knex('attractioninplan').where('id', ID).del();
+   deleteAttractioninPlanByID(ID) {
+      return this.knex('attractioninplan').where('id', ID).del();
    }
 
    deleteAllAttractionInPlanByPlanID(PlanID) {
-      //need modify later 
-      return knex('attractioninplan').where('planid', PlanID).del();
+      return this.knex('attractioninplan').where('planid',PlanID).del();
    }
-
 
 }

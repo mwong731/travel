@@ -1,6 +1,6 @@
 
 module.exports = class AttractionService {
-
+    //done!!
     constructor(knex) {
         this.knex = knex;
     }
@@ -22,11 +22,17 @@ module.exports = class AttractionService {
             .from("attraction")
             .where("id", attractionID);
     }
-
-    updateAttractionWithID(attractionID, cityid, type, latitude, longitude, image) {
+    // updateAttractionWithID input can be null
+    updateAttractionWithID(attractionID, cityid, name , description ,type, latitude, longitude, image) {
         let insertObject = new Object();
         if (cityid != null) {
             insertObject.cityid = cityid;
+        }
+        if (name != null) {
+            insertObject.name = name;
+        }
+        if (description != null) {
+            insertObject.description = description;
         }
         if (type != null) {
             insertObject.type = type;
@@ -40,17 +46,26 @@ module.exports = class AttractionService {
         if (image != null) {
             insertObject.image = image;
         }
-        return this.knex('attraction').update(insertObject).where("id", attractionID).catch((err)=>{
+        return this.knex('attraction').update(insertObject).where("id", attractionID).catch((err) => {
             console.log(err);
         });
     }
 
     deleteAttraction(attractionID) {
-        return knex('attraction').where('id', attractionID).del();
+        //this.knex('bookmark').where('attractionid', attractionID).del();
+        return this.knex('bookmark').where('attractionid', attractionID).del().then(() => {
+            return this.knex('attractioncomment').where('attractionid', attractionID).del();
+        }).then(() => {
+            return this.knex('attractioninplan').where('attractionid', attractionID).del();
+        }).then(() => {
+            return this.knex('attraction').where('id', attractionID).del();
+        }).catch((err)=>{
+            console.log(err);
+        })  
     }
-
+    // insert() input(latitude , longitude) can be null
     insert(cityid, type, latitude, longitude, image) {
-        return knex('attraction').insert([
+        return this.knex('attraction').insert([
             { cityid: cityid, type: type, latitude: latitude, longitude: longitude, image: image }
         ]);
     }

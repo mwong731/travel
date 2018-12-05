@@ -1,6 +1,6 @@
 const express = require('express');
 const hb = require('express-handlebars');
-const db = require('./database-init.js');
+const db = require('./database-init.js').knex;
 
 let app = express();
 
