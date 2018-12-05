@@ -18,7 +18,7 @@ exports.up = function (knex, Promise) {
          table.text("description");
          table.float("latitude");
          table.float("longitude");
-         table.binary("image");
+         table.string("image");
          //table.timestamps(false, true);
       }).createTable('attraction', (table) => {
          table.increments();
@@ -42,11 +42,11 @@ exports.up = function (knex, Promise) {
          table.enu("confirmstatus" , ["accept","decline","wait"]);
          //table.timestamps(false, true);
       }).createTable('bookmark', (table) => {
-         table.increments();
          table.integer('userid');
          table.foreign('userid').references('users.id');
          table.integer('attractionid');
          table.foreign('attractionid').references('attraction.id');
+         table.unique(['userid' , 'attractionid']);
          //table.timestamps(false, true);
       }).createTable('attractioncomment', (table) => {
          table.increments();

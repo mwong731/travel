@@ -1,6 +1,7 @@
 
 module.exports = class AttractionService {
-    //done!!
+    //not done!!
+    //need add upload image function 
     constructor(knex) {
         this.knex = knex;
     }
@@ -69,4 +70,5 @@ module.exports = class AttractionService {
             { cityid: cityid, type: type, latitude: latitude, longitude: longitude, image: image }
         ]);
     }
+    //end
 }

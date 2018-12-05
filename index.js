@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const expressSession = require('express-session')
 const passport = require('passport');
 const passportSetup = require('./config/passport-setup');
-const db = require('./database-init.js').knex;
+const db = require('./config/database-init.js').knex;
 
 //Set up app(unpackage express)
 let app = express();

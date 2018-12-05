@@ -1,17 +1,17 @@
 module.exports = class bookmarkService {
 
-   constructor() {
+   constructor(knex) {
       this.knex = knex;
    }
 
    insertBookmark(userID, attractionID) {
-      return knex('bookmark').insert([
+      return this.knex('bookmark').insert([
          { userid: userID, attractionid: attractionID }
       ]);
    }
 
-   deleteBookmark(attractionID) {
-      return knex('bookmark').where('id', attractionID).del();
+   deleteBookmark(userID , attractionID) {
+      return this.knex('bookmark').where('id', attractionID).del();
    }
 
    listUserBookmark(userID) {
