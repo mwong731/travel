@@ -1,6 +1,11 @@
 const express = require('express');
 const hb = require('express-handlebars');
+const bodyParser = require('body-parser');
+const expressSession = require('express-session')
+const passport = require('passport');
+const passportSetup = require('./config/passport-setup');
 
+//Set up app(unpackage express)
 let app = express();
 
 /*handlebars*/
@@ -9,11 +14,22 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static("public"));
 
-
+//Set up routes
+const authRoutes =require('./routes/auth-routes');
 const ViewRouter = require('./routes/viewRouter');
 
-
 app.use('/',new ViewRouter().router()); // only requests to '/' will be sent to new router
+app.use('/auth',authRoutes);
+
+//Use body parser
+app.use(bodyParser.urlencoded({extended: false}));
+//Set up express sessions - with the secret to encode the session
+app.use(expressSession({secret: 'thisRealSecret'}));
+
+//Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 app.listen(8080,()=>{
