@@ -1,21 +1,20 @@
 
 module.exports = class AttractionService {
 
-    constructor() {
-        this.knex = require('knex')({
-            client: 'postgresql',
-            connection: {
-                database: "test1",
-                user: "dereklin",
-                password: ""
-            }
-        });
+    constructor(knex) {
+        this.knex = knex;
     }
 
     listAttractionInCityID(cityID) {
         return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
             .from("attraction")
             .where("cityid", cityID);
+    }
+
+    //no use
+    listAttraction() {
+        return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
+            .from("attraction");
     }
 
     getAttractionInAttractionID(attractionID) {
@@ -41,7 +40,9 @@ module.exports = class AttractionService {
         if (image != null) {
             insertObject.image = image;
         }
-        return this.knex('attraction').update(insertObject).where("id", attractionID);
+        return this.knex('attraction').update(insertObject).where("id", attractionID).catch((err)=>{
+            console.log(err);
+        });
     }
 
     deleteAttraction(attractionID) {

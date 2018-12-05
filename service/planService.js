@@ -1,21 +1,15 @@
 module.exports = class planService {
    constructor() {
-      this.knex = require('knex')({
-         client: 'postgresql',
-         connection: {
-            database: "test1",
-            user: "dereklin",
-            password: ""
-         }
-      });
+      this.knex = knex;
    }
-
+   
    insertPlan(ID, userID) {
       return knex('plan').insert([
          { id: ID, userid: userID }
       ]);
    }
 
+   // need change
    insertAttractioninplan(planID, attractionID) {
       //need modify later 
       return knex('plan').insert([
@@ -23,18 +17,23 @@ module.exports = class planService {
       ]);
    }
 
-   deleteCommentByID(ID) {
+   deletePlanByID(ID) {
       return new Promise((resolve, reject) => {
-         knex('plan').where('id', ID).del();
-         
+         deleteAllAttractionInPlanByPlanID(PlanID).then(()=>{
+            knex('plan').where('id', ID).del();
+         });
          resolve();
       });
-      
    }
 
-   deleteAttractioninplanByID(ID) {
+   deleteAttractioninPlanByPlanID(ID) {
       //need modify later 
       return knex('attractioninplan').where('id', ID).del();
+   }
+
+   deleteAllAttractionInPlanByPlanID(PlanID) {
+      //need modify later 
+      return knex('attractioninplan').where('planid', PlanID).del();
    }
 
 
