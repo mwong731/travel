@@ -169,7 +169,6 @@ nav{
 
 .city-attraction-image{
     object-fit: cover;
-    /* overflow: hidden; */
    height: 30vh; 
    width:100%;
  
@@ -203,7 +202,7 @@ nav{
 
 .empty-heart:hover{
     transition:ease 0.5s;
-    text-shadow: 1px 1px 5px #6b6b6b;
+    text-shadow:1px 1px 5px #6b6b6b;
 }
 
 .attraction-name{
@@ -219,5 +218,87 @@ nav{
         width:60vw;
         height:20vh;
         top:20vh;
+    }
+}
+
+/* ========= Attraction ========== */
+.title-box{
+    padding:15px 20px 10px 20px;
+}
+
+
+#attractionCarousel{
+    height:50vh !important;
+}
+
+.carousel-image{
+    object-fit: cover;
+    height: 50vh; 
+    width:100%;
+}
+
+.info-and-map{
+    padding:15px 15px 0 15px;;
+    height:30vh;
+}
+
+#attraction-info{
+    padding:15px;
+    border: #ccc solid 1px;
+    border-radius: 15px;
+}
+
+#attraction-info-text{
+    font-size: 13px;
+}
+
+.review-row{
+    padding:15px;
+}
+
+.review-box{
+    border: #ccc solid 1px;
+    border-radius: 15px;
+    padding:15px;
+}
+
+.fa-star{
+    color:#ffc425;
+}
+
+.comment-box{
+    margin-top:10px;
+}
+
+.review-username{
+    font-weight: bold;
+}
+
+.btn-primary{
+    border:1px solid #eb0045;
+    background-color:#eb0045;
+    color:white;
+    margin-top: 15px;
+}
+
+.btn-primary:hover{
+    border:1px solid #eb0045;
+    background-color:white;
+    color:#eb0045;
+}
+
+#add-comment-box{
+    margin-top: 15px;
+    display:none;
+}
+
+#comment-textfield{
+    width:50vw;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 480px) {
+    #comment-textfield{
+        width:80vw;
     }
 }
