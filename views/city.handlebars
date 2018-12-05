@@ -2,6 +2,8 @@
    
 <div class="parallax-bg cityBanner" data-bgurl="./assets/citybanner.jpg">
 
+{{!-- Learn more button --}}
+
 </div>
 
   <div id="city-floating-box" class="d-flex justify-content-center align-items-center flex-column">
@@ -11,27 +13,59 @@
 
 </div>
 
+{{!-- Filter button --}}
+
 <div class="row d-flex justify-content-between" id="city-attraction">
 
         <h3>Attraction</h3>
-        <button class='btn btn-primary' id="city-filter">Filter</button>
+        <div class="btn-group">
+        <button type="button" id="city-filter" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button">Action</button>
+            <button class="dropdown-item" type="button">Another action</button>
+            <button class="dropdown-item" type="button">Something else here</button>
+        </div>
+        </div>
 
 </div>
 
-<div class="row">
-    <div class="col">
-        <img class="city-attraction-image img-fluid" src="./assets/coffee.jpg">
+<div class="row  attraction-row">
+    <div class="attraction-col col-md-4 col-lg-4">
+        <img class="city-attraction-image " src="./assets/coffee.jpg">
+        <div class="image-overlay">
+            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
+        </div>
     </div>
-    <div class="col">
-        <img class="city-attraction-image img-fluid" src="./assets/garden3.jpeg">
+    <div class="attraction-col col-md-8 col-lg-8">
+        <img class="city-attraction-image " src="./assets/garden3.jpeg">
+        <div class="image-overlay">
+            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col">
+<div class="row  attraction-row">
+    <div class="attraction-col col-md-8 col-lg-8">
         <img class="city-attraction-image img-fluid" src="./assets/coffee.jpg">
+        <div class="image-overlay">
+            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
+        </div>
     </div>
-    <div class="col">
+    <div class="attraction-col col-md-4 col-lg-4">
         <img class="city-attraction-image img-fluid" src="./assets/garden3.jpeg">
+        <div class="image-overlay">
+            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
+        </div>
+    </div>
+</div>
+
+<div class="row  attraction-row">
+    <div class="attraction-col  col-md-4 col-lg-4">
+        <img class="city-attraction-image " src="./assets/coffee.jpg">
+    </div>
+    <div class="attraction-col col-md-8 col-lg-8">
+        <img class="city-attraction-image " src="./assets/garden3.jpeg">
     </div>
 </div>
