@@ -15,7 +15,7 @@ class AttractionCommentRouter {
 
    get(req, res) {
       //Validation Logic
-      console.log(req.params.attractionid);
+      console.log(req.params.attractionid +'xxxxxx');
       return this.attractionCommentService.listAttractionCommentsByAttractionID(req.params.attractionid)
          .then((data) => res.json(data))
          .catch((err) => res.status(500).json(err));
