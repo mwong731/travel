@@ -19,22 +19,20 @@
     <body>
         <div class="container-fluid "> 
         <div class='header'>
-            
+
+            {{!-- Nav bar --}}
             <nav class="navbar navbar-expand navbar-light fixed-top">
-                        <img id="navBarLogo" src="../assets/logo.png">
-                        {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse navbar-right" id="navbarNavDropdown"> --}}
-                      
-                          <ul class="navbar-nav ml-auto">
-                           
+                        <a href="/"><img id="navBarLogo" src="../assets/logo.png"></a>
+                        
+                        {{!-- If logged in, display this div (with add button and profile pic) --}}
+                          <ul class="navbar-nav ml-auto" id="login-yes-navbar" style="display:none">
+                            
                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Add
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Attraction</a>
+                                <a class="dropdown-item" href="/edit-attraction">Attraction</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Itinerary</a>
                                 
@@ -45,10 +43,18 @@
                                 <img src="../assets/profile.jpg" id="profilePicture">
                               
                             </li>
+                            
                           </ul>
                         
+
+                        {{!-- If NOT logged in, display this div (with login button) --}}
+                          <ul class="navbar-nav ml-auto" id="login-no-navbar" >
+                            
+                           <a href="/auth/login"><button class="btn btn-outline-primary" id="navbar-login-button">Login</button></a>
+                            
+                          </ul>
                         
-                        {{!-- </div> --}}
+
             </nav>
          
              
