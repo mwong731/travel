@@ -21,14 +21,28 @@ nav{
 #profilePicture{
     border-radius:50%;
     height:30px;
+    margin-right:20px;
     margin-left:20px;
     margin-top:10px;
 }
 
 #navbarDropdown{
-    border: 2px border #eb0045 ;
+    border: 1px solid #eb0045;
+    border-radius:20px;
+    height:7vh;
     color:#eb0045 ;
     font-size: 20px;
+}
+
+#navbar-login-button{
+    border-color:#eb0045;
+    color:#eb0045 ;
+}
+
+#navbar-login-button:hover{
+    border-color:#eb0045;
+    background-color:#eb0045 ;
+    color:#fff;
 }
 
 /* =========== bodyBox ==========*/
@@ -36,6 +50,45 @@ nav{
     padding-top:10vh;
     height:90vh
 }
+
+/* ========  Sign-up =========*/
+.form-wrapper{
+    border:2px #ffc425 solid;
+    border-radius:20px;
+    padding:20px 10vw 20px 10vw;
+    width:50vw;
+    margin-top:20px;
+    background-color:#fff;
+}
+
+.sign-up-input{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+#signup-line{
+    width:85px;
+    border-bottom:2px solid #ffc425;
+    margin-bottom:10px;
+}
+
+@media only screen and (max-width: 480px) {
+    .form-wrapper{
+        width:80vw;
+    }
+}
+
+/* =========== Login ==========*/
+#signup-link{
+    color:#eb0045;
+    margin-left:5px;
+    text-decoration: underline;
+}
+
+#signup-link:hover{
+    color:#b10337;
+}
+
 
 /* =========== index ==========*/
 .index{
@@ -287,6 +340,13 @@ nav{
     color:#eb0045;
 }
 
+.btn-primary:active{
+    border:1px solid #eb0045;
+    background-color:#eb0045 !important;
+    color:white;
+}
+
+
 #add-comment-box{
     margin-top: 15px;
     display:none;
@@ -321,6 +381,6 @@ nav{
     margin-bottom:10px;
 }
 
-#submit-attraction{
-    
+.fa-paper-plane{
+    margin-left:5px;
 }

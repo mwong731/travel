@@ -1,19 +1,26 @@
 
 <div class="row d-flex justify-content-between title-box">
+    {{!-- Change name of attraction --}}
     <h2 id="attraction-name">A Coffee Shop</h2>
+    
+    {{!-- Check whether user favourited this attraction --}}
     <h2><i class="far fa-heart empty-heart"></i></h2>
 
 </div>
 
+{{!-- Attraction image --}}
 <div id="attractionCarousel" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
+        {{!-- Change image here --}}
       <img class="d-block carousel-image" src="./assets/garden3.jpeg" >
     </div>
     <div class="carousel-item">
+        {{!-- Change image here --}}
       <img class="d-block carousel-image" src="./assets/coffee.jpg">
     </div>
     <div class="carousel-item">
+        {{!-- Change image here --}}
       <img class="d-block carousel-image" src="./assets/citybanner.jpg">
     </div>
   </div>
@@ -30,10 +37,13 @@
 <div class="row info-and-map">
     <div class="col-12 col-md-6" id="attraction-info">
         <h6><b>About this place</b></h6>
+
+        {{!-- Change attraction description --}}
         <div id="attraction-info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed magna sit amet sapien pharetra congue vel sed ante. Phasellus ex lectus, vehicula sit amet congue a, lacinia sit amet arcu. Fusce maximus neque at volutpat hendrerit. Maecenas sed odio et lacus varius scelerisque in sed velit.</div>
     </div>
 
     <div class="col-12 col-md-6" id="attraction-map">
+        {{!-- Map API --}}
         MAP
     </div>
 
@@ -42,6 +52,7 @@
 <div class="row review-row">
     <div class="review-box col-12">
         <h5><b>Reviews</b></h5>
+        {{!-- Change review star rating --}}
         <div id="review-star">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -49,6 +60,7 @@
             <i class="fas fa-star"></i>
             <i class="far fa-star"></i>
         </div>
+        {{!-- Append review with username and comment --}}
         <div class="comment-box">
             <div class="review-username">Username</div>
             <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
@@ -70,11 +82,13 @@
             <i class="far fa-star"></i>
         </div>
         <textarea placeholder="Write comment here" class="d-block" id="comment-textfield"></textarea>
-        <button class="btn btn-primary" id="submit-comment">Submit</button>
+        <button class="btn btn-primary" id="submit-comment">Submit </button>
 
     </div>
 
     </div>
 
 </div>
+
+<script src="../js-file/attraction.js"></script>
 

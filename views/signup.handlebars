@@ -1,34 +1,37 @@
-
-<form action="/auth/signup" method="post">
+<div class="d-flex justify-content-center">
+<form action="/auth/signup" method="post" class="d-flex flex-column form-wrapper" id="sign-up-form">
+    
+        <div><h3>Sign up</h3></div>
+        <div id="signup-line"></div>
+    
     <div>
-        <label>User name:</label>
-        <input type="text" name="username" required>
+        <input type="text" name="username" placeholder="Username *" class="form-control sign-up-input" required>
     </div>
     <div>
-        <label>Email:</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email"  placeholder="Email *" class="form-control sign-up-input" required>
+    </div>
+     <div>
+        <input type="password" name="password" id="password"  placeholder="Password *" class="form-control sign-up-input" required>
     </div>
     <div>
-        <label>Birthday:</label>
-        <input type="date" name="birthday" />
+        <input type="password" name="confirmPassword" placeholder="Re-enter password *" class="form-control sign-up-input" id="confirm_password" onChange="checkPasswordMatch();" required>
     </div>
-    <div>
-        <label>Gender:</label>
-        <select>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
+    <div class="form-row align-items-center">
+       <div class="col-3">Birthday:</div>
+        <div class="col-9"><input type="date" name="birthday" class="form-control sign-up-input"/></div>
     </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password" id="password" required>
+    <div class="form-row align-items-center">
+        <div class="col-3">Gender:</div>
+        <div class="col-9">
+            <select class="form-control sign-up-input">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
     </div>
-    <div>
-        <label>Confirm password:</label>
-        <input type="password" name="confirmPassword" id="confirm_password" onChange="checkPasswordMatch();" required>
-    </div>
-    <div>
-        <input type="submit" value="Sign up" />
+   
+    <div class="d-flex justify-content-center">
+        <input type="submit" class="btn btn-primary" value="Create account" />
     </div>
     </div>
     <div class="registrationFormAlert" id="divCheckPasswordMatch">
@@ -39,3 +42,4 @@
  
     
 </script>
+</div>
