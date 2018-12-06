@@ -9,7 +9,5 @@ module.exports = class ViewRouter{
         router.get('/attraction',(req,res)=>res.render("attraction"));
         router.get('/edit-attraction',(req,res)=>res.render("edit-attraction"));
         return router;
-
-      
     }
 }

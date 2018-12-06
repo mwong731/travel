@@ -26,10 +26,11 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('8');
       return knex('users').insert([
-        { email: "userman1@gmail.com", password: '123', name: 'userman1', usertype: "user", gender: "m", birthday: new Date(), age: 18, facebookid: '', googleid: '' },
-        { email: "adminwoman1@hotmail.com", password: '123', name: 'adminwoman1', usertype: "admin", gender: "f", birthday: new Date(), age: 23, facebookid: '', googleid: '' },
-        { email: "userother1@rockmail.com", password: '123', name: 'userother1', usertype: "user", gender: "m", birthday: new Date(), age: 23, facebookid: '', googleid: '' },
-        { email: "userother1@rockmail.com", password: '123', name: 'userother1', usertype: "user", gender: "f", birthday: new Date(), age: 23, facebookid: '', googleid: '' }
+        { email: "userman1@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman1', gender: "Male" ,  birthday: new Date() ,usertype: "user" },
+        { email: "userman2@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman2', gender: "Female" ,  birthday: new Date() ,usertype: "user" },
+        { email: "userman3@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman3', gender: "Female" ,  birthday: new Date() ,usertype: "user" },
+        { email: "userman4@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman4', gender: "Female" ,  birthday: new Date() ,usertype: "user" }
+      
       ]);
     }).then(function () {
       console.log('9');
@@ -51,7 +52,7 @@ exports.seed = function (knex, Promise) {
       console.log('11');
       return knex('plan').insert([
         { userid: 1, name: 'plan1' },
-        { userid: 4, name: 'plan2' },
+        { userid: 2, name: 'plan2' },
       ]);
     }).then(function () {
       console.log('12');

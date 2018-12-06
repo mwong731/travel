@@ -20,9 +20,19 @@ const authRoutes =require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const ViewRouter = require('./routes/viewRouter');
 
+
+const attractionService = require('./service/attractionService');
+const attractionCommentService = require('./service/attractionCommentService');
+const attractionRouter = require('./routes/attractionRoutes');
+const attractionCommentRouter = require('./routes/attractionRoutes');
+
+
 app.use('/',new ViewRouter().router()); // only requests to '/' will be sent to new router
 app.use('/auth',authRoutes);
 app.use('/profile',profileRoutes);
+// app.use('/api/attraction',new attractionRouter(new attractionService(db)).router());
+// app.use('/api/attractioncomment',new attractionCommentRouter(new attractionCommentService(db)).router());
+// app.use('/profile',profileRoutes);
 
 app.get('/error',(req,res)=>{
     res.send('error occurred')
