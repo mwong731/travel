@@ -15,6 +15,13 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static("public"));
 
+//Use body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+//Set up express sessions - with the secret to encode the session
+app.use(expressSession({secret: 'thisRealSecret',
+}));
+
 //Set up routes
 const authRoutes =require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
@@ -38,13 +45,7 @@ app.get('/error',(req,res)=>{
     res.send('error occurred')
 })
 
-//Use body parser
-app.use(bodyParser.urlencoded({extended: false}));
-//Set up express sessions - with the secret to encode the session
-app.use(expressSession({secret: 'thisRealSecret',
-resave: true,
-    saveUninitialized: true
-}));
+
 
 //Initialize passport
 app.use(passport.initialize());
