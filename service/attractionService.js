@@ -23,6 +23,13 @@ module.exports = class AttractionService {
             .from("attraction")
             .where("id", attractionID);
     }
+
+    getAttractionByCityID(cityID) {
+        return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
+            .from("attraction")
+            .where("cityid", cityID);
+    }
+
     // updateAttractionWithID input can be null
     updateAttractionWithID(attractionID, cityid, name , description ,type, latitude, longitude, image) {
         let insertObject = new Object();
@@ -70,5 +77,5 @@ module.exports = class AttractionService {
             { cityid: cityid, type: type, latitude: latitude, longitude: longitude, image: image }
         ]);
     }
-    //end
+    //below function not even test
 }

@@ -28,5 +28,5 @@ module.exports = class planService {
    deleteAllAttractionInPlanByPlanID(PlanID) {
       return this.knex('attractioninplan').where('planid',PlanID).del();
    }
-   //end
+   //below function not even test
 }

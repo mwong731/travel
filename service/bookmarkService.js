@@ -1,5 +1,5 @@
 module.exports = class bookmarkService {
-
+   //finish test
    constructor(knex) {
       this.knex = knex;
    }
@@ -10,8 +10,8 @@ module.exports = class bookmarkService {
       ]);
    }
 
-   deleteBookmark(userID , attractionID) {
-      return this.knex('bookmark').where('id', attractionID).del();
+   deleteBookmark(ID) {
+      return this.knex('bookmark').where('id', ID).del();
    }
 
    listUserBookmark(userID) {
@@ -25,5 +25,5 @@ module.exports = class bookmarkService {
          .from("bookmark")
          .where("attractionid", attractionID);
    }
-
+   //below function not even test
 }

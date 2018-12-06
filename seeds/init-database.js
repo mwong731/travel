@@ -26,10 +26,10 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('8');
       return knex('users').insert([
-        { email: "userman1@gmail.com", password: '123', usertype: "user", gender: "m", birthday: new Date() ,age: 18, facebookid: '', googleid: '' },
-        { email: "adminwoman1@hotmail.com", password: '123', usertype: "admin", gender: "f", birthday: new Date() , age: 23, facebookid: '', googleid: '' },
-        { email: "userother1@rockmail.com", password: '123', usertype: "user", gender: "m", birthday: new Date() , age: 23, facebookid: '', googleid: '' },
-        { email: "userother1@rockmail.com", password: '123', usertype: "user", gender: "f", birthday: new Date() , age: 23, facebookid: '', googleid: '' }
+        { email: "userman1@gmail.com", password: '123', name: 'userman1', usertype: "user", gender: "m", birthday: new Date(), age: 18, facebookid: '', googleid: '' },
+        { email: "adminwoman1@hotmail.com", password: '123', name: 'adminwoman1', usertype: "admin", gender: "f", birthday: new Date(), age: 23, facebookid: '', googleid: '' },
+        { email: "userother1@rockmail.com", password: '123', name: 'userother1', usertype: "user", gender: "m", birthday: new Date(), age: 23, facebookid: '', googleid: '' },
+        { email: "userother1@rockmail.com", password: '123', name: 'userother1', usertype: "user", gender: "f", birthday: new Date(), age: 23, facebookid: '', googleid: '' }
       ]);
     }).then(function () {
       console.log('9');
@@ -41,11 +41,11 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('10');
       return knex('attraction').insert([
-        { cityid: 1, type: "shop", name:'shop1' , description:'description1' ,latitude: "22.313235", longitude: "114.041271", image: "" },
-        { cityid: 1, type: "restaurant", name:'restaurant1' , description:'description2' ,latitude: "344.1233", longitude: "50.1231", image: "" },
-        { cityid: 1, type: "sleep", name:'sleep1' , description:'description3' ,latitude: "44.338383", longitude: "34.92828", image: "" },
-        { cityid: 2, type: "restaurant", name:'restaurant2' , description:'description4' ,latitude: "22.313235", longitude: "114.041271", image: "" },
-        { cityid: 3, type: "go", name:'go1' , description:'description5' ,latitude: "393.292919", longitude: "114.041271", image: "" }
+        { cityid: 1, type: "shop", name: 'shop1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "" },
+        { cityid: 1, type: "restaurant", name: 'restaurant1', description: 'description2', latitude: "344.1233", longitude: "50.1231", image: "" },
+        { cityid: 1, type: "sleep", name: 'sleep1', description: 'description3', latitude: "44.338383", longitude: "34.92828", image: "" },
+        { cityid: 2, type: "restaurant", name: 'restaurant2', description: 'description4', latitude: "22.313235", longitude: "114.041271", image: "" },
+        { cityid: 3, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", image: "" }
       ]);
     }).then(function () {
       console.log('11');

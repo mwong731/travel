@@ -31,7 +31,10 @@ app.get('/error',(req,res)=>{
 //Use body parser
 app.use(bodyParser.urlencoded({extended: false}));
 //Set up express sessions - with the secret to encode the session
-app.use(expressSession({secret: 'thisRealSecret'}));
+app.use(expressSession({secret: 'thisRealSecret',
+resave: true,
+    saveUninitialized: true
+}));
 
 //Initialize passport
 app.use(passport.initialize());

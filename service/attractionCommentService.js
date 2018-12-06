@@ -16,13 +16,13 @@ module.exports = class attractionComment {
    }
 
    insertComment(UserID, AttractionID, comment, Rate) {
-      return knex('attractioncomment').insert([
+      return this.knex('attractioncomment').insert([
          { userid: UserID, attractionid: AttractionID, comment: comment, rate: Rate }
       ]);
    }
 
    deleteComment(ID) {
-      return knex('attractioncomment').where('id', ID).del();
+      return this.knex('attractioncomment').where('id', ID).del();
    }
 
    updateCommentRateByID( ID,comment , Rate) {

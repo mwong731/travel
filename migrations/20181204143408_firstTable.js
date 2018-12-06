@@ -11,6 +11,7 @@ exports.up = function (knex, Promise) {
          table.integer("age");
          table.string("facebookid");
          table.string("googleid");
+         table.string("name");
          //table.timestamps(false, true);
       }).createTable('city', (table) => {
          table.increments();
@@ -29,7 +30,7 @@ exports.up = function (knex, Promise) {
          table.enu("type", ['shop', 'restaurant', 'sleep', 'go']);
          table.float("latitude");
          table.float("longitude");
-         table.binary("image");
+         table.string("image");
          //table.timestamps(false, true);
       }).createTable('usersubmitattraction', (table) => {
          table.increments();
@@ -38,10 +39,11 @@ exports.up = function (knex, Promise) {
          table.enu("type", ['shop', 'restaurant', 'sleep', 'go']);
          table.float("latitude");
          table.float("longitude");
-         table.binary("image");
+         table.string("image");
          table.enu("confirmstatus" , ["accept","decline","wait"]);
          //table.timestamps(false, true);
       }).createTable('bookmark', (table) => {
+         table.increments();
          table.integer('userid');
          table.foreign('userid').references('users.id');
          table.integer('attractionid');
