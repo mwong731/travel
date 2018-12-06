@@ -17,12 +17,16 @@ app.use(express.static("public"));
 
 //Set up routes
 const authRoutes =require('./routes/auth-routes');
+const cityRoutes = require('./routes/city-routes');
 const profileRoutes = require('./routes/profile-routes');
 const ViewRouter = require('./routes/viewRouter');
 
 app.use('/',new ViewRouter().router()); // only requests to '/' will be sent to new router
+app.use('/city',cityRoutes);
 app.use('/auth',authRoutes);
-app.use('/profile',profileRoutes);
+
+//Building profile UI
+// app.use('/profile',profileRoutes);
 
 app.get('/error',(req,res)=>{
     res.send('error occurred')
