@@ -34,7 +34,7 @@ const ViewRouter = require('./routes/viewRouter');
 const attractionService = require('./service/attractionService');
 const attractionCommentService = require('./service/attractionCommentService');
 const attractionRouter = require('./routes/attractionRoutes');
-const attractionCommentRouter = require('./routes/attractionRoutes');
+const attractionCommentRouter = require('./routes/attractionCommentRouter');
 
 
 app.use('/', new ViewRouter().router()); // only requests to '/' will be sent to new router
