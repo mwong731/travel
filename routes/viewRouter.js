@@ -10,7 +10,5 @@ module.exports = class ViewRouter{
 
         router.get('/profile',(req,res)=>res.render("profile"));
         return router;
-
-      
     }
 }

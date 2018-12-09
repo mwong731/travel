@@ -5,13 +5,12 @@ exports.up = function (knex, Promise) {
          table.increments();
          table.string("email");
          table.string("password");
-         table.enu("usertype", ["user", "admin"]);
-         table.enu("gender", ["m", "f"]);
-         table.date('birthday');
-         table.integer("age");
          table.string("facebookid");
          table.string("googleid");
          table.string("name");
+         table.enu("gender", ["Male", "Female"]);
+         table.date('birthday');
+         table.enu("usertype", ["user", "admin"]);
          //table.timestamps(false, true);
       }).createTable('city', (table) => {
          table.increments();
@@ -30,6 +29,12 @@ exports.up = function (knex, Promise) {
          table.enu("type", ['shop', 'restaurant', 'sleep', 'go']);
          table.float("latitude");
          table.float("longitude");
+         table.string("image");
+         //table.timestamps(false, true);
+      }).createTable('attractionimage', (table) => {
+         table.increments();
+         table.integer('attractionid');
+         table.foreign('attractionid').references('attraction.id');
          table.string("image");
          //table.timestamps(false, true);
       }).createTable('usersubmitattraction', (table) => {
@@ -94,5 +99,5 @@ exports.up = function (knex, Promise) {
 };
 
 exports.down = function (knex, Promise) {
-   return knex.schema.dropTable('attractioncomment').dropTable('bookmark').dropTable('usersubmitattraction').dropTable('attractioninplan').dropTable('plan').dropTable('attraction').dropTable('city').dropTable('users');
+   return knex.schema.dropTable('attractioncomment').dropTable('bookmark').dropTable('usersubmitattraction').dropTable('attractioninplan').dropTable('plan').dropTable('attractionimage').dropTable('attraction').dropTable('city').dropTable('users');
 };

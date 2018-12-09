@@ -12,8 +12,8 @@
     Choose a city
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item city-drop-item" href="/city/tokyo">Tokyo</a>
-    <a class="dropdown-item city-drop-item" href="/city/osaka">Osaka</a>
+    <a class="dropdown-item city-drop-item" href="/city/Tokyo">Tokyo</a>
+    <a class="dropdown-item city-drop-item" href="/city/Osaka">Osaka</a>
     <a class="dropdown-item city-drop-item" href="/city/fukuoka">Fukuoka</a>
     <a class="dropdown-item city-drop-item" href="/city/hiroshima">Hiroshima</a>
   </div>
@@ -22,14 +22,24 @@
 </div>
 
 <div class="row no-gutters cityImageRow">
+        
     <div class="indexPhotoCol col-lg-3 col-6">
    
-            <img src="./assets/garden3.jpeg" class="city-img" >
+          {{!-- <a href="/city/Tokyo"></a>   --}}
+            <img src="../assets/tokyo.jpg" class="city-img" >
+            <div class="image-overlay">
+            <div class="attraction-name">Tokyo</div>
+                </div>
+         {{!-- </a> --}}
    
     </div>
+   
     <div class="indexPhotoCol col-lg-3 col-6">
    
-            <img src="./assets/garden3.jpeg" class="city-img" >
+            <img src="../assets/osaka.jpg" class="city-img" >
+            <div class="image-overlay">
+            <div class="attraction-name">Osaka</div>
+                </div>
    
     </div>
     <div class="indexPhotoCol col-lg-3 col-6">

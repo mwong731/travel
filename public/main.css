@@ -138,8 +138,8 @@ nav{
 .city-img{
     object-fit: cover;
     overflow: hidden;
-    max-height: 20vw; 
-    max-width : 20vw;  
+    max-height: 20vw ; 
+    max-width : 20vw ;  
 }
 
 @media only screen and (max-width: 480px) {
@@ -190,6 +190,32 @@ nav{
     border:1px solid #eb0045;
     color:#eb0045;
     background-color:transparent;
+    margin-top:0 !important;
+}
+
+#floating-info-box{
+    position:absolute;
+    width:80vw;
+    background-color:white;
+    opacity:0.9;
+    top:20vh;
+    padding:20px;
+    border-radius:20px;
+    z-index:100;
+    display:none;
+}
+
+#description-info{
+    font-size:12px;
+}
+
+.cancel-button{
+    border:none;
+    background-color:transparent;
+}
+
+.cancel-button:hover{
+    color:#ccc;
 }
 
 #learn-more:hover{
@@ -413,22 +439,39 @@ nav{
     margin-bottom:20px;
 }
 
-#profile-attraction-row{
+.profile-subtitle{
+    padding-left:20px;
+}
+
+.profile-subtitle-line{
+    border-bottom:2px solid #ffc425;
+    width:150px;
+    margin-bottom:15px;
+}
+
+.profile-attraction-row{
     overflow-x: auto;
     flex-wrap: nowrap;
-    
+    padding:0 20px 0 20px !important;
     /* white-space: nowrap; */
 }
 
 .profile-attraction-col {
-    display: inline-block;
+    display: flex;
     float: none;
+    justify-content: start;
 }
 
 .profile-attraction{
     width:20vw;
     height:20vw;
     object-fit:cover;
+}
+
+.profile-line-grey{
+    width:100%;
+    margin: 20px 20px 20px 20px;
+    border-bottom:1px solid #ccc;
 }
 
 @media only screen and (max-width: 480px) {
@@ -438,8 +481,8 @@ nav{
     }
     
     .profile-attraction{
-        width:40vw;
-        height:40vw;
+        width:36vw;
+        height:36vw;
         object-fit:cover;
     }
 }

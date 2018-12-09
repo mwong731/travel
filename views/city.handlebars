@@ -1,14 +1,23 @@
 <div class="row justify-content-center">
    
-<div class="parallax-bg cityBanner" data-bgurl="./assets/citybanner.jpg">
+<div class="parallax-bg cityBanner" data-bgurl="../assets/tokyo.jpg">
 
 {{!-- Learn more button --}}
 
 </div>
 
   <div id="city-floating-box" class="d-flex justify-content-center align-items-center flex-column">
-        <h1>City</h1>
+        <h1>{{name}}</h1>
         <button class="btn btn-primary" id="learn-more">Learn more</button>
+        
+    </div>
+
+    <div id="floating-info-box">
+        <div class="d-flex justify-content-between">
+            <h5> About this city</h5>
+             <button class="cancel-button" id="cancel-info"> <i class="fas fa-times"></i></button>
+        </div>
+        <div id="description-info">{{description}}</div>
     </div>
 
 </div>
@@ -23,49 +32,79 @@
             Filter
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
+            <button class="dropdown-item" type="button" value="go">Tourist attraction</button>
+            <button class="dropdown-item" type="button" value="restaurant">Restaurant</button>
+            <button class="dropdown-item" type="button" value="shop">Shop</button>
         </div>
         </div>
 
 </div>
 
+
+<div class="row attraction-row">
+{{!-- Attraction --}}
+{{!-- {{#each attraction}} --}}
+    <div id="row_content"></div>
+    {{!-- <div class="attraction-col col-md-8 col-lg-8">
+        <img class="city-attraction-image " src="../assets/coffee.jpg">
+        <div class="image-overlay">
+            <div class="attraction-name">{{name}} <i class="far fa-heart empty-heart"></i></div>
+        </div>
+    </div> --}}
+</div>
+
+
+{{!-- 
+
+    <div class="attraction-col col-md-8 col-lg-8">
+        <img class="city-attraction-image " src="../assets/garden3.jpeg">
+        <div class="image-overlay">
+            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
+        </div>
+    </div>
+</div>
+
 <div class="row  attraction-row">
+    <div class="attraction-col col-md-8 col-lg-8">
+        <img class="city-attraction-image img-fluid" src="../assets/coffee.jpg">
+        <div class="image-overlay">
+            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
+        </div>
+    </div>
     <div class="attraction-col col-md-4 col-lg-4">
-        <img class="city-attraction-image " src="./assets/coffee.jpg">
+        <img class="city-attraction-image img-fluid" src="../assets/garden3.jpeg">
         <div class="image-overlay">
             <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
         </div>
     </div>
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image " src="./assets/garden3.jpeg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-</div>
+</div> --}}
 
-<div class="row  attraction-row">
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image img-fluid" src="./assets/coffee.jpg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-    <div class="attraction-col col-md-4 col-lg-4">
-        <img class="city-attraction-image img-fluid" src="./assets/garden3.jpeg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-</div>
 
-<div class="row  attraction-row">
-    <div class="attraction-col  col-md-4 col-lg-4">
-        <img class="city-attraction-image " src="./assets/coffee.jpg">
-    </div>
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image " src="./assets/garden3.jpeg">
-    </div>
-</div>
+
+<script>
+    //Description buttons
+    $('#learn-more').on('click',function(){
+        $('#floating-info-box').show('slow');
+        $('#city-floating-box').css('z-index','-10');
+    })
+
+    $('#cancel-info').on('click',function(){
+        $('#floating-info-box').hide('slow');
+        $('#city-floating-box').css('z-index','10');
+    })
+
+    var attraction = "{{data}}";
+    
+
+    $(document).ready ( function(){
+        console.log(attraction);
+        if (attraction != null){
+        attraction = JSON.parse(attraction);
+    }
+        for(var i =0; i < attraction.length; i++){
+          //  console.log(attraction[i]);
+        }
+
+    });
+    
+</script>

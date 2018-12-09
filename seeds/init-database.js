@@ -15,6 +15,9 @@ exports.seed = function (knex, Promise) {
       console.log('4');
       return knex('plan').del();
     }).then(function () {
+      console.log('5.5');
+      return knex('attractionimage').del();
+    }).then(function () {
       console.log('5');
       return knex('attraction').del();
     }).then(function () {
@@ -26,10 +29,11 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('8');
       return knex('users').insert([
-        { email: "userman1@gmail.com", password: '123', name: 'userman1', usertype: "user", gender: "m", birthday: new Date(), age: 18, facebookid: '', googleid: '' },
-        { email: "adminwoman1@hotmail.com", password: '123', name: 'adminwoman1', usertype: "admin", gender: "f", birthday: new Date(), age: 23, facebookid: '', googleid: '' },
-        { email: "userother1@rockmail.com", password: '123', name: 'userother1', usertype: "user", gender: "m", birthday: new Date(), age: 23, facebookid: '', googleid: '' },
-        { email: "userother1@rockmail.com", password: '123', name: 'userother1', usertype: "user", gender: "f", birthday: new Date(), age: 23, facebookid: '', googleid: '' }
+        { email: "userman1@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman1', gender: "Male" ,  birthday: new Date() ,usertype: "user" },
+        { email: "userman2@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman2', gender: "Female" ,  birthday: new Date() ,usertype: "user" },
+        { email: "userman3@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman3', gender: "Female" ,  birthday: new Date() ,usertype: "user" },
+        { email: "userman4@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman4', gender: "Female" ,  birthday: new Date() ,usertype: "user" }
+      
       ]);
     }).then(function () {
       console.log('9');
@@ -41,17 +45,26 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('10');
       return knex('attraction').insert([
-        { cityid: 1, type: "shop", name: 'shop1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "" },
-        { cityid: 1, type: "restaurant", name: 'restaurant1', description: 'description2', latitude: "344.1233", longitude: "50.1231", image: "" },
-        { cityid: 1, type: "sleep", name: 'sleep1', description: 'description3', latitude: "44.338383", longitude: "34.92828", image: "" },
-        { cityid: 2, type: "restaurant", name: 'restaurant2', description: 'description4', latitude: "22.313235", longitude: "114.041271", image: "" },
-        { cityid: 3, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", image: "" }
+        { cityid: 1, type: "shop", name: 'shop1', description: 'description1', latitude: "22.313235", longitude: "114.041271" },
+        { cityid: 1, type: "restaurant", name: 'restaurant1', description: 'description2', latitude: "344.1233", longitude: "50.1231" },
+        { cityid: 1, type: "sleep", name: 'sleep1', description: 'description3', latitude: "44.338383", longitude: "34.92828" },
+        { cityid: 2, type: "restaurant", name: 'restaurant2', description: 'description4', latitude: "22.313235", longitude: "114.041271" },
+        { cityid: 3, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271" }
+      ]);
+    }).then(function () {
+      console.log('10.5');
+      return knex('attractionimage').insert([
+        { attractionid: 1, image: '' },
+        { attractionid: 1, image: '' },
+        { attractionid: 1, image: '' },
+        { attractionid: 1, image: '' },
+        { attractionid: 1, image: '' },
       ]);
     }).then(function () {
       console.log('11');
       return knex('plan').insert([
         { userid: 1, name: 'plan1' },
-        { userid: 4, name: 'plan2' },
+        { userid: 2, name: 'plan2' },
       ]);
     }).then(function () {
       console.log('12');
