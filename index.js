@@ -32,6 +32,7 @@ const ViewRouter = require('./routes/viewRouter');
 
 const cityRouter = require('./routes/city-routes')
 const cityService = require('./service/cityService')
+const cityAttractionRouter=require('./routes/city-attraction-route')
 
 
 const attractionService = require('./service/attractionService');
@@ -46,6 +47,7 @@ app.use('/auth', authRoutes);
 app.use('/api/attraction', new attractionRouter(new attractionService(db)).router());
 app.use('/api/attractioncomment', new attractionCommentRouter(new attractionCommentService(db)).router());
 app.use('/city', new cityRouter(new cityService(db)).router());
+app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
 
 app.get('/error', (req, res) => {
     res.send('error occurred')

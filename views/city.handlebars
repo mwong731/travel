@@ -32,53 +32,19 @@
             Filter
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button" value="go">Tourist attraction</button>
-            <button class="dropdown-item" type="button" value="restaurant">Restaurant</button>
-            <button class="dropdown-item" type="button" value="shop">Shop</button>
+            <button class="dropdown-item" value="go" onclick="filter(this.value)">Tourist attraction</button>
+            <button class="dropdown-item"  value="restaurant" onclick="filter(this.value)">Restaurant</button>
+            <button class="dropdown-item"  value="shop" onclick="filter(this.value)">Shop</button>
         </div>
         </div>
 
 </div>
 
+{{!-- Attraction append --}}
 
 <div class="row attraction-row">
-{{!-- Attraction --}}
-{{!-- {{#each attraction}} --}}
-    <div id="row_content"></div>
-    {{!-- <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image " src="../assets/coffee.jpg">
-        <div class="image-overlay">
-            <div class="attraction-name">{{name}} <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div> --}}
+  {{!-- Items loaded after ajax call --}}
 </div>
-
-
-{{!-- 
-
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image " src="../assets/garden3.jpeg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-</div>
-
-<div class="row  attraction-row">
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image img-fluid" src="../assets/coffee.jpg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-    <div class="attraction-col col-md-4 col-lg-4">
-        <img class="city-attraction-image img-fluid" src="../assets/garden3.jpeg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-</div> --}}
-
 
 
 <script>
@@ -93,18 +59,67 @@
         $('#city-floating-box').css('z-index','10');
     })
 
-    var attraction = "{{data}}";
-    
+    //Append attraction
+    var cityName=window.location.href.split('/')[4] 
+    console.log(cityName)
 
-    $(document).ready ( function(){
-        console.log(attraction);
-        if (attraction != null){
-        attraction = JSON.parse(attraction);
-    }
-        for(var i =0; i < attraction.length; i++){
-          //  console.log(attraction[i]);
+    function appendAttraction(data){
+        for (var i=1;i<data.length+1;i++){
+            if((i%2==0 && i%4==0 && i!=2) || (i%4==1)){ //long
+
+                //check liked or not
+                //let arr=bookmarked array
+                //let result=arr.filter(id==${data[i-1].id})
+                //if(result.length>0){}//filled heart
+                //else //empty heart
+                $('.attraction-row').append(`
+                <div class="attraction-col col-md-8 col-lg-8">
+                    <img class="city-attraction-image " src="../assets/garden3.jpeg">
+                    <div class="image-overlay">
+                        <div class="attraction-name">${data[i-1].name} <i class="far fa-heart empty-heart"></i></div>
+                    </div>
+                </div>`)
+
+            }else{ //short
+                $('.attraction-row').append(`
+                <div class="attraction-col col-md-4 col-lg-4">
+                    <img class="city-attraction-image " src="../assets/garden3.jpeg">
+                    <div class="image-overlay">
+                        <div class="attraction-name">${data[i-1].name}<i class="far fa-heart empty-heart"></i></div>
+                    </div>
+                </div>`)
+            }
         }
+    }
 
+    $.get( `/api/city/${cityName}`, function() {
+        console.log( "ajax get success" );
+    })
+    .done(function(data) {
+        //get bookmarked array
+        //.done
+      appendAttraction(data);
+    })
+    .fail(function() {
+        console.log( "Cannot get attraction" );
+    })
+
+//Filter
+function filter(type){
+
+    $.ajax({
+        method: "POST",
+        url: "/api/city/",
+        data: { type: type, city: cityName }
+        })
+    .done(function( data ) {
+        console.log(data);
+        $('.attraction-row').html('');
+        appendAttraction(data);
     });
+    
+}
+
+      
     
 </script>
