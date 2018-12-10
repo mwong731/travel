@@ -28,6 +28,12 @@ module.exports = class AttractionService {
             .where("id", attractionID);
     }
 
+    getAttractionInAttractionID(attractionID) {
+        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+            .from("attraction")
+            .where("id", attractionID);
+    }
+
     getAttractionByCityID(cityID) {
         return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
             .from("attraction")

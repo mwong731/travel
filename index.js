@@ -56,7 +56,7 @@ const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const ViewRouter = require('./routes/viewRouter');
 
-const attractionRouter = require('./routes/attractionRoutes');
+const attractionRouter = require('./routes/attraction-routes');
 const cityRouter = require('./routes/city-routes')
 const cityService = require('./service/cityService')
 const cityAttractionRouter = require('./routes/city-attraction-route')

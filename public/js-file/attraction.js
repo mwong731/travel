@@ -4,10 +4,17 @@ $('#add-comment').on('click', function () {
     $('#add-comment').fadeOut();
 })
 
-$('#add-comment-box form div i').hover(() => {
-    
+$('#add-comment-box form div i').mouseover((e) => {
+    for (let i = 1; i >=0 ; i++) {
+        $(`#add-comment-box form div i#`)
+    }
+    $(e.currentTarget).attr('id');
+
 })
-$('#add-comment-box form div i').on('click', () => {
+$('#add-comment-box form div i').mouseout((e) => {
+    alert("mouseout");
+})
+$('#add-comment-box form div i').on('click', (e) => {
 
 })
 

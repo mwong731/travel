@@ -74,7 +74,6 @@
             {{{genRateHtmlString rate}}}
             <div class="review-username">{{name}}</div>
             <div>{{comment}}</div>
-            <div>{{rate}}</div>
         </div>
         {{/each}}
 
@@ -82,16 +81,16 @@
 
         <div id="add-comment-box">
             {{!-- need change the form action to /api/attraction/createComment/{{userid}} --}}
-            <form action="/api/attraction/createComment/1"+ method="post" >
+            <form action="/attraction/createComment/1"+ method="post" >
                 <div id="comment-star">
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
+                    <i id="1" class="far fa-star"></i>
+                    <i id="2" class="far fa-star"></i>
+                    <i id="3" class="far fa-star"></i>
+                    <i id="4" class="far fa-star"></i>
+                    <i id="5" class="far fa-star"></i>
                 </div>
-                <textarea placeholder="Write comment here" class="d-block" id="comment-textfield"></textarea>
-                <button type="submit" class="btn btn-primary" id="submit-comment">Submit</button>
+                <textarea name='text' placeholder="Write comment here" class="d-block" id="comment-textfield"></textarea>
+                <input type="submit" class="btn btn-primary" id="submit-comment">Submit</input>
             </form>
         </div>
 
