@@ -91,12 +91,8 @@ app.use('/api/attraction',new attractionAPIRouter(new attractionService(db)).rou
 // app.use('/profile', profileRoutes);
 app.use('/city', new cityRouter(new cityService(db)).router());
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
-<<<<<<< HEAD
 app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router())
 app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router())
-=======
-app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
->>>>>>> c4bcd9d604507f19db07ae101fb46712eee4b11a
 
 app.get('/error', (req, res) => {
     res.send('error occurred')
