@@ -1,4 +1,5 @@
 const express = require("express");
+const userid = 1;
 class AttractionRouter {
    constructor(attractionService, attractionCommentService, attractionImageService, bookmarkService) {
       this.attractionService = attractionService;
@@ -22,8 +23,8 @@ class AttractionRouter {
       //return res.redirect('/404');
    }
 
-   get(req, res) {
-      Promise.all ([
+   async get(req, res) {
+      Promise.all([
          this.attractionService.getAttractionInAttractionID(req.params.id)
          ,
          this.attractionCommentService.listAttractionCommentsByAttractionID(req.params.id)
@@ -31,12 +32,8 @@ class AttractionRouter {
          this.attractionImageService.getImageAttractionByAttractionID(req.params.id)
          ,
          //need get user id;
-         this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(1, req.params.id)
+         this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(userid, req.params.id)
       ]).then((data) => {
-         console.log('this is the data 0:' , data[0]);
-         console.log('this is the data 1:' , data[1]);
-         console.log('this is the data 2:' , data[2]);
-         console.log('this is the data 3:' , data[3]);
          let datajson = {};
          datajson.attraction = data[0];
          datajson.attractionComments = data[1];
@@ -44,7 +41,6 @@ class AttractionRouter {
          datajson.bookmark = data[3];
          return datajson;
       }).then((data) => {
-         // console.log(data)
          //throw new Error('test error');
          return res.render(("attraction"), data);
       }).catch((err) => {
@@ -55,8 +51,10 @@ class AttractionRouter {
    }
 
    createComment(req, res) {
-      this.attractionCommentService.in
-      return res.render(("/index"));
+      console.log(req.body);
+      this.attractionCommentService.insertComment(userid ,1, "1" ,1).then();
+      return res.redirect('back');
+      return res.render("/index");
    }
 
 }
