@@ -5,7 +5,7 @@ module.exports = {
       connection: {
          database: "test2",
          user: "postgres",
-         password: ""
+         password: "postgres"
       }
    })
 }

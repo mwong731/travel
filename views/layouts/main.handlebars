@@ -22,10 +22,17 @@
 
             {{!-- Nav bar --}}
             <nav class="navbar navbar-expand navbar-light fixed-top">
-                        <a href="/"><img id="navBarLogo" src="/assets/logo.png"></a>
+                        <a href="/"><img id="navBarLogo" src="../assets/logo.png"></a>
                         
                         {{!-- If logged in, display this div (with add button and profile pic) --}}
-                          <ul class="navbar-nav ml-auto" id="login-yes-navbar" style="display:none">
+                        {{#if user }}
+                         <ul class="navbar-nav ml-auto" id="login-no-navbar" >
+                            
+                           <a href="/auth/logout"><button class="btn btn-outline-primary" id="navbar-login-button">Logout</button></a>
+                            
+                          </ul>
+                          
+                          <ul class="navbar-nav ml-auto" id="login-yes-navbar">
                             
                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,7 +47,7 @@
                             </li>
                             <li class="nav-item" id="navBarProfile">
                                 {{!-- Profile image --}}
-                                <img src="/assets/profile.jpg" id="profilePicture">
+                                <img src="../assets/profile.jpg" id="profilePicture">
                               
                             </li>
                             
@@ -48,11 +55,16 @@
                         
 
                         {{!-- If NOT logged in, display this div (with login button) --}}
+
+                      
+                        
+                        {{else}}
                           <ul class="navbar-nav ml-auto" id="login-no-navbar" >
                             
                            <a href="/auth/login"><button class="btn btn-outline-primary" id="navbar-login-button">Login</button></a>
                             
                           </ul>
+                        {{/if}}
                         
 
             </nav>
