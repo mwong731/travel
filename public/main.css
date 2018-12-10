@@ -286,6 +286,7 @@ nav{
 
 
 .attraction-name{
+    display:flex;
     font-size:20px;
 }
 

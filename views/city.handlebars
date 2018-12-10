@@ -35,6 +35,7 @@
             <button class="dropdown-item" value="go" onclick="filter(this.value)">Tourist attraction</button>
             <button class="dropdown-item"  value="restaurant" onclick="filter(this.value)">Restaurant</button>
             <button class="dropdown-item"  value="shop" onclick="filter(this.value)">Shop</button>
+            <button class="dropdown-item"  value="all" onclick="filter(this.value)">All</button>
         </div>
         </div>
 
@@ -62,19 +63,15 @@
     //Append attraction
     let userId=1;
     let cityName=window.location.href.split('/')[4] ;
-    console.log(cityName);
 
     function checkBookmark(id){
         return new Promise(function(resolve,reject){
             $.get( `/api/bookmark/${id}`, function() {
-            console.log( "ajax checkbookmark success" );
             })
             .done(function(data) {
                 let bookmarkArray=data.map(function(object){
                     return object.attractionid
                 })
-                console.log("Daya",data)
-                console.log("bookmarked items", bookmarkArray)
                 resolve(bookmarkArray)
             }
             )
@@ -87,22 +84,46 @@
          
     }
 
+    function addNewBookmark(attractionId){
+        axios({
+            method: 'post',
+            url: `/api/bookmark/`,
+            data: { userID: userId, attractionID: attractionId }
+            })
+            .then(function(){
+                 console.log('added new bookmark');
+                 $(`#heart${attractionId}`).html( `<i class="fas fa-heart full-heart" id=${attractionId} onClick="deleteBookmark(this.id)"></i>`)
+
+            })
+    }
+
+    function deleteBookmark(attractionId){
+       axios({
+            method: 'delete',
+            url: `/api/bookmark/`,
+            data: { userID: userId, attractionID: attractionId }
+            })
+            .then(function(){
+                 console.log('deleted bookmark');
+                 $(`#heart${attractionId}`).html( `<i class="far fa-heart empty-heart" id=${attractionId}  onClick="addNewBookmark(this.id)"></div>`)
+            })
+    }
+
+
     async function appendAttraction(data){
         let arr=await checkBookmark(userId);
-        console.log("arr",arr)
         
-        ///api/bookmark
         for (var i=1;i<data.length+1;i++){
 
-            //Check if the heart is empty of full
-            let heart='<i class="far fa-heart empty-heart">';
+            //Check if the heart is empty or full
+            let heart=`<div id="heart${data[i-1].id}"><i class="far fa-heart empty-heart" id=${data[i-1].id} onClick="addNewBookmark(this.id)"></div>`;
 
             let result=arr.filter(function(object){
                 return object==`${data[i-1].id}`
             })
 
-            if(result.length>0){
-                 heart='<i class="fas fa-heart full-heart"></i>';
+            if(result.length>0){ //this item matches the bookmark list
+                 heart=`<div id="heart${data[i-1].id}"><i class="fas fa-heart full-heart" id=${data[i-1].id} onClick="deleteBookmark(this.id)"></i></div>`;
             }
             
             //append with different length
@@ -128,33 +149,40 @@
         }
     }
 
-    $.get( `/api/city/${cityName}`, function() {
-        console.log( "ajax get success" );
-    })
-    .done(function(data) {
-        //get bookmarked array
-        //.done
-      appendAttraction(data);
-    })
-    .fail(function() {
-        console.log( "Cannot get attraction" );
-    })
-
-//Filter
+    // ===== On load append attractions =====
+    function getAttraction(){
+         $.get( `/api/city/${cityName}`, function() {
+            })
+            .done(function(data) {
+                //get bookmarked array
+                //.done
+            appendAttraction(data);
+            })
+            .fail(function() {
+                console.log( "Cannot get attraction" );
+            })
+    }
+   
+// ==== Filter button =====
 function filter(type){
+    if(type==='all'){
 
+        $('.attraction-row').html('');
+        getAttraction();
+    }
     $.ajax({
         method: "POST",
         url: "/api/city/",
         data: { type: type, city: cityName }
         })
     .done(function( data ) {
-        console.log(data);
         $('.attraction-row').html('');
         appendAttraction(data);
     });
     
 }
+
+getAttraction();
 
       
     
