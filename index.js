@@ -51,12 +51,17 @@ app.use(expressSession({
     saveUninitialized: true
 }));
 
+//Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 //Set up routes
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const ViewRouter = require('./routes/viewRouter');
 
-const attractionRouter = require('./routes/attractionRoutes');
+const attractionRouter = require('./routes/attraction-routes');
 const cityRouter = require('./routes/city-routes')
 const cityService = require('./service/cityService')
 const cityAttractionRouter = require('./routes/city-attraction-route')
@@ -97,13 +102,6 @@ app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router())
 app.get('/error', (req, res) => {
     res.send('error occurred')
 })
-
-
-
-//Initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 //Set up https
 const https = require('https');

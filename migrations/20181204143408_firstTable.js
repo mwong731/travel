@@ -41,10 +41,13 @@ exports.up = function (knex, Promise) {
          table.increments();
          table.integer('cityid');
          table.foreign('cityid').references('city.id');
+         table.string('name');
+         table.string('description');
          table.enu("type", ['shop', 'restaurant', 'sleep', 'go']);
          table.float("latitude");
          table.float("longitude");
          table.string("image");
+         //table.timestamps(false, true);
          table.enu("confirmstatus" , ["accept","decline","wait"]);
          //table.timestamps(false, true);
       }).createTable('bookmark', (table) => {

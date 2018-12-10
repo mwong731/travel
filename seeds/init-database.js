@@ -29,11 +29,11 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('8');
       return knex('users').insert([
-        { email: "userman1@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman1', gender: "Male" ,  birthday: new Date() ,usertype: "user" },
-        { email: "userman2@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman2', gender: "Female" ,  birthday: new Date() ,usertype: "user" },
-        { email: "userman3@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman3', gender: "Female" ,  birthday: new Date() ,usertype: "user" },
-        { email: "userman4@gmail.com", password: '123', facebookid: '', googleid: '' ,name: 'userman4', gender: "Female" ,  birthday: new Date() ,usertype: "user" }
-      
+        { email: "userman1@gmail.com", password: '123', facebookid: '', googleid: '', name: 'userman1', gender: "Male", birthday: new Date(), usertype: "user" },
+        { email: "userman2@gmail.com", password: '123', facebookid: '', googleid: '', name: 'userman2', gender: "Female", birthday: new Date(), usertype: "user" },
+        { email: "userman3@gmail.com", password: '123', facebookid: '', googleid: '', name: 'userman3', gender: "Female", birthday: new Date(), usertype: "user" },
+        { email: "userman4@gmail.com", password: '123', facebookid: '', googleid: '', name: 'userman4', gender: "Female", birthday: new Date(), usertype: "user" }
+
       ]);
     }).then(function () {
       console.log('9');
@@ -79,16 +79,16 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('13');
       return knex('usersubmitattraction').insert([
-        { cityid: 1, type: "shop", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 2, type: "restaurant", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "accept" },
-        { cityid: 3, type: "sleep", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "accept" },
-        { cityid: 2, type: "go", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "decline" },
-        { cityid: 2, type: "shop", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 1, type: "restaurant", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 3, type: "sleep", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 1, type: "go", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 3, type: "shop", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "decline" },
-        { cityid: 1, type: "shop", latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { cityid: 1, type: "shop", name: 'usersubmit shop1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { cityid: 2, type: "restaurant", name: 'usersubmit restaurant1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "accept" },
+        { cityid: 3, type: "sleep", name: 'usersubmit sleep1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "accept" },
+        { cityid: 2, type: "go", name: 'usersubmit go1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "decline" },
+        { cityid: 2, type: "shop", name: 'usersubmit shop2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { cityid: 1, type: "restaurant", name: 'usersubmit restaurant1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { cityid: 3, type: "sleep", name: 'usersubmit sleep2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { cityid: 1, type: "go", name: 'usersubmit go2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { cityid: 3, type: "shop", name: 'usersubmit shop3', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "decline" },
+        { cityid: 1, type: "shop", name: 'usersubmit shop4', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
       ]);
     }).then(function () {
       console.log('14');

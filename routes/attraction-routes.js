@@ -51,10 +51,8 @@ class AttractionRouter {
    }
 
    createComment(req, res) {
-      console.log(req.body);
-      this.attractionCommentService.insertComment(userid ,1, "1" ,1).then();
+      this.attractionCommentService.insertComment(userid ,1, req.body.text ,1).then();
       return res.redirect('back');
-      return res.render("/index");
    }
 
 }
