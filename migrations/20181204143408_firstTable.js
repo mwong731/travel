@@ -39,6 +39,8 @@ exports.up = function (knex, Promise) {
          //table.timestamps(false, true);
       }).createTable('usersubmitattraction', (table) => {
          table.increments();
+         table.integer('userid');
+         table.foreign('userid').references('users.id');
          table.integer('cityid');
          table.foreign('cityid').references('city.id');
          table.string('name');

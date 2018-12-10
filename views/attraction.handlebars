@@ -5,10 +5,9 @@
     {{/each}}
     {{!-- Check whether user favourited this attraction --}}
     {{#if bookmark}}
-
-    <h2><i class="fas fa-heart empty-heart"></i></h2>
+    <h2><i id="heart" class="fas fa-heart empty-heart"></i></h2>
     {{else}}
-    <h2><i class="far fa-heart empty-heart"></i></h2>
+    <h2><i id="heart" class="far fa-heart empty-heart"></i></h2>
     {{/if}}
 </div>
 
