@@ -4,29 +4,29 @@ module.exports = class AttractionService {
     //need add upload image function 
     constructor(knex) {
         this.knex = knex;
+        this.query = {
+            selectAttraction :this.knex.select("id", "cityid", "name", "description","type ", "latitude ", "longitude ", "image")
+            .from("attraction")
+        }
     }
 
     listAttractionInCityID(cityID) {
-        return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
-            .from("attraction")
+        return this.query.selectAttraction
             .where("cityid", cityID);
     }
 
     //no use
     listAttraction() {
-        return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
-            .from("attraction");
+        return this.query.selectAttraction
     }
 
     getAttractionInAttractionID(attractionID) {
-        return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
-            .from("attraction")
+        return this.query.selectAttraction
             .where("id", attractionID);
     }
 
     getAttractionByCityID(cityID) {
-        return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
-            .from("attraction")
+        return this.query.selectAttraction
             .where("cityid", cityID);
     }
 
@@ -72,9 +72,9 @@ module.exports = class AttractionService {
         })  
     }
     // insert() input(latitude , longitude) can be null
-    insert(cityid, type, latitude, longitude, image) {
+    insert(cityid, type, name,latitude, longitude, image) {
         return this.knex('attraction').insert([
-            { cityid: cityid, type: type, latitude: latitude, longitude: longitude, image: image }
+            { cityid: cityid, name:name ,type: type, latitude: latitude, longitude: longitude, image: image }
         ]);
     }
     //below function not even test

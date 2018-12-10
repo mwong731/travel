@@ -10,7 +10,33 @@ const db = require('./config/database-init.js').knex;
 let app = express();
 
 /*handlebars*/
-app.engine('handlebars', hb({ defaultLayout: 'main' })); //so that handlebar files can be used
+
+app.engine('handlebars', hb({
+    defaultLayout: 'main',
+    helpers: {
+        //attraction page generate html code 
+        genRateHtmlString: function (rate) {
+            let string = `<div id="review-star">`;
+            for (let i = 0; i < rate; i++) {
+                string += `<i class="fas fa-star"></i>`;
+            }
+            for (let j = 0; j < 5 - rate; j++) {
+                string += `<i class="far fa-star"></i>`;
+            }
+            string += `</div>`;
+            return string;
+        },
+        genAttractionImageHtmlString: function (attractionImage) {
+            //console.log(attractionImage[0].image);
+            let string ="";
+            for (let i = 0; i < attractionImage.length; i++) {
+                string +=  (i==0 ? `<div class="carousel-item active">` : `<div class="carousel-item">`);
+                string += `<img class="d-block carousel-image" src=${attractionImage[i].image}></div>`;
+            }
+            return string;
+        }
+    }
+})); //so that handlebar files can be used
 app.set('view engine', 'handlebars');
 
 app.use(express.static("public"));
@@ -30,18 +56,22 @@ const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const ViewRouter = require('./routes/viewRouter');
 
-
+const attractionRouter = require('./routes/attractionRoutes');
 const attractionService = require('./service/attractionService');
 const attractionCommentService = require('./service/attractionCommentService');
-const attractionRouter = require('./routes/attractionRoutes');
-const attractionCommentRouter = require('./routes/attractionCommentRouter');
-
+const attractionImageService = require('./service/AttractionImageService');
+const bookmarkService = require('./service/bookmarkService');
 
 app.use('/', new ViewRouter().router()); // only requests to '/' will be sent to new router
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
-app.use('/api/attraction', new attractionRouter(new attractionService(db)).router());
-app.use('/api/attractioncomment', new attractionCommentRouter(new attractionCommentService(db)).router());
+app.use('/api/attraction',
+    new attractionRouter(
+        new attractionService(db),
+        new attractionCommentService(db),
+        new attractionImageService(db),
+        new bookmarkService(db)
+    ).router());
 // app.use('/profile',profileRoutes);
 
 app.get('/error', (req, res) => {
