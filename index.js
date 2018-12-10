@@ -51,6 +51,11 @@ app.use(expressSession({
     saveUninitialized: true
 }));
 
+//Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 //Set up routes
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
@@ -93,13 +98,6 @@ app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
 app.get('/error', (req, res) => {
     res.send('error occurred')
 })
-
-
-
-//Initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 //Set up https
 const https = require('https');
