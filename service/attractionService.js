@@ -5,33 +5,37 @@ module.exports = class AttractionService {
     constructor(knex) {
         this.knex = knex;
         this.query = {
-            selectAttraction :this.knex.select("cityid", "name", "description","type ", "latitude ", "longitude ", "image")
-            .from("attraction")
+            selectAttraction: this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+                .from("attraction")
         }
     }
 
     listAttractionInCityID(cityID) {
-        return this.query.selectAttraction
+        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+            .from("attraction")
             .where("cityid", cityID);
     }
 
     //no use
     listAttraction() {
-        return this.query.selectAttraction
+        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+            .from("attraction")
     }
 
     getAttractionInAttractionID(attractionID) {
-        return this.query.selectAttraction
+        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+            .from("attraction")
             .where("id", attractionID);
     }
 
     getAttractionByCityID(cityID) {
-        return this.query.selectAttraction
+        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+            .from("attraction")
             .where("cityid", cityID);
     }
 
     // updateAttractionWithID input can be null
-    updateAttractionWithID(attractionID, cityid, name , description ,type, latitude, longitude, image) {
+    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude, image) {
         let insertObject = new Object();
         if (cityid != null) {
             insertObject.cityid = cityid;
@@ -67,14 +71,14 @@ module.exports = class AttractionService {
             return this.knex('attractioninplan').where('attractionid', attractionID).del();
         }).then(() => {
             return this.knex('attraction').where('id', attractionID).del();
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err);
-        })  
+        })
     }
     // insert() input(latitude , longitude) can be null
-    insert(cityid, type, name,latitude, longitude, image) {
+    insert(cityid, type, name, latitude, longitude, image) {
         return this.knex('attraction').insert([
-            { cityid: cityid, name:name ,type: type, latitude: latitude, longitude: longitude, image: image }
+            { cityid: cityid, name: name, type: type, latitude: latitude, longitude: longitude, image: image }
         ]);
     }
     //below function not even test

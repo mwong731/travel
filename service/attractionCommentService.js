@@ -10,12 +10,20 @@ module.exports = class attractionComment {
    }
 
    listUserCommentsByUserID(UserID) {
-      return this.query.selectUserCommentsWithUserName
+      return this.knex.select("attractioncomment.id", "attractioncomment.userid", "users.name",
+         "attractioncomment.attractionid ", "attractioncomment.comment", "attractioncomment.rate")
+         .as("id", "userid", "name", "attractionid", "comment", "rate")
+         .from("attractioncomment").innerJoin('users', 'users.id', 'attractioncomment.userid')
+
          .where("attractioncomment.userid", UserID);
    }
 
    listAttractionCommentsByAttractionID(AttractionID) {
-      return this.query.selectUserCommentsWithUserName
+      return this.knex.select("attractioncomment.id", "attractioncomment.userid", "users.name",
+         "attractioncomment.attractionid ", "attractioncomment.comment", "attractioncomment.rate")
+         .as("id", "userid", "name", "attractionid", "comment", "rate")
+         .from("attractioncomment").innerJoin('users', 'users.id', 'attractioncomment.userid')
+
          .where("attractioncomment.attractionid", AttractionID);
    }
 

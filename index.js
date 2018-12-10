@@ -28,9 +28,9 @@ app.engine('handlebars', hb({
         },
         genAttractionImageHtmlString: function (attractionImage) {
             //console.log(attractionImage[0].image);
-            let string ="";
+            let string = "";
             for (let i = 0; i < attractionImage.length; i++) {
-                string +=  (i==0 ? `<div class="carousel-item active">` : `<div class="carousel-item">`);
+                string += (i == 0 ? `<div class="carousel-item active">` : `<div class="carousel-item">`);
                 string += `<img class="d-block carousel-image" src=${attractionImage[i].image}></div>`;
             }
             return string;
@@ -59,11 +59,12 @@ const ViewRouter = require('./routes/viewRouter');
 const attractionRouter = require('./routes/attractionRoutes');
 const cityRouter = require('./routes/city-routes')
 const cityService = require('./service/cityService')
-const cityAttractionRouter=require('./routes/city-attraction-route')
+const cityAttractionRouter = require('./routes/city-attraction-route')
 
-const bookmarkRouter = require ('./routes/bookmark-routes')
-const bookmarkService = require ('./service/bookmarkService')
+const bookmarkRouter = require('./routes/bookmark-routes')
+const bookmarkService = require('./service/bookmarkService')
 
+const attractionAPIRouter = require('./routes/attraction-api-routes');
 
 const attractionService = require('./service/attractionService');
 const attractionCommentService = require('./service/attractionCommentService');
@@ -75,19 +76,27 @@ const UserSubmitAttractionService =  require('./service/userSubmitAttractionServ
 app.use('/', new ViewRouter().router()); // only requests to '/' will be sent to new router
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
-app.use('/api/attraction',
+app.use('/attraction',
     new attractionRouter(
         new attractionService(db),
         new attractionCommentService(db),
         new attractionImageService(db),
         new bookmarkService(db)
-    ).router());
+    ).router()
+);
+app.use('/api/attraction',new attractionAPIRouter(new attractionService(db)).router());
+
+
 // app.use('/profile',profileRoutes);
 // app.use('/profile', profileRoutes);
 app.use('/city', new cityRouter(new cityService(db)).router());
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
+<<<<<<< HEAD
 app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router())
 app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router())
+=======
+app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
+>>>>>>> c4bcd9d604507f19db07ae101fb46712eee4b11a
 
 app.get('/error', (req, res) => {
     res.send('error occurred')

@@ -5,8 +5,8 @@
     {{/each}}
     {{!-- Check whether user favourited this attraction --}}
     {{#if bookmark}}
-    
-    <h2><i class="far fa-heart empty-heart"></i></h2>
+
+    <h2><i class="fas fa-heart empty-heart"></i></h2>
     {{else}}
     <h2><i class="far fa-heart empty-heart"></i></h2>
     {{/if}}
@@ -82,7 +82,7 @@
 
         <div id="add-comment-box">
             {{!-- need change the form action to /api/attraction/createComment/{{userid}} --}}
-            <form action="/api/attraction/createComment/1"+ method="post" target="_blank">
+            <form action="/api/attraction/createComment/1"+ method="post" >
                 <div id="comment-star">
                     <i class="far fa-star"></i>
                     <i class="far fa-star"></i>
