@@ -43,6 +43,8 @@
 </div>
 
 <script>
+    let userId=1;
+
     function userAdd(){
        
 
@@ -80,7 +82,7 @@
             axios({
                 method: 'post',
                 url: `/add/attraction`,
-                data: { cityid: $('#edit-attraction-city').val(), name:$('#edit-attraction-name').val() ,type:$('#edit-attraction-type').val(), latitude: 1.0, longitude: 1.0, image:null , description:$('#edit-attraction-description').val()}
+                data: { cityid: $('#edit-attraction-city').val(), name:$('#edit-attraction-name').val() ,type:$('#edit-attraction-type').val(), latitude: 1.0, longitude: 1.0, image:null , description:$('#edit-attraction-description').val(), userid:userId}
                 })
                 .then(function(){
                     console.log('submited');

@@ -14,4 +14,15 @@ router.get('/',authCheck,(req,res)=>{
     res.render('profile', {user: req.user});
 })
 
-module.exports = router;
+router.get('/myAttraction/:id',function(req,res){
+    console.log("myattraction",req.params.id);
+    return this.cityService.getCity(req.params.id)
+            .then(function(data){
+                // console.log("data",data);
+                res.render(("city"),data);
+            })
+            .catch((err)=>res.status(500).json(err));
+})
+
+module.exports = router; 
+

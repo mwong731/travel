@@ -88,12 +88,12 @@
 
     async function getFavouriteAttraction(){
         let array=await checkFavourite(userId);
-        console.log('array', array)
+      
         for(var i = 0; i<array.length; i++){
             $.get( `/api/attraction/${array[i]}`, function() {
             })
             .done(function(data) {
-            console.log(data)
+          
             $('#favourite-attraction-row').append(
                 `<div class="col-md-3 col-5 profile-attraction-col">
                 <img src="${data[0].image} " class="profile-attraction">
@@ -109,15 +109,17 @@
     }
 
     //get my attraction
-    function checkFavourite(id){
+    function checkMy(id){
         return new Promise(function(resolve,reject){
-            $.get( `/api/bookmark/${id}`, function() {
+            $.get( `/profile/myAttraction/${id}`, function() {
             })
             .done(function(data) {
+                    /*
                 let bookmarkArray=data.map(function(object){
                     return object.attractionid
-                })
-                resolve(bookmarkArray)
+                })*/
+                console.log(data);
+                resolve(data);
             }
             )
             .fail(function() {
@@ -128,7 +130,10 @@
     })
     }
 
+    //
+
     getFavouriteAttraction()
+    checkMy(1)
     
 
 </script>

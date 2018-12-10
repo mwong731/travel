@@ -80,7 +80,7 @@ const UserSubmitAttractionService =  require('./service/userSubmitAttractionServ
 
 app.use('/', new ViewRouter().router()); // only requests to '/' will be sent to new router
 app.use('/auth', authRoutes);
-// app.use('/profile', profileRoutes);
+app.use('/profile', profileRoutes);
 app.use('/attraction',
     new attractionRouter(
         new attractionService(db),
