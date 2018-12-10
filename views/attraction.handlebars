@@ -80,7 +80,8 @@
 
         <div id="add-comment-box">
             {{!-- need change the form action to /api/attraction/createComment/{{userid}} --}}
-            <form action="/attraction/createComment/1"+ method="post" >
+            <form id="addComment" action="/attraction/createComment/1{{attraction.id}}"+ method="post" >
+                <textarea name='rate' style="display:none" id="rate"></textarea>
                 <div id="comment-star">
                     <i id="1" class="far fa-star"></i>
                     <i id="2" class="far fa-star"></i>
@@ -89,7 +90,7 @@
                     <i id="5" class="far fa-star"></i>
                 </div>
                 <textarea name='text' placeholder="Write comment here" class="d-block" id="comment-textfield"></textarea>
-                <input type="submit" class="btn btn-primary" id="submit-comment">Submit</input>
+                <button type="submit" class="btn btn-primary" id="submit-comment">Submit</input>
             </form>
         </div>
 
