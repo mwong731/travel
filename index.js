@@ -34,6 +34,9 @@ const cityRouter = require('./routes/city-routes')
 const cityService = require('./service/cityService')
 const cityAttractionRouter=require('./routes/city-attraction-route')
 
+const bookmarkRouter = require ('./routes/bookmark-routes')
+const bookmarkService = require ('./service/bookmarkService')
+
 
 const attractionService = require('./service/attractionService');
 const attractionCommentService = require('./service/attractionCommentService');
@@ -48,6 +51,7 @@ app.use('/api/attraction', new attractionRouter(new attractionService(db)).route
 app.use('/api/attractioncomment', new attractionCommentRouter(new attractionCommentService(db)).router());
 app.use('/city', new cityRouter(new cityService(db)).router());
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
+app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router())
 
 app.get('/error', (req, res) => {
     res.send('error occurred')

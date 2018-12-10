@@ -8,16 +8,18 @@ module.exports = class cityService {
         let object={
             id:'',
             name: '',
-            description: ''
+            description: '',
+            image: ''
         }
 
-        return this.knex.select("id", "name", "description")
+        return this.knex.select("id", "name", "description","image")
           .from("city")
           .where("name", cityName)
           .then((data)=> {
               object.id=data[0].id;
               object.name=data[0].name;
               object.description=data[0].description;
+              object.image=data[0].image;
               return object;
             })
 

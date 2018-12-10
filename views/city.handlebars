@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
    
-<div class="parallax-bg cityBanner" data-bgurl="../assets/tokyo.jpg">
+<div class="parallax-bg cityBanner" data-bgurl="{{image}}">
 
 {{!-- Learn more button --}}
 
@@ -60,10 +60,28 @@
     })
 
     //Append attraction
-    var cityName=window.location.href.split('/')[4] 
-    console.log(cityName)
+    let userId=1;
+    let cityName=window.location.href.split('/')[4] ;
+    console.log(cityName);
 
-    function appendAttraction(data){
+    function checkBookmark(id){
+         $.get( `/api/bookmark/${id}`, function() {
+        console.log( "ajax checkbookmark success" );
+        })
+        .done(function(data) {
+            console.log("bookmarked items", data)
+            return data
+        }
+         )
+        .fail(function() {
+            console.log( "Cannot get attraction" );
+        })
+    }
+
+    async function appendAttraction(data){
+        let arr= await checkBookmark(userId);
+        console.log("arr",arr)
+        ///api/bookmark
         for (var i=1;i<data.length+1;i++){
             if((i%2==0 && i%4==0 && i!=2) || (i%4==1)){ //long
 
