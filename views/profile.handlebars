@@ -34,7 +34,7 @@
 {{!-- User attraction --}}
 <div class="profile-subtitle">
     <h4>My attraction</h4>
-    <div class="profile-subtitle-line"></div>
+    <div class="profile-subtitle-line" ></div>
 </div>
 <div class="row no-gutters profile-attraction-row" id="my-attraction-row" >
 
@@ -63,7 +63,7 @@
 </div>
 
 <script>
-    let userId=1;
+    let userId={{user.id}};
 
 
     //Get favourite attraction
@@ -110,16 +110,23 @@
 
     //get my attraction
     function checkMy(id){
-        return new Promise(function(resolve,reject){
+      
             $.get( `/profile/myAttraction/${id}`, function() {
             })
             .done(function(data) {
-                    /*
-                let bookmarkArray=data.map(function(object){
-                    return object.attractionid
-                })*/
-                console.log(data);
-                resolve(data);
+
+                for(var a=0; a<data.length;a++){
+                 
+                     $('#my-attraction-row').append(
+                        `<div class="col-md-3 col-5 profile-attraction-col">
+                        <img src="${data[a].image} " class="profile-attraction">
+                        <div class="profile-overlay">
+                                <div class="profile-attraction-name">${data[a].name} <a href="/edit/attraction/"><i class="fas fa-edit"></a></i></div>
+                            </div>
+                        </div>` )
+
+                }
+                
             }
             )
             .fail(function() {
@@ -127,13 +134,13 @@
                 reject();
             })
 
-    })
+  
     }
 
     //
 
     getFavouriteAttraction()
-    checkMy(1)
+    checkMy(userId)
     
 
 </script>

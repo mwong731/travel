@@ -5,6 +5,14 @@ router.get('/login',(req,res)=>{
     res.render('login')
 })
 
+//auth logout
+router.get('/logout',(req,res)=>{
+    //handle with passport
+    // res.send('logging out');
+    req.logOut();
+    res.redirect('/');
+})
+
 //Signup page
 router.get('/signup',(req,res)=>{
     res.render('signup')
@@ -41,8 +49,8 @@ router.get('/facebook',passport.authenticate('facebook',{
 
 //Callback route for facebook to redirect to 
 router.get('/facebook/redirect',passport.authenticate('facebook'),(req,res)=>{
-    res.send(req.user);
-    // res.redirect('/profile');
+    // res.send(req.user);
+    res.redirect('/profile');
 });
 
 
