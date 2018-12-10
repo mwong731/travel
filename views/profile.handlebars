@@ -68,7 +68,7 @@
     <h4>My plans</h4>
     <div class="profile-subtitle-line"></div>
 </div>
-<div class="row no-gutters profile-attraction-row"  >
+<div class="row no-gutters profile-attraction-row" id="myPlansRow" >
     <div class="col-md-3 col-5 profile-attraction-col">
         <img src="../assets/garden3.jpeg" class="profile-attraction">
     </div>
@@ -81,3 +81,45 @@
     <div class="col-md-3 col-5 profile-attraction-col">4</div>
     <div class="col-md-3 col-5 profile-attraction-col">5</div>
 </div>
+
+<script>
+    let userId=1;
+
+
+    //Get favourite attraction
+    function checkFavourite(id){
+        return new Promise(function(resolve,reject){
+            $.get( `/api/bookmark/${id}`, function() {
+            })
+            .done(function(data) {
+                let bookmarkArray=data.map(function(object){
+                    return object.attractionid
+                })
+                resolve(bookmarkArray)
+            }
+            )
+            .fail(function() {
+                console.log( "Cannot get attraction" );
+                reject();
+            })
+
+    })
+    }
+
+    async function getFavouriteAttraction(){
+        let array=await checkFavourite(userId);
+        console.log('array', array)
+         /*$.get( `/api/city/${cityName}`, function() {
+            })
+            .done(function(data) {
+            appendAttraction(data);
+            })
+            .fail(function() {
+                console.log( "Cannot get attraction" );
+            }) */
+    }
+
+    getFavouriteAttraction()
+    
+
+</script>

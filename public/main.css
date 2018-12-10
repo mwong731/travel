@@ -476,6 +476,10 @@ nav{
     border-bottom:1px solid #ccc;
 }
 
+#myPlansRow{
+    margin-bottom:20px;
+}
+
 @media only screen and (max-width: 480px) {
     #profile-attraction-row{
         padding-left:15px;

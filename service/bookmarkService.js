@@ -25,7 +25,8 @@ module.exports = class bookmarkService {
    listUserBookmark(userID) {
       return this.knex.select("userid", "attractionid")
          .from("bookmark")
-         .where("userid", userID);
+         .where("userid", userID)
+         .orderBy('id', 'desc');
    }
 
    countAttractionBookmark(attractionID) {
