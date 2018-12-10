@@ -38,9 +38,9 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('9');
       return knex('city').insert([
-        { name: "Hong Kong", description: "Hong Kong (Chinese: 香港; pronunciation in Hong Kong Cantonese: [hœ́ːŋ.kɔ̌ːŋ] (About this soundlisten)), officially the Hong Kong Special Administrative Region of the People's Republic of China, is a special administrative region on the eastern side of the Pearl River estuary in southern China. With over 7.4 million people of various nationalities[c] in a 1,104-square-kilometre (426 sq mi) territory, Hong Kong is the world's fourth-most-densely-populated region.", latitude: 22.28552, longitude: 114.15769, image: '' },
-        { name: "Osaka", description: "Osaka (大阪市 Ōsaka-shi) (Japanese pronunciation: [oːsaka]; About this soundlisten (help·info)) is a designated city in the Kansai region of Japan. It is the capital city of Osaka Prefecture and the largest component of the Keihanshin Metropolitan Area, the second largest metropolitan area in Japan and among the largest in the world with over 19 million inhabitants. Osaka will host Expo 2025. The current mayor of Osaka is Hirohumi Yoshimura.", latitude: 34.652500, longitude: 135.506302, image: '' },
-        { name: "Tokyo", description: "Tokyo (東京 Tōkyō, /ˈtoʊkioʊ/;[8] Japanese: [toːkʲoː] (About this soundlisten)), officially Tokyo Metropolis (東京都 Tōkyō-to), one of the 47 prefectures of Japan, has served as the Japanese capital since 1869.[9][10] As of 2014 the Greater Tokyo Area ranked as the most populous metropolitan area in the world.[4] The urban area houses the seat of the Emperor of Japan, of the Japanese government and of the National Diet. Tokyo forms part of the Kantō region on the southeastern side of Japan's main island, Honshu, and includes the Izu Islands and Ogasawara Islands.[11] Tokyo was formerly named Edo when Shōgun Tokugawa Ieyasu made the city as his headquarters in 1603. It became the capital after Emperor Meiji moved his seat to the city from Kyoto in 1868; at that time Edo was renamed Tokyo. Tokyo Metropolis formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu) and the city of Tokyo (東京市 Tōkyō-shi).", latitude: 35.652832, longitude: 139.839478, image: '' }
+        { name: "Hong Kong", description: "Hong Kong (Chinese: 香港; pronunciation in Hong Kong Cantonese: [hœ́ːŋ.kɔ̌ːŋ] (About this soundlisten)), officially the Hong Kong Special Administrative Region of the People's Republic of China, is a special administrative region on the eastern side of the Pearl River estuary in southern China. With over 7.4 million people of various nationalities[c] in a 1,104-square-kilometre (426 sq mi) territory, Hong Kong is the world's fourth-most-densely-populated region.", latitude: 22.28552, longitude: 114.15769, image: '/assets/banner.png' },
+        { name: "Osaka", description: "Osaka (大阪市 Ōsaka-shi) (Japanese pronunciation: [oːsaka]; About this soundlisten (help·info)) is a designated city in the Kansai region of Japan. It is the capital city of Osaka Prefecture and the largest component of the Keihanshin Metropolitan Area, the second largest metropolitan area in Japan and among the largest in the world with over 19 million inhabitants. Osaka will host Expo 2025. The current mayor of Osaka is Hirohumi Yoshimura.", latitude: 34.652500, longitude: 135.506302, image: '/assets/banner.png' },
+        { name: "Tokyo", description: "Tokyo (東京 Tōkyō, /ˈtoʊkioʊ/;[8] Japanese: [toːkʲoː] (About this soundlisten)), officially Tokyo Metropolis (東京都 Tōkyō-to), one of the 47 prefectures of Japan, has served as the Japanese capital since 1869.[9][10] As of 2014 the Greater Tokyo Area ranked as the most populous metropolitan area in the world.[4] The urban area houses the seat of the Emperor of Japan, of the Japanese government and of the National Diet. Tokyo forms part of the Kantō region on the southeastern side of Japan's main island, Honshu, and includes the Izu Islands and Ogasawara Islands.[11] Tokyo was formerly named Edo when Shōgun Tokugawa Ieyasu made the city as his headquarters in 1603. It became the capital after Emperor Meiji moved his seat to the city from Kyoto in 1868; at that time Edo was renamed Tokyo. Tokyo Metropolis formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu) and the city of Tokyo (東京市 Tōkyō-shi).", latitude: 35.652832, longitude: 139.839478, image: '/assets/banner.png' }
       ]);
     }).then(function () {
       console.log('10');
@@ -56,11 +56,11 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('10.5');
       return knex('attractionimage').insert([
-        { attractionid: 1, image: '' },
-        { attractionid: 1, image: '' },
-        { attractionid: 1, image: '' },
-        { attractionid: 1, image: '' },
-        { attractionid: 1, image: '' },
+        { attractionid: 1, image: '/assets/banner.png' },
+        { attractionid: 1, image: '/assets/banner.png' },
+        { attractionid: 1, image: '/assets/banner.png' },
+        { attractionid: 1, image: '/assets/banner.png' },
+        { attractionid: 1, image: '/assets/banner.png' },
       ]);
     }).then(function () {
       console.log('11');
