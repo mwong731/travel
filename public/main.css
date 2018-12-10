@@ -405,12 +405,16 @@ nav{
     padding:10px; 
 }
 
-#edit-attraction-city,#edit-attraction-name{
+#edit-attraction-city,#edit-attraction-name,#edit-attraction-type{
     margin-bottom:10px;
 }
 
 .fa-paper-plane{
     margin-left:5px;
+}
+
+.error-message{
+    color:red;
 }
 
 /* ========  Profile =========*/
@@ -474,6 +478,10 @@ nav{
     width:100%;
     margin: 20px 20px 20px 20px;
     border-bottom:1px solid #ccc;
+}
+
+#myPlansRow{
+    margin-bottom:20px;
 }
 
 @media only screen and (max-width: 480px) {
