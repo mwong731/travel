@@ -1,14 +1,23 @@
 <div class="row justify-content-center">
    
-<div class="parallax-bg cityBanner" data-bgurl="./assets/citybanner.jpg">
+<div class="parallax-bg cityBanner" data-bgurl="{{image}}">
 
 {{!-- Learn more button --}}
 
 </div>
 
   <div id="city-floating-box" class="d-flex justify-content-center align-items-center flex-column">
-        <h1>City</h1>
+        <h1>{{name}}</h1>
         <button class="btn btn-primary" id="learn-more">Learn more</button>
+        
+    </div>
+
+    <div id="floating-info-box">
+        <div class="d-flex justify-content-between">
+            <h5> About this city</h5>
+             <button class="cancel-button" id="cancel-info"> <i class="fas fa-times"></i></button>
+        </div>
+        <div id="description-info">{{description}}</div>
     </div>
 
 </div>
@@ -23,49 +32,158 @@
             Filter
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
+            <button class="dropdown-item" value="go" onclick="filter(this.value)">Tourist attraction</button>
+            <button class="dropdown-item"  value="restaurant" onclick="filter(this.value)">Restaurant</button>
+            <button class="dropdown-item"  value="shop" onclick="filter(this.value)">Shop</button>
+            <button class="dropdown-item"  value="all" onclick="filter(this.value)">All</button>
         </div>
         </div>
 
 </div>
 
-<div class="row  attraction-row">
-    <div class="attraction-col col-md-4 col-lg-4">
-        <img class="city-attraction-image " src="./assets/coffee.jpg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image " src="./assets/garden3.jpeg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
+{{!-- Attraction append --}}
+
+<div class="row attraction-row">
+  {{!-- Items loaded after ajax call --}}
 </div>
 
-<div class="row  attraction-row">
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image img-fluid" src="./assets/coffee.jpg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-    <div class="attraction-col col-md-4 col-lg-4">
-        <img class="city-attraction-image img-fluid" src="./assets/garden3.jpeg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-</div>
 
-<div class="row  attraction-row">
-    <div class="attraction-col  col-md-4 col-lg-4">
-        <img class="city-attraction-image " src="./assets/coffee.jpg">
-    </div>
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image " src="./assets/garden3.jpeg">
-    </div>
-</div>
+<script>
+    //Description buttons
+    $('#learn-more').on('click',function(){
+        $('#floating-info-box').show('slow');
+        $('#city-floating-box').css('z-index','-10');
+    })
+
+    $('#cancel-info').on('click',function(){
+        $('#floating-info-box').hide('slow');
+        $('#city-floating-box').css('z-index','10');
+    })
+
+    //Append attraction
+    let userId=1;
+    let cityName=window.location.href.split('/')[4] ;
+
+    function checkBookmark(id){
+        return new Promise(function(resolve,reject){
+            $.get( `/api/bookmark/${id}`, function() {
+            })
+            .done(function(data) {
+                let bookmarkArray=data.map(function(object){
+                    return object.attractionid
+                })
+                resolve(bookmarkArray)
+            }
+            )
+            .fail(function() {
+                console.log( "Cannot get attraction" );
+                reject();
+            })
+
+        })
+         
+    }
+
+    function addNewBookmark(attractionId){
+        axios({
+            method: 'post',
+            url: `/api/bookmark/`,
+            data: { userID: userId, attractionID: attractionId }
+            })
+            .then(function(){
+                 console.log('added new bookmark');
+                 $(`#heart${attractionId}`).html( `<i class="fas fa-heart full-heart" id=${attractionId} onClick="deleteBookmark(this.id)"></i>`)
+
+            })
+    }
+
+    function deleteBookmark(attractionId){
+       axios({
+            method: 'delete',
+            url: `/api/bookmark/`,
+            data: { userID: userId, attractionID: attractionId }
+            })
+            .then(function(){
+                 console.log('deleted bookmark');
+                 $(`#heart${attractionId}`).html( `<i class="far fa-heart empty-heart" id=${attractionId}  onClick="addNewBookmark(this.id)"></div>`)
+            })
+    }
+
+
+    async function appendAttraction(data){
+        let arr=await checkBookmark(userId);
+        
+        for (var i=1;i<data.length+1;i++){
+
+            //Check if the heart is empty or full
+            let heart=`<div id="heart${data[i-1].id}"><i class="far fa-heart empty-heart" id=${data[i-1].id} onClick="addNewBookmark(this.id)"></div>`;
+
+            let result=arr.filter(function(object){
+                return object==`${data[i-1].id}`
+            })
+
+            if(result.length>0){ //this item matches the bookmark list
+                 heart=`<div id="heart${data[i-1].id}"><i class="fas fa-heart full-heart" id=${data[i-1].id} onClick="deleteBookmark(this.id)"></i></div>`;
+            }
+            
+            //append with different length
+            if((i%2==0 && i%4==0 && i!=2) || (i%4==1)){ //long
+            
+                $('.attraction-row').append(`
+                <div class="attraction-col col-md-8 col-lg-8">
+                    <img class="city-attraction-image " src="../assets/garden3.jpeg">
+                    <div class="image-overlay">
+                        <div class="attraction-name">${data[i-1].name} ${heart}</i></div>
+                    </div>
+                </div>`)
+
+            }else{ //short
+                $('.attraction-row').append(`
+                <div class="attraction-col col-md-4 col-lg-4">
+                    <img class="city-attraction-image " src="../assets/garden3.jpeg">
+                    <div class="image-overlay">
+                        <div class="attraction-name">${data[i-1].name} ${heart}</i></div>
+                    </div>
+                </div>`)
+            }
+        }
+    }
+
+    // ===== On load append attractions =====
+    function getAttraction(){
+         $.get( `/api/city/${cityName}`, function() {
+            })
+            .done(function(data) {
+                //get bookmarked array
+                //.done
+            appendAttraction(data);
+            })
+            .fail(function() {
+                console.log( "Cannot get attraction" );
+            })
+    }
+   
+// ==== Filter button =====
+function filter(type){
+    if(type==='all'){
+
+        $('.attraction-row').html('');
+        getAttraction();
+    }
+    $.ajax({
+        method: "POST",
+        url: "/api/city/",
+        data: { type: type, city: cityName }
+        })
+    .done(function( data ) {
+        $('.attraction-row').html('');
+        appendAttraction(data);
+    });
+    
+}
+
+getAttraction();
+
+      
+    
+</script>

@@ -1,13 +1,83 @@
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>secret
-    </title>
-</head>
-<form action="/auth/local" method="post">
-    <div>
-        <div>your username: {{user.email}}</div>
+<div class="row profile-title">
+    <h3>My Profile</h3>
+    <div id="profile-line"></div>
+</div>
+
+<div class="row" id="user-profile-row">
+    <div class="col-md-5 d-flex justify-content-center profile-col"> 
+        {{!-- Put user profile pic here --}}
+        <img src="../assets/male-profile.png" id="profile-picture">
     </div>
+         
     
-</form>
-</html>
+    <div class="col-md-7 profile-info-col profile-col"> 
+        <div id="profile-username"> Username: {{user.email}} </div>
+        <div id="profile-email"> Email: {{user.email}} </div>
+        <div id="profile-birthday"> Birthday: {{user.email}} </div>
+       
+    </div>
+
+</div>
+
+{{!-- Bookmarked attraction --}}
+<div class="profile-subtitle">
+    <h4>Favourite attraction</h4>
+    <div class="profile-subtitle-line"></div>
+</div>
+<div class="row no-gutters profile-attraction-row">
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/garden3.jpeg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/coffee.jpg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/garden3.jpeg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">4</div>
+    <div class="col-md-3 col-5 profile-attraction-col">5</div>
+</div>
+    
+{{!-- Line --}}
+<div class="profile-line-grey"></div>
+
+{{!-- User attraction --}}
+<div class="profile-subtitle">
+    <h4>My attraction</h4>
+    <div class="profile-subtitle-line"></div>
+</div>
+<div class="row no-gutters profile-attraction-row"  >
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/garden3.jpeg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/coffee.jpg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/garden3.jpeg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">4</div>
+    <div class="col-md-3 col-5 profile-attraction-col">5</div>
+</div>
+
+{{!-- Line --}}
+<div class="profile-line-grey"></div>
+
+{{!-- User attraction --}}
+<div class="profile-subtitle">
+    <h4>My plans</h4>
+    <div class="profile-subtitle-line"></div>
+</div>
+<div class="row no-gutters profile-attraction-row"  >
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/garden3.jpeg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/coffee.jpg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">
+        <img src="../assets/garden3.jpeg" class="profile-attraction">
+    </div>
+    <div class="col-md-3 col-5 profile-attraction-col">4</div>
+    <div class="col-md-3 col-5 profile-attraction-col">5</div>
+</div>

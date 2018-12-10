@@ -31,6 +31,12 @@ exports.up = function (knex, Promise) {
          table.float("longitude");
          table.string("image");
          //table.timestamps(false, true);
+      }).createTable('attractionimage', (table) => {
+         table.increments();
+         table.integer('attractionid');
+         table.foreign('attractionid').references('attraction.id');
+         table.string("image");
+         //table.timestamps(false, true);
       }).createTable('usersubmitattraction', (table) => {
          table.increments();
          table.integer('cityid');
@@ -93,5 +99,5 @@ exports.up = function (knex, Promise) {
 };
 
 exports.down = function (knex, Promise) {
-   return knex.schema.dropTable('attractioncomment').dropTable('bookmark').dropTable('usersubmitattraction').dropTable('attractioninplan').dropTable('plan').dropTable('attraction').dropTable('city').dropTable('users');
+   return knex.schema.dropTable('attractioncomment').dropTable('bookmark').dropTable('usersubmitattraction').dropTable('attractioninplan').dropTable('plan').dropTable('attractionimage').dropTable('attraction').dropTable('city').dropTable('users');
 };
