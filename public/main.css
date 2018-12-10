@@ -405,12 +405,16 @@ nav{
     padding:10px; 
 }
 
-#edit-attraction-city,#edit-attraction-name{
+#edit-attraction-city,#edit-attraction-name,#edit-attraction-type{
     margin-bottom:10px;
 }
 
 .fa-paper-plane{
     margin-left:5px;
+}
+
+.error-message{
+    color:red;
 }
 
 /* ========  Profile =========*/

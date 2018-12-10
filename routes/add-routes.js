@@ -9,17 +9,23 @@ class addRouter{
     router(){
         let router = express.Router();
         router.get("/attraction",this.get.bind(this));
+        router.post("/attraction", this.post.bind(this));
         return router;
     }
 
     get(req,res){
         res.render("edit-attraction",{data:'Add'})
-        // return this.UserSubmitAttractionService.getCity(req.params.id)
-        //     .then(function(data){
-        //         // console.log("data",data);
-        //         res.render(("edit-attraction"),data);
-        //     })
-        //     .catch((err)=>res.status(500).json(err));
+    }
+
+    post(req, res) {
+        console.log('user submit attraction', req.body)
+
+        return this.UserSubmitAttractionService.insertAttraction(req.body.cityid, req.body.name, req.body.type, req.body.latitude, req.body.longitude, req.body.image)
+            .then(() => {
+                console.log("inserted attraction")
+                res.json()
+            })
+            .catch((err) => res.status(500).json(err));
     }
 
     
