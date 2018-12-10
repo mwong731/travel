@@ -1,25 +1,49 @@
 const router = require('express').Router();
 const passport = require('passport');
-
-//auth local login
+//Login page
 router.get('/login',(req,res)=>{
     res.render('login')
 })
 
+//Signup page
+router.get('/signup',(req,res)=>{
+    res.render('signup')
+})
+
+//Callback route for local login
 router.post('/local', passport.authenticate('local-login', {
     successRedirect: '/profile',
     failureRedirect: '/error'
 }))
 
-router.get('/signup',(req,res)=>{
-    res.render('signup')
-})
+//Callback route for local signup
+router.post('/signup',passport.authenticate('local-signup', {
+    successRedirect: '/profile',
+    failureRedirect: '/error'
+}))
 
-// router.post('/signup',passport.authenticate('local-signup', {
-//     successRedirect: '/profile',
-//     failureRedirect: '/error'
-// }))
-router.post('/signup',(req,res)=>{
-    console.log(req.body)
-})
+//Auth with google 
+router.get('/google',passport.authenticate('google',{
+    scope:['profile','email']
+}));
+
+//Callback route for google to redirect to
+router.get('/google/redirect',passport.authenticate('google'),(req,res)=>{
+    // res.send(req.user);
+    res.redirect('/profile');
+});
+
+
+//Auth with facebook
+router.get('/facebook',passport.authenticate('facebook',{
+    scope:['email','user_photos'] 
+}));
+
+//Callback route for facebook to redirect to 
+router.get('/facebook/redirect',passport.authenticate('facebook'),(req,res)=>{
+    res.send(req.user);
+    // res.redirect('/profile');
+});
+
+
 module.exports = router;
