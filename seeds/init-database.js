@@ -49,7 +49,9 @@ exports.seed = function (knex, Promise) {
         { cityid: 1, type: "restaurant", name: 'restaurant1', description: 'description2', latitude: "344.1233", longitude: "50.1231" },
         { cityid: 1, type: "sleep", name: 'sleep1', description: 'description3', latitude: "44.338383", longitude: "34.92828" },
         { cityid: 2, type: "restaurant", name: 'restaurant2', description: 'description4', latitude: "22.313235", longitude: "114.041271" },
-        { cityid: 3, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271" }
+        { cityid: 3, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271" },
+        { cityid: 1, type: "go", name: 'go2', description: 'description4', latitude: "44.338383", longitude: "34.92828" },
+        { cityid: 1, type: "go", name: 'go2', description: 'description4', latitude: "44.338383", longitude: "34.92828" },
       ]);
     }).then(function () {
       console.log('10.5');

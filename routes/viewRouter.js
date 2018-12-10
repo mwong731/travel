@@ -10,6 +10,8 @@ module.exports = class ViewRouter{
             
         });
         router.get('/edit-attraction',(req,res)=>res.render("edit-attraction"));
+
+        router.get('/profile',(req,res)=>res.render("profile"));
         return router;
     }
 }

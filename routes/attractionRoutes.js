@@ -23,7 +23,7 @@ class AttractionRouter {
    }
 
    get(req, res) {
-      Promise.all([
+      Promise.all ([
          this.attractionService.getAttractionInAttractionID(req.params.id)
          ,
          this.attractionCommentService.listAttractionCommentsByAttractionID(req.params.id)
@@ -33,7 +33,10 @@ class AttractionRouter {
          //need get user id;
          this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(1, req.params.id)
       ]).then((data) => {
-         // console.log(data);
+         console.log('this is the data 0:' , data[0]);
+         console.log('this is the data 1:' , data[1]);
+         console.log('this is the data 2:' , data[2]);
+         console.log('this is the data 3:' , data[3]);
          let datajson = {};
          datajson.attraction = data[0];
          datajson.attractionComments = data[1];
@@ -41,6 +44,7 @@ class AttractionRouter {
          datajson.bookmark = data[3];
          return datajson;
       }).then((data) => {
+         // console.log(data)
          //throw new Error('test error');
          return res.render(("attraction"), data);
       }).catch((err) => {

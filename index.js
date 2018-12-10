@@ -57,10 +57,17 @@ const profileRoutes = require('./routes/profile-routes');
 const ViewRouter = require('./routes/viewRouter');
 
 const attractionRouter = require('./routes/attractionRoutes');
+const cityRouter = require('./routes/city-routes')
+const cityService = require('./service/cityService')
+const cityAttractionRouter=require('./routes/city-attraction-route')
+
+const bookmarkRouter = require ('./routes/bookmark-routes')
+const bookmarkService = require ('./service/bookmarkService')
+
+
 const attractionService = require('./service/attractionService');
 const attractionCommentService = require('./service/attractionCommentService');
 const attractionImageService = require('./service/AttractionImageService');
-const bookmarkService = require('./service/bookmarkService');
 
 app.use('/', new ViewRouter().router()); // only requests to '/' will be sent to new router
 app.use('/auth', authRoutes);
@@ -73,6 +80,10 @@ app.use('/api/attraction',
         new bookmarkService(db)
     ).router());
 // app.use('/profile',profileRoutes);
+// app.use('/profile', profileRoutes);
+app.use('/city', new cityRouter(new cityService(db)).router());
+app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
+app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router())
 
 app.get('/error', (req, res) => {
     res.send('error occurred')

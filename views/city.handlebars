@@ -1,14 +1,23 @@
 <div class="row justify-content-center">
    
-<div class="parallax-bg cityBanner" data-bgurl="./assets/citybanner.jpg">
+<div class="parallax-bg cityBanner" data-bgurl="{{image}}">
 
 {{!-- Learn more button --}}
 
 </div>
 
   <div id="city-floating-box" class="d-flex justify-content-center align-items-center flex-column">
-        <h1>City</h1>
+        <h1>{{name}}</h1>
         <button class="btn btn-primary" id="learn-more">Learn more</button>
+        
+    </div>
+
+    <div id="floating-info-box">
+        <div class="d-flex justify-content-between">
+            <h5> About this city</h5>
+             <button class="cancel-button" id="cancel-info"> <i class="fas fa-times"></i></button>
+        </div>
+        <div id="description-info">{{description}}</div>
     </div>
 
 </div>
@@ -23,49 +32,112 @@
             Filter
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
+            <button class="dropdown-item" value="go" onclick="filter(this.value)">Tourist attraction</button>
+            <button class="dropdown-item"  value="restaurant" onclick="filter(this.value)">Restaurant</button>
+            <button class="dropdown-item"  value="shop" onclick="filter(this.value)">Shop</button>
         </div>
         </div>
 
 </div>
 
-<div class="row  attraction-row">
-    <div class="attraction-col col-md-4 col-lg-4">
-        <img class="city-attraction-image " src="./assets/coffee.jpg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image " src="./assets/garden3.jpeg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
+{{!-- Attraction append --}}
+
+<div class="row attraction-row">
+  {{!-- Items loaded after ajax call --}}
 </div>
 
-<div class="row  attraction-row">
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image img-fluid" src="./assets/coffee.jpg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-    <div class="attraction-col col-md-4 col-lg-4">
-        <img class="city-attraction-image img-fluid" src="./assets/garden3.jpeg">
-        <div class="image-overlay">
-            <div class="attraction-name">A Coffee Shop <i class="far fa-heart empty-heart"></i></div>
-        </div>
-    </div>
-</div>
 
-<div class="row  attraction-row">
-    <div class="attraction-col  col-md-4 col-lg-4">
-        <img class="city-attraction-image " src="./assets/coffee.jpg">
-    </div>
-    <div class="attraction-col col-md-8 col-lg-8">
-        <img class="city-attraction-image " src="./assets/garden3.jpeg">
-    </div>
-</div>
+<script>
+    //Description buttons
+    $('#learn-more').on('click',function(){
+        $('#floating-info-box').show('slow');
+        $('#city-floating-box').css('z-index','-10');
+    })
+
+    $('#cancel-info').on('click',function(){
+        $('#floating-info-box').hide('slow');
+        $('#city-floating-box').css('z-index','10');
+    })
+
+    //Append attraction
+    let userId=1;
+    let cityName=window.location.href.split('/')[4] ;
+    console.log(cityName);
+
+    function checkBookmark(id){
+         $.get( `/api/bookmark/${id}`, function() {
+        console.log( "ajax checkbookmark success" );
+        })
+        .done(function(data) {
+            console.log("bookmarked items", data)
+            return data
+        }
+         )
+        .fail(function() {
+            console.log( "Cannot get attraction" );
+        })
+    }
+
+    async function appendAttraction(data){
+        let arr= await checkBookmark(userId);
+        console.log("arr",arr)
+        ///api/bookmark
+        for (var i=1;i<data.length+1;i++){
+            if((i%2==0 && i%4==0 && i!=2) || (i%4==1)){ //long
+
+                //check liked or not
+                //let arr=bookmarked array
+                //let result=arr.filter(id==${data[i-1].id})
+                //if(result.length>0){}//filled heart
+                //else //empty heart
+                $('.attraction-row').append(`
+                <div class="attraction-col col-md-8 col-lg-8">
+                    <img class="city-attraction-image " src="../assets/garden3.jpeg">
+                    <div class="image-overlay">
+                        <div class="attraction-name">${data[i-1].name} <i class="far fa-heart empty-heart"></i></div>
+                    </div>
+                </div>`)
+
+            }else{ //short
+                $('.attraction-row').append(`
+                <div class="attraction-col col-md-4 col-lg-4">
+                    <img class="city-attraction-image " src="../assets/garden3.jpeg">
+                    <div class="image-overlay">
+                        <div class="attraction-name">${data[i-1].name}<i class="far fa-heart empty-heart"></i></div>
+                    </div>
+                </div>`)
+            }
+        }
+    }
+
+    $.get( `/api/city/${cityName}`, function() {
+        console.log( "ajax get success" );
+    })
+    .done(function(data) {
+        //get bookmarked array
+        //.done
+      appendAttraction(data);
+    })
+    .fail(function() {
+        console.log( "Cannot get attraction" );
+    })
+
+//Filter
+function filter(type){
+
+    $.ajax({
+        method: "POST",
+        url: "/api/city/",
+        data: { type: type, city: cityName }
+        })
+    .done(function( data ) {
+        console.log(data);
+        $('.attraction-row').html('');
+        appendAttraction(data);
+    });
+    
+}
+
+      
+    
+</script>

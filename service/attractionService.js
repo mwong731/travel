@@ -5,7 +5,7 @@ module.exports = class AttractionService {
     constructor(knex) {
         this.knex = knex;
         this.query = {
-            selectAttraction :this.knex.select("id", "cityid", "name", "description","type ", "latitude ", "longitude ", "image")
+            selectAttraction :this.knex.select("cityid", "name", "description","type ", "latitude ", "longitude ", "image")
             .from("attraction")
         }
     }
