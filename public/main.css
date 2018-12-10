@@ -274,15 +274,16 @@ nav{
     padding: 10px 15px 10px 15px;
   }
 
-.empty-heart{
+.empty-heart,.full-heart{
     margin-left:10px;
     color:#eb0045;
 }
 
-.empty-heart:hover{
+.empty-heart,.full-heart:hover{
     transition:ease 0.5s;
     text-shadow:1px 1px 5px #6b6b6b;
 }
+
 
 .attraction-name{
     font-size:20px;
