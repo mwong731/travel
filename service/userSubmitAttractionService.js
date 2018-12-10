@@ -49,10 +49,10 @@ module.exports = class UserSubmitAttractionService {
         return this.knex('usersubmitattraction').where('id', attractionID).del();
     }
 
-    insertAttraction(cityid, name, type, latitude, longitude, image) {
-        console.log("insertin")
+    insertAttraction(cityid, name, type, latitude, longitude, image, description) {
+        console.log("insertin",cityid, name, type, latitude, longitude, image, description)
         return this.knex('usersubmitattraction').insert([
-            { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude, image: image ,confirmstatus:"wait"}
+            { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude, image: image , description: description,confirmstatus:"wait"}
         ]);
     }
     //below function not even test

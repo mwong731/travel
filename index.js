@@ -80,7 +80,7 @@ const UserSubmitAttractionService =  require('./service/userSubmitAttractionServ
 
 app.use('/', new ViewRouter().router()); // only requests to '/' will be sent to new router
 app.use('/auth', authRoutes);
-app.use('/profile', profileRoutes);
+// app.use('/profile', profileRoutes);
 app.use('/attraction',
     new attractionRouter(
         new attractionService(db),
@@ -90,10 +90,6 @@ app.use('/attraction',
     ).router()
 );
 app.use('/api/attraction',new attractionAPIRouter(new attractionService(db)).router());
-
-
-// app.use('/profile',profileRoutes);
-// app.use('/profile', profileRoutes);
 app.use('/city', new cityRouter(new cityService(db)).router());
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
 app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router())

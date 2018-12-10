@@ -13,6 +13,7 @@ class cityRouter{
     }
 
     get(req,res){
+        console.log("requestuser" , req.user);
         return this.cityService.getCity(req.params.id)
             .then(function(data){
                 // console.log("data",data);

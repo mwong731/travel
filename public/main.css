@@ -484,15 +484,45 @@ nav{
     margin-bottom:20px;
 }
 
+.profile-overlay{
+    opacity: 0.9;
+    background-color:white;
+    position: absolute;
+    top: 60%;
+    left: 0px;
+    padding: 5px 10px 5px 10px;
+}
+
+.profile-attraction-name{
+    font-size: 15px;
+}
+
 @media only screen and (max-width: 480px) {
-    #profile-attraction-row{
-        padding-left:15px;
-        padding-right:15px;
+    .profile-title{
+        padding-left:20px;
+    }
+
+    .profile-subtitle{
+        padding-left:10px;
+    }
+
+    .profile-attraction-row{
+        padding:0 10px 0 10px!important
     }
     
     .profile-attraction{
         width:36vw;
         height:36vw;
         object-fit:cover;
+    }
+
+    .profile-attraction-col {
+        margin-right:20px
+    }
+
+    .profile-line-grey{
+        width:100%;
+        margin: 20px 10px 20px 10px;
+        border-bottom:1px solid #ccc;
     }
 }
