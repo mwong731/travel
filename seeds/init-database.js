@@ -79,16 +79,16 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('13');
       return knex('usersubmitattraction').insert([
-        { cityid: 1, type: "shop", name: 'usersubmit shop1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 2, type: "restaurant", name: 'usersubmit restaurant1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "accept" },
-        { cityid: 3, type: "sleep", name: 'usersubmit sleep1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "accept" },
-        { cityid: 2, type: "go", name: 'usersubmit go1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "decline" },
-        { cityid: 2, type: "shop", name: 'usersubmit shop2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 1, type: "restaurant", name: 'usersubmit restaurant1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 3, type: "sleep", name: 'usersubmit sleep2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 1, type: "go", name: 'usersubmit go2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
-        { cityid: 3, type: "shop", name: 'usersubmit shop3', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "decline" },
-        { cityid: 1, type: "shop", name: 'usersubmit shop4', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { userid: 1, cityid: 1, type: "shop", name: 'usersubmit shop1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { userid: 1, cityid: 2, type: "restaurant", name: 'usersubmit restaurant1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "accept" },
+        { userid: 1, cityid: 3, type: "sleep", name: 'usersubmit sleep1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "accept" },
+        { userid: 1, cityid: 2, type: "go", name: 'usersubmit go1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "decline" },
+        { userid: 2, cityid: 2, type: "shop", name: 'usersubmit shop2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { userid: 2, cityid: 1, type: "restaurant", name: 'usersubmit restaurant1', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { userid: 3, cityid: 3, type: "sleep", name: 'usersubmit sleep2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { userid: 3, cityid: 1, type: "go", name: 'usersubmit go2', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
+        { userid: 4, cityid: 3, type: "shop", name: 'usersubmit shop3', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "decline" },
+        { userid: 4, cityid: 1, type: "shop", name: 'usersubmit shop4', description: 'description1', latitude: "22.313235", longitude: "114.041271", image: "", confirmstatus: "wait" },
       ]);
     }).then(function () {
       console.log('14');

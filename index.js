@@ -75,6 +75,9 @@ const attractionService = require('./service/attractionService');
 const attractionCommentService = require('./service/attractionCommentService');
 const attractionImageService = require('./service/AttractionImageService');
 
+const addRouter = require ('./routes/add-routes')
+const UserSubmitAttractionService =  require('./service/userSubmitAttractionService')
+
 app.use('/', new ViewRouter().router()); // only requests to '/' will be sent to new router
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
@@ -93,7 +96,8 @@ app.use('/api/attraction',new attractionAPIRouter(new attractionService(db)).rou
 // app.use('/profile', profileRoutes);
 app.use('/city', new cityRouter(new cityService(db)).router());
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
-app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
+app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router())
+app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router())
 
 app.get('/error', (req, res) => {
     res.send('error occurred')
