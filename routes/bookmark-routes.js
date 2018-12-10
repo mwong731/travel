@@ -15,7 +15,6 @@ class bookmarkRouter{
     }
 
     get(req,res){
-        console.log('list user bookmark: ', req.params.id)
         
         return this.bookmarkService.listUserBookmark(req.params.id)
             .then(function(result){
@@ -25,7 +24,6 @@ class bookmarkRouter{
     }
 
     post(req,res){
-        console.log('add new bookmark', req.body)
         
         return this.bookmarkService.insertBookmark(req.body.userID, req.body.attractionID)
             .then(()=>{
@@ -35,7 +33,6 @@ class bookmarkRouter{
     }
 
     delete(req,res){
-        console.log('deleting bookmark', req.body)
         return this.bookmarkService.deleteBookmark(req.body.userID, req.body.attractionID)
             .then(()=>{
                 console.log("deleted bookmark")
