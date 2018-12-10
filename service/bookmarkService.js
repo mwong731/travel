@@ -5,13 +5,14 @@ module.exports = class bookmarkService {
    }
 
    insertBookmark(userID, attractionID) {
+         console.log("insert", userID,attractionID)
       return this.knex('bookmark').insert([
          { userid: userID, attractionid: attractionID }
       ]);
    }
 
-   deleteBookmark(ID) {
-      return this.knex('bookmark').where('id', ID).del();
+   deleteBookmark(userID, attractionID) {
+      return this.knex('bookmark').where({ userid: userID, attractionid: attractionID }).del();
    }
 
    getUserBookmarkWithUserIDAndAttractionID(userID, attractionID) {

@@ -10,7 +10,7 @@ class bookmarkRouter{
         let router = express.Router();
         router.get("/:id",this.get.bind(this));
         router.post("/",this.post.bind(this));
-        router.delete("/:id",this.delete.bind(this));
+        router.delete("/",this.delete.bind(this));
         return router;
     }
 
@@ -27,20 +27,19 @@ class bookmarkRouter{
     post(req,res){
         console.log('add new bookmark', req.body)
         
-        return this.bookmarkService.insertBookmark(req.body)
-            .then((result)=>{
-                console.log("result",result)
-                res.json(result)})
+        return this.bookmarkService.insertBookmark(req.body.userID, req.body.attractionID)
+            .then(()=>{
+                console.log("added new bookmark")
+                res.json()})
             .catch((err)=>res.status(500).json(err));
     }
 
     delete(req,res){
-        console.log('deleting bookmark', req.params.id)
-        return this.bookmarkService.deleteBookmark(req.params.id)
+        console.log('deleting bookmark', req.body)
+        return this.bookmarkService.deleteBookmark(req.body.userID, req.body.attractionID)
             .then(()=>{
-                console.log("deleted bookmark is ",result)
-                res.json(result)
-            })
+                console.log("deleted bookmark")
+                res.json()})
             .catch((err)=> res.status(500).json(err));
     }
 
