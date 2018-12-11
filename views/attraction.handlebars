@@ -80,8 +80,9 @@
 
         <div id="add-comment-box">
             {{!-- need change the form action to /api/attraction/createComment/{{userid}} --}}
-            {{#each attraction}}{{id}}{{/each}}
-            {{#each attraction}}{{id}}{{/each}}
+            <h6><u>Add a comment</u></h6>
+            {{!-- {{#each attraction}}{{id}}{{/each}}
+            {{#each attraction}}{{id}}{{/each}} --}}
             <form id="addComment" action="/attraction/createComment/{{#each attraction}}{{id}}{{/each}}" method="post">
                 <textarea name='rate' style="display:none" id="rate"></textarea>
                 <div id="comment-star">

@@ -332,6 +332,10 @@ nav{
     margin-bottom:20px;
 }
 
+.attraction-col>a{
+    color:#000;
+}
+
 .image-overlay {
     opacity: 0.9;
     background-color:white;
@@ -346,7 +350,7 @@ nav{
     color:#eb0045;
 }
 
-.empty-heart,.full-heart,.fa-edit:hover{
+.empty-heart:hover,.full-heart:hover,.fa-edit:hover{
     transition:ease 0.5s;
     text-shadow:1px 1px 5px #6b6b6b;
 }

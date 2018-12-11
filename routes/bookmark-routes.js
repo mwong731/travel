@@ -18,7 +18,6 @@ class bookmarkRouter{
         
         return this.bookmarkService.listUserBookmark(req.params.id)
             .then(function(result){
-                console.log("result",result)
                 res.json(result);
             })
             .catch((err)=>res.status(500).json(err));
