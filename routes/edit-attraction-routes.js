@@ -36,9 +36,10 @@ class editAttractionRouter {
                 //return res.redirect("/attraction/"+req.params.id);
             }else{
                 let datajson = {};
-                console.log(data[0]);
+                //console.log(data[2]);
                 datajson.attraction = data[0];
                 datajson.attractionImage = data[1];
+                datajson.city = data[2];
                 datajson.user = [req.user];
                 return datajson;
             }

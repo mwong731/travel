@@ -33,6 +33,7 @@ exports.up = function (knex, Promise) {
          table.float("latitude");
          table.float("longitude");
          table.enu("confirmstatus" , ["accept","decline","wait"]);
+         table.string('icon');
          //table.timestamps(false, true);
       }).createTable('attractionimage', (table) => {
          table.increments();
