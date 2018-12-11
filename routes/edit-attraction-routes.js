@@ -2,9 +2,10 @@ const express = require("express");
 
 class editAttractionRouter {
 
-    constructor(attractionService, attractionImageService) {
+    constructor(attractionService, attractionImageService , cityService) {
         this.attractionService = attractionService;
         this.attractionImageService = attractionImageService;
+        this.cityService = cityService;
     }
 
     router() {
@@ -19,6 +20,8 @@ class editAttractionRouter {
             this.attractionService.getAttractionInAttractionID(req.params.id)
             ,
             this.attractionImageService.getImageAttractionByAttractionID(req.params.id)
+            ,
+            this.cityService.listCity()
         ]).then((data) => {
             // console.log("data[0]");
             // console.log(data);

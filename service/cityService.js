@@ -58,7 +58,10 @@ module.exports = class cityService {
             })
     }
 
- 
+    listCity(){
+        return this.knex.select()
+          .from("city")
+    }
     
  
  }
