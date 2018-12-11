@@ -26,10 +26,11 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('8');
       return knex('users').insert([
-        { email: "userman1@gmail.com", password: '123', facebookid: '', googleid: '', name: 'userman1', gender: "Male", birthday: new Date(), usertype: "user", image: "" },
-        { email: "userman2@gmail.com", password: '123', facebookid: '', googleid: '', name: 'userman2', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
-        { email: "userman3@gmail.com", password: '123', facebookid: '', googleid: '', name: 'userman3', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
-        { email: "userman4@gmail.com", password: '123', facebookid: '', googleid: '', name: 'userman4', gender: "Female", birthday: new Date(), usertype: "user", image: "" }
+        { email: "userman1@gmail.com", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman1', gender: "Male", birthday: new Date(), usertype: "user", image: "" },
+        { email: "userman2@gmail.com", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman2', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
+        { email: "userman3@gmail.com", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman3', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
+        { email: "userman4@gmail.com", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman4', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
+        { email: "123", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman4', gender: "Female", birthday: new Date(), usertype: "user", image: "" }
 
       ]);
     }).then(function () {

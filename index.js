@@ -66,6 +66,7 @@ const profileRoutes = require('./routes/profile-routes');
 const ViewRouter = require('./routes/viewRouter');
 
 const attractionRouter = require('./routes/attraction-routes');
+const editAttractionRouter = require('./routes/edit-attraction-routes');
 const cityRouter = require('./routes/city-routes')
 const cityService = require('./service/cityService')
 const cityAttractionRouter = require('./routes/city-attraction-route')
@@ -96,6 +97,9 @@ app.use('/attraction',
 );
 app.use('/api/attraction',new attractionAPIRouter(new attractionService(db)).router());
 app.use('/city', new cityRouter(new cityService(db)).router());
+
+app.use('/attraction/edit', new editAttractionRouter(new attractionService(db) , new attractionImageService(db)) .router());
+
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
 app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
 app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router());
