@@ -33,6 +33,7 @@ class profileRouter{
           }
           
         req.user.birthday=changedateformat(req.user.birthday);
+        // console.log(req.user)
         
         res.render('profile', {user: req.user});
     }
