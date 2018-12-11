@@ -132,7 +132,7 @@
                 $('.attraction-row').append(`
                 <div class="attraction-col col-md-8 col-lg-8">
                     <a href="/attraction/${data[i-1].id}">
-                    <img class="city-attraction-image " src="${data[i-1].image}">
+                    <img class="city-attraction-image " src="${data[i-1].icon}">
                     </a>
                     <div class="image-overlay">
                         <div class="attraction-name">${data[i-1].name} ${heart}</i></div>
@@ -144,7 +144,7 @@
                 $('.attraction-row').append(`
                 <div class="attraction-col col-md-4 col-lg-4">
                     <a href="/attraction/${data[i-1].id}">
-                    <img class="city-attraction-image " src="../assets/garden3.jpeg">
+                    <img class="city-attraction-image " src="${data[i-1].icon}">
                     </a>
                     <div class="image-overlay">
                         <div class="attraction-name">${data[i-1].name} ${heart}</i></div>

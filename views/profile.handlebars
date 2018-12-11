@@ -109,7 +109,7 @@
           
             $('#favourite-attraction-row').append(
                 `<div class="col-md-3 col-5 profile-attraction-col">
-                <img src="${data[1].image} " class="profile-attraction">
+                <img src="${(data[0])[0].icon} " class="profile-attraction">
                 <div class="profile-overlay">
                         <div class="profile-attraction-name">${(data[0])[0].name}</div>
                     </div>
@@ -135,7 +135,7 @@
                  
                      $('#my-attraction-row').append(
                         `<div class="col-md-3 col-5 profile-attraction-col">
-                        <img src="${data[a].image} " class="profile-attraction">
+                        <img src="${data[a].icon} " class="profile-attraction">
                         <div class="profile-overlay">
                                 <div class="profile-attraction-name">${data[a].name} <a href="/edit/attraction/"><i class="fas fa-edit"></a></i></div>
                             </div>

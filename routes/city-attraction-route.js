@@ -17,7 +17,7 @@ class cityAttractionRouter {
         console.log("result length 11")
         return this.cityService.getAttraction(req.params.id)
             .then(function (result) {
-                console.log("result length",result.length)
+                
                 res.json(result);
             })
             .catch((err) => res.status(500).json(err));

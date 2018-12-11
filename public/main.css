@@ -613,6 +613,10 @@ nav{
     padding:10px;
 }
 
+#plan-attraction-city{
+    margin-bottom:20px;
+}
+
 .plan-line-grey{
     width:100%;
     border: #ccc solid 0.5px;
@@ -633,3 +637,27 @@ nav{
     margin-bottom:10px;
     display:block;
 }
+
+.plan-img{
+    width:145px;
+    height:145px;
+    margin-bottom:10px;
+}
+
+#plan-attraction{
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.img-col{
+    padding:0 !important;
+}
+
+.plan-overlay {
+    opacity: 0.9;
+    background-color:white;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    padding: 10px 15px 10px 15px;
+  }
