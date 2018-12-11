@@ -111,7 +111,7 @@ app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router());
 
 
 app.get('/error', (req, res) => {
-    res.send('error occurred');
+    res.render('error')
 })
 
 //Set up https

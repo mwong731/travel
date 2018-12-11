@@ -75,7 +75,16 @@
                 let bookmarkArray=data.map(function(object){
                     return object.attractionid
                 })
-                resolve(bookmarkArray)
+
+                if (bookmarkArray.length==0){
+                      $('#favourite-attraction-row').append(
+                        `No attractions yet :( ` )
+                    reject();
+
+                }else{
+                    resolve(bookmarkArray)
+                }
+                
             }
             )
             .fail(function() {
@@ -89,10 +98,7 @@
     async function getFavouriteAttraction(){
         let array=await checkFavourite(userId);
         console.log('array', array)
-         /*$.get( `/api/city/${cityName}`, function() {
-        array[i].id
-        console.log('array', array)
-        /* $.get( `/api/city/${cityName}`, function() {
+   
       
         for(var i = 0; i<array.length; i++){
             $.get( `/api/attraction/${array[i]}`, function() {
@@ -108,9 +114,12 @@
             </div>` )
             })
             .fail(function() {
+                
                 console.log( "Cannot get attraction" );
+                return "no favourite attraction"
             }) 
         }
+       
     }
 
     //get my attraction
@@ -135,8 +144,10 @@
             }
             )
             .fail(function() {
+                $('#my-attraction-row').append(
+                        `No attractions yet :( <a href="/add/attraction" class="signup-link">Add one!</a>` )
                 console.log( "Cannot get attraction" );
-                reject();
+                return "no attraction"
             })
 
   

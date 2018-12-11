@@ -18,14 +18,7 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/parascroll.js-master/parascroll.js"></script>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-            height: 100%;
-        }
-
-    </style>
+   
 
 </head>
 
@@ -39,11 +32,6 @@
 
                 {{!-- If logged in, display this div (with add button and profile pic) --}}
                 {{#if user }}
-                <ul class="navbar-nav ml-auto" id="login-no-navbar">
-
-                    <a href="/auth/logout"><button class="btn btn-outline-primary" id="navbar-login-button">Logout</button></a>
-
-                </ul>
 
                 <ul class="navbar-nav ml-auto" id="login-yes-navbar">
 
@@ -53,7 +41,7 @@
                             Add
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/edit-attraction">Attraction</a>
+                            <a class="dropdown-item" href="/add/attraction">Attraction</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Itinerary</a>
 
@@ -61,10 +49,12 @@
                     </li>
                     <li class="nav-item" id="navBarProfile">
                         {{!-- Profile image --}}
-                        <img src="../assets/profile.jpg" id="profilePicture">
+                        <a href="/profile"><img src="../assets/profile.jpg" id="profilePicture"></a>
 
                     </li>
-
+                    <li>
+                    <a href="/auth/logout"><button class="btn btn-outline-primary" id="navbar-login-button">Logout</button></a>
+                    </li>
                 </ul>
 
 
