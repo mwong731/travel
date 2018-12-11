@@ -7,19 +7,19 @@ module.exports = class UserSubmitAttractionService {
 
     getAttractionByAttractionID(attractionID) {
         return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
-            .from("usersubmitattraction")
+            .from("attraction")
             .where("id", attractionID);
     }
 
     getAttractionByCityID(cityID) {
         return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
-            .from("usersubmitattraction")
+            .from("attraction")
             .where("cityid", cityID);
     }
 
     getAttractionByUser(userID) {
         return this.knex.select("id", "name" , "type ", "latitude ", "longitude ", "image")
-            .from("usersubmitattraction")
+            .from("attraction")
             .where({
                 userid: userID,
                 confirmstatus: 'accept'
@@ -43,7 +43,7 @@ module.exports = class UserSubmitAttractionService {
         if (image != null) {
             updateObject.image = image;
         }
-        return this.knex('usersubmitattraction').update(updateObject).where("id", attractionID);
+        return this.knex('attraction').update(updateObject).where("id", attractionID);
     }
 
     confirmAttractionStatusByAdmin(ID, confirmStatus) {
@@ -51,16 +51,16 @@ module.exports = class UserSubmitAttractionService {
         if (confirmStatus != null) {
             updateObject.confirmstatus = confirmStatus;
         }
-        return this.knex('usersubmitattraction').update(updateObject).where("id", ID);
+        return this.knex('attraction').update(updateObject).where("id", ID);
     }
 
     deleteAttractionBy(attractionID) {
-        return this.knex('usersubmitattraction').where('id', attractionID).del();
+        return this.knex('attraction').where('id', attractionID).del();
     }
 
     insertAttraction(cityid, name, type, latitude, longitude, image, description,userid) {
         console.log("insertin",cityid, name, type, latitude, longitude, image, description)
-        return this.knex('usersubmitattraction').insert([
+        return this.knex('attraction').insert([
             { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude, image: image , description: description,confirmstatus:"wait",userid:userid}
         ]);
     }

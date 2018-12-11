@@ -18,7 +18,7 @@ class cityRouter{
             return this.cityService.getCity(req.params.id)
             .then(function(data){
                 if(data.error){
-                    res.status(404).render("error")
+                    res.status(404).redirect("/error")
                 }else{
                     res.render(("city"),{data:data,user:req.user});
                 }
@@ -28,7 +28,7 @@ class cityRouter{
         }
 
     cannotGet(req,res){
-        res.status(404).render("error")
+        res.status(404).redirect("/error")
     }
        
     
