@@ -1,7 +1,38 @@
 <div class="d-flex justify-content-center">
-    <form  action="" method="POST">
-        
-    </form> 
+    <form action="/plan" method="POST" class="d-flex flex-column form-wrapper" id="create-new-plan">
+        <div>
+            <input type="text" name="planname" placeholder="The Name of Your Plan *" class="form-control sign-up-input" required>
+        </div>
+        <div class="form-row align-items-center">
+            <div class="col-3">Days:</div>
+            <div class="col-9">
+                <select name="days" class="form-control sign-up-input">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row align-items-center" id="plan-box">
+
+        </div>
+        <div class="d-flex justify-content-center">
+            <input type="submit" class="btn btn-primary" value="Add New Plan" />
+        </div>
+    </form>
+
+    
 
 
 </div>
+
+<script>
+    // each div in "plan-box" should have different id to represent different day
+</script>
