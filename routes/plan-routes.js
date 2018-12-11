@@ -18,8 +18,16 @@ class planRouter{
         return res.render("plan");
     }
 
-    post(req,res){
-        
+    async post(req,res){
+        try{
+            let planId = await this.planService.insertPlan(req.user.id,req.body.planname);
+            console.log(planId[0]);
+            // suppose receive 
+            let  = await this.planService.insertAttractioninplan(planId[0])
+        }
+        catch(err){
+            return res.send(err);
+        }
     }
 }
 

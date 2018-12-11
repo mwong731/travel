@@ -3,18 +3,18 @@ module.exports = class planService {
       this.knex = knex;
    }
    
-   createNewPlan( userID, )
-   // insertPlan( userID , Name) {
-   //    return this.knex('plan').insert([
-   //       { userid: userID , name: Name}
-   //    ]);
-   // }
+   
+   insertPlan( userId , name) {
+      return this.knex('plan').insert([
+         { userid: userId , name: name}
+      ]).returning('id');
+   }
 
-   // insertAttractioninplan(planID, attractionID , date ,Time) {
-   //    return this.knex('attractioninplan').insert([
-   //       { planid: planID, attractionid: attractionID , date:date , time:Time}
-   //    ]);
-   // }
+   insertAttractioninplan(planId, attractionId, date ,Time) {
+      return this.knex('attractioninplan').insert([
+         { planid: planId, attractionid: attractionId, date:date , time:Time}
+      ]);
+   }
 
    // deletePlanByID(ID) {
    //    return this.deleteAllAttractionInPlanByPlanID(ID).then(()=>{
