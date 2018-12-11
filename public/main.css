@@ -94,7 +94,18 @@ nav{
     margin-right:10px;
 }
 
-.btn-google,.btn-facebook{
+.btn-facebook{
+    margin-top:10px;
+    border:1px  #0084FF solid;
+    padding:10px;
+    width:200px;
+    border-radius:10px;
+    color: #0084FF;
+    text-align: center
+   
+}
+
+.btn-google{
     margin-top:10px;
     border:1px #eb0045 solid;
     padding:10px;
@@ -581,4 +592,40 @@ nav{
         margin: 20px 10px 20px 10px;
         border-bottom:1px solid #ccc;
     }
+}
+
+
+/* ========  Plan =========*/
+#create-new-plan{
+    width:100vw;
+
+}
+
+.day-box{
+    width:100vw;
+    border-radius:5px;
+    border: #ccc solid 1px;
+    margin:5px 5px 5px 5px;
+    padding:10px;
+}
+
+.plan-line-grey{
+    width:100%;
+    border: #ccc solid 0.5px;
+    margin:5px 0 0 0;
+}
+
+.day-col{
+    border-right:#ccc solid 1px;
+}
+
+.plan-button{
+    border-color:#eb0045;
+    color:#eb0045 ;
+}
+
+.day-night{
+    margin-top:10px;
+    margin-bottom:10px;
+    display:block;
 }
