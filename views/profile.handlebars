@@ -75,6 +75,7 @@
                 let bookmarkArray=data.map(function(object){
                     return object.attractionid
                 })
+
                 if (bookmarkArray.length==0){
                       $('#favourite-attraction-row').append(
                         `No attractions yet :( ` )
@@ -96,6 +97,8 @@
 
     async function getFavouriteAttraction(){
         let array=await checkFavourite(userId);
+        console.log('array', array)
+   
       
         for(var i = 0; i<array.length; i++){
             $.get( `/api/attraction/${array[i]}`, function() {
@@ -116,6 +119,7 @@
                 return "no favourite attraction"
             }) 
         }
+       
     }
 
     //get my attraction

@@ -52,6 +52,10 @@ nav{
     color:#fff;
 }
 
+#map {
+    height: 100%;
+}
+
 /* =========== bodyBox ==========*/
 #bodyBox{
     padding-top:10vh;

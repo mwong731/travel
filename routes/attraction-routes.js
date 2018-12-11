@@ -34,26 +34,34 @@ class AttractionRouter {
          //need get user id;
          this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(userid, req.params.id)
       ]).then((data) => {
-         let datajson = {};
-         datajson.attraction = data[0];
-         datajson.attractionComments = data[1];
-         datajson.attractionImage = data[2];
-         datajson.bookmark = data[3];
-         return datajson;
+         if (data[0].length == 0) {
+            throw new Error ("Select Return no result!!");
+         } else {
+            let datajson = {};
+            console.log(data[0]);
+            datajson.attraction = data[0];
+            datajson.attractionComments = data[1];
+            datajson.attractionImage = data[2];
+            datajson.bookmark = data[3];
+            datajson.user = {};
+            return datajson;
+         }
       }).then((data) => {
          //throw new Error('test error');
          return res.render(("attraction"), data);
       }).catch((err) => {
          console.log(err);
          //return res.status(500).json(err);
-         return res.status(500).render('index', { errorMessage: err });
+         //for test only
+         return res.status(500).render('edit-attraction', { errorMessage: err });
+         //return res.status(500).render('index', { errorMessage: err });
       });
    }
 
    createComment(req, res) {
       console.log(req.body);
       // console.log(req.user);
-      this.attractionCommentService.insertComment(userid ,req.params.id, req.body.text ,req.body.rate).then();
+      this.attractionCommentService.insertComment(userid, req.params.id, req.body.text, req.body.rate).then();
       return res.redirect('back');
    }
 
