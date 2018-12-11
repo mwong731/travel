@@ -115,13 +115,13 @@ nav{
 }
 
 /* =========== Login ==========*/
-#signup-link{
+.signup-link{
     color:#eb0045;
     margin-left:5px;
     text-decoration: underline;
 }
 
-#signup-link:hover{
+.signup-link:hover{
     color:#b10337;
 }
 

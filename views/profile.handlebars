@@ -75,7 +75,15 @@
                 let bookmarkArray=data.map(function(object){
                     return object.attractionid
                 })
-                resolve(bookmarkArray)
+                if (bookmarkArray.length==0){
+                      $('#favourite-attraction-row').append(
+                        `No attractions yet :( ` )
+                    reject();
+
+                }else{
+                    resolve(bookmarkArray)
+                }
+                
             }
             )
             .fail(function() {
@@ -103,7 +111,9 @@
             </div>` )
             })
             .fail(function() {
+                
                 console.log( "Cannot get attraction" );
+                return "no favourite attraction"
             }) 
         }
     }
@@ -130,8 +140,10 @@
             }
             )
             .fail(function() {
+                $('#my-attraction-row').append(
+                        `No attractions yet :( <a href="/add/attraction" class="signup-link">Add one!</a>` )
                 console.log( "Cannot get attraction" );
-                reject();
+                return "no attraction"
             })
 
   
