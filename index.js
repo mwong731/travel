@@ -100,7 +100,7 @@ app.use('/attraction',
     ).router()
 );
 app.use('/plan', new planRoutes().router())
-app.use('/api/attraction',new attractionAPIRouter(new attractionService(db)).router());
+app.use('/api/attraction',new attractionAPIRouter(new attractionService(db),new attractionImageService(db)).router());
 app.use('/city', new cityRouter(new cityService(db)).router());
 
 app.use('/attraction/edit', new editAttractionRouter(new attractionService(db) , new attractionImageService(db)) .router());

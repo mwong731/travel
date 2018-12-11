@@ -30,8 +30,17 @@ module.exports = class AttractionService {
             .from("attraction")
             .where("confirmstatus", "accept")
             .andWhere("id", attractionID);
+
         ;
     }
+
+    getImageAttractionByAttractionID(attractionID) {
+        return this.knex.select("id", "attractionid", "image")
+            .from("attractionimage")
+            .where("attractionid", attractionID);
+    }
+
+
 
     getAttractionInAttractionID(attractionID) {
         return this.knex.select("*")

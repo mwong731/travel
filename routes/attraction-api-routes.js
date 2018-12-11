@@ -1,7 +1,8 @@
 const express = require("express");
 class AttractionApiroutesRouter {
-   constructor(AttractionApiroutesRouter) {
-      this.attractionApiroutesRouter = AttractionApiroutesRouter;
+   constructor(attractionService,attractionImageService) {
+      this.attractionService = attractionService;
+      this.attractionImageService=attractionImageService;
    }
    router() {
       let router = express.Router();
@@ -10,11 +11,21 @@ class AttractionApiroutesRouter {
    }
 
    async get(req, res) {
-      return this.attractionApiroutesRouter.getAttractionInAttractionID(req.params.id)
-         .then(function (result) {
-            res.json(result);
-         })
-         .catch((err) => res.status(500).json(err));
+      
+      let object={};
+
+      return Promise.all([ this.attractionService.getAttractionInAttractionID(req.params.id),
+            this.attractionService.getImageAttractionByAttractionID(req.params.id) ])
+            .then((data)=>{
+            //      console.log("data0",data[0],"data1",data[1]) 
+                  object=data[0];
+                  object.image=(data[1])[0];
+            //      console.log('object',object)
+                 res.json([data[0],(data[1])[0]])
+            })
+            .catch((err) => res.status(500).json(err));
+
+      
    }
 
 }
