@@ -5,22 +5,22 @@ module.exports = class cityService {
     }
 
     getCity(cityName){
-        let object={
-            id:'',
-            name: '',
-            description: '',
-            image: ''
-        }
+        let object={}
 
         return this.knex.select("id", "name", "description","image")
           .from("city")
           .where("name", cityName)
           .then((data)=> {
+              if(data.length>0){
               object.id=data[0].id;
               object.name=data[0].name;
               object.description=data[0].description;
               object.image=data[0].image;
               return object;
+            }else{
+                return {error:'this city does not exist'}
+            }
+
             })
 
     }
@@ -30,7 +30,7 @@ module.exports = class cityService {
         .from("city")
         .where("name", cityName)
         .then((data)=> {
-            // console.log("cityNamae",cityName)
+            // console.log("getAttraction",cityName)
             this.cityId=data[0].id;
             return data
         })
