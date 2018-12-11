@@ -11,6 +11,7 @@ exports.up = function (knex, Promise) {
          table.enu("gender", ["Male", "Female"]);
          table.date('birthday');
          table.enu("usertype", ["user", "admin"]);
+         table.string("image");
          //table.timestamps(false, true);
       }).createTable('city', (table) => {
          table.increments();
@@ -24,33 +25,20 @@ exports.up = function (knex, Promise) {
          table.increments();
          table.integer('cityid');
          table.foreign('cityid').references('city.id');
+         table.integer('userid');
+         table.foreign('userid').references('users.id');
          table.string('name');
          table.string('description');
          table.enu("type", ['shop', 'restaurant', 'sleep', 'go']);
          table.float("latitude");
          table.float("longitude");
-         table.string("image");
+         table.enu("confirmstatus" , ["accept","decline","wait"]);
          //table.timestamps(false, true);
       }).createTable('attractionimage', (table) => {
          table.increments();
          table.integer('attractionid');
          table.foreign('attractionid').references('attraction.id');
          table.string("image");
-         //table.timestamps(false, true);
-      }).createTable('usersubmitattraction', (table) => {
-         table.increments();
-         table.integer('userid');
-         table.foreign('userid').references('users.id');
-         table.integer('cityid');
-         table.foreign('cityid').references('city.id');
-         table.string('name');
-         table.string('description');
-         table.enu("type", ['shop', 'restaurant', 'sleep', 'go']);
-         table.float("latitude");
-         table.float("longitude");
-         table.string("image");
-         //table.timestamps(false, true);
-         table.enu("confirmstatus" , ["accept","decline","wait"]);
          //table.timestamps(false, true);
       }).createTable('bookmark', (table) => {
          table.increments();
@@ -104,5 +92,5 @@ exports.up = function (knex, Promise) {
 };
 
 exports.down = function (knex, Promise) {
-   return knex.schema.dropTable('attractioncomment').dropTable('bookmark').dropTable('usersubmitattraction').dropTable('attractioninplan').dropTable('plan').dropTable('attractionimage').dropTable('attraction').dropTable('city').dropTable('users');
+   return knex.schema.dropTable('attractioncomment').dropTable('bookmark').dropTable('attractioninplan').dropTable('plan').dropTable('attractionimage').dropTable('attraction').dropTable('city').dropTable('users');
 };

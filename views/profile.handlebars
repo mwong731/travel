@@ -11,9 +11,9 @@
          
     
     <div class="col-md-7 profile-info-col profile-col"> 
-        <div id="profile-username"> Username: {{user.email}} </div>
+        <div id="profile-username"> Username: {{user.name}} </div>
         <div id="profile-email"> Email: {{user.email}} </div>
-        <div id="profile-birthday"> Birthday: {{user.email}} </div>
+        <div id="profile-birthday"> Birthday: {{user.birthday}} </div>
        
     </div>
 
@@ -24,18 +24,8 @@
     <h4>Favourite attraction</h4>
     <div class="profile-subtitle-line"></div>
 </div>
-<div class="row no-gutters profile-attraction-row">
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/garden3.jpeg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/coffee.jpg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/garden3.jpeg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">4</div>
-    <div class="col-md-3 col-5 profile-attraction-col">5</div>
+<div class="row no-gutters profile-attraction-row" id="favourite-attraction-row">
+
 </div>
     
 {{!-- Line --}}
@@ -44,20 +34,10 @@
 {{!-- User attraction --}}
 <div class="profile-subtitle">
     <h4>My attraction</h4>
-    <div class="profile-subtitle-line"></div>
+    <div class="profile-subtitle-line" ></div>
 </div>
-<div class="row no-gutters profile-attraction-row"  >
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/garden3.jpeg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/coffee.jpg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/garden3.jpeg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">4</div>
-    <div class="col-md-3 col-5 profile-attraction-col">5</div>
+<div class="row no-gutters profile-attraction-row" id="my-attraction-row" >
+
 </div>
 
 {{!-- Line --}}
@@ -83,7 +63,7 @@
 </div>
 
 <script>
-    let userId=1;
+    let userId={{user.id}};
 
 
     //Get favourite attraction
@@ -108,21 +88,67 @@
 
     async function getFavouriteAttraction(){
         let array=await checkFavourite(userId);
+<<<<<<< HEAD
         console.log('array', array)
          /*$.get( `/api/city/${cityName}`, function() {
         array[i].id
         console.log('array', array)
         /* $.get( `/api/city/${cityName}`, function() {
+=======
+      
+        for(var i = 0; i<array.length; i++){
+            $.get( `/api/attraction/${array[i]}`, function() {
+>>>>>>> 47117457469c763f11e777fb85ba5577b1851181
             })
             .done(function(data) {
-            appendAttraction(data);
+          
+            $('#favourite-attraction-row').append(
+                `<div class="col-md-3 col-5 profile-attraction-col">
+                <img src="${data[0].image} " class="profile-attraction">
+                <div class="profile-overlay">
+                        <div class="profile-attraction-name">${data[0].name}</div>
+                    </div>
+            </div>` )
             })
             .fail(function() {
                 console.log( "Cannot get attraction" );
-            }) */
+            }) 
+        }
     }
 
+    //get my attraction
+    function checkMy(id){
+      
+            $.get( `/profile/myAttraction/${id}`, function() {
+            })
+            .done(function(data) {
+
+                for(var a=0; a<data.length;a++){
+                 
+                     $('#my-attraction-row').append(
+                        `<div class="col-md-3 col-5 profile-attraction-col">
+                        <img src="${data[a].image} " class="profile-attraction">
+                        <div class="profile-overlay">
+                                <div class="profile-attraction-name">${data[a].name} <a href="/edit/attraction/"><i class="fas fa-edit"></a></i></div>
+                            </div>
+                        </div>` )
+
+                }
+                
+            }
+            )
+            .fail(function() {
+                console.log( "Cannot get attraction" );
+                reject();
+            })
+
+  
+    }
+
+    //
+
     getFavouriteAttraction()
+    checkMy(userId)
     
 
 </script>

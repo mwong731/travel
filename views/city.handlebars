@@ -1,13 +1,13 @@
 <div class="row justify-content-center">
    
-<div class="parallax-bg cityBanner" data-bgurl="{{image}}">
+<div class="parallax-bg cityBanner" data-bgurl="{{data.image}}">
 
 {{!-- Learn more button --}}
 
 </div>
 
   <div id="city-floating-box" class="d-flex justify-content-center align-items-center flex-column">
-        <h1>{{name}}</h1>
+        <h1>{{data.name}}</h1>
         <button class="btn btn-primary" id="learn-more">Learn more</button>
         
     </div>
@@ -17,7 +17,7 @@
             <h5> About this city</h5>
              <button class="cancel-button" id="cancel-info"> <i class="fas fa-times"></i></button>
         </div>
-        <div id="description-info">{{description}}</div>
+        <div id="description-info">{{data.description}}</div>
     </div>
 
 </div>
@@ -61,7 +61,7 @@
     })
 
     //Append attraction
-    let userId=1;
+    let userId={{user.id}};
     let cityName=window.location.href.split('/')[4] ;
 
     function checkBookmark(id){
@@ -131,7 +131,7 @@
             
                 $('.attraction-row').append(`
                 <div class="attraction-col col-md-8 col-lg-8">
-                    <img class="city-attraction-image " src="../assets/garden3.jpeg">
+                    <img class="city-attraction-image " src="${data[i-1].image}">
                     <div class="image-overlay">
                         <div class="attraction-name">${data[i-1].name} ${heart}</i></div>
                     </div>

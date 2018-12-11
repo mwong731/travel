@@ -17,6 +17,15 @@ module.exports = class UserSubmitAttractionService {
             .where("cityid", cityID);
     }
 
+    getAttractionByUser(userID) {
+        return this.knex.select("id", "name" , "type ", "latitude ", "longitude ", "image")
+            .from("usersubmitattraction")
+            .where({
+                userid: userID,
+                confirmstatus: 'accept'
+            });
+    }
+
     updateAttractionByUser(attractionID, cityid, type, latitude, longitude, image) {
         let updateObject = new Object();
         if (cityid != null) {
@@ -49,10 +58,10 @@ module.exports = class UserSubmitAttractionService {
         return this.knex('usersubmitattraction').where('id', attractionID).del();
     }
 
-    insertAttraction(cityid, name, type, latitude, longitude, image) {
-        console.log("insertin")
+    insertAttraction(cityid, name, type, latitude, longitude, image, description,userid) {
+        console.log("insertin",cityid, name, type, latitude, longitude, image, description)
         return this.knex('usersubmitattraction').insert([
-            { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude, image: image ,confirmstatus:"wait"}
+            { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude, image: image , description: description,confirmstatus:"wait",userid:userid}
         ]);
     }
     //below function not even test
