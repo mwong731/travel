@@ -13,10 +13,11 @@ class cityRouter{
     }
 
     get(req,res){
+        console.log("requestuser" , req.user);
         return this.cityService.getCity(req.params.id)
             .then(function(data){
                 // console.log("data",data);
-                res.render(("city"),data);
+                res.render(("city"),{data:data,user:req.user});
             })
             .catch((err)=>res.status(500).json(err));
     }

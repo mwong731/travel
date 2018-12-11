@@ -20,7 +20,7 @@ class addRouter{
     post(req, res) {
         console.log('user submit attraction', req.body)
 
-        return this.UserSubmitAttractionService.insertAttraction(req.body.cityid, req.body.name, req.body.type, req.body.latitude, req.body.longitude, req.body.image)
+        return this.UserSubmitAttractionService.insertAttraction(req.body.cityid, req.body.name, req.body.type, req.body.latitude, req.body.longitude, req.body.image, req.body.description,req.body.userid)
             .then(() => {
                 console.log("inserted attraction")
                 res.json()

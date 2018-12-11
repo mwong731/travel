@@ -48,7 +48,7 @@ module.exports = class AttractionService {
     }
 
     // updateAttractionWithID input can be null
-    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude, image , confirmstatus) {
+    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude , confirmstatus) {
         let insertObject = new Object();
         if (cityid != null) {
             insertObject.cityid = cityid;

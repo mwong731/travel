@@ -12,6 +12,7 @@
             <option value="4">Hiroshima</option>
         </select>
         <div id="city-error-message"></div>
+
         <select class="form-control" id="edit-attraction-type">
             <option selected disabled value="notChosen">Choose a type</option>
             <option value="go">Tourist attraction</option>
@@ -19,9 +20,11 @@
             <option value="shop">Shop</option>
         </select>
          <div id="type-error-message"></div>
+
         <input type="text" class="form-control" id="edit-attraction-name" placeholder="Attraction name">
         <div id="name-error-message"></div>
-        {{!-- <textarea class="form-control" id="edit-attraction-description" rows="3" placeholder="Describe the attraction"></textarea> --}}
+        
+        <textarea class="form-control" id="edit-attraction-description" rows="3" placeholder="Describe the attraction"></textarea>
     </div>
     
     <div class="col-md-6 edit-form edit-form-right">
@@ -40,10 +43,13 @@
 </div>
 
 <script>
+    let userId=1;
+
     function userAdd(){
        
 
-        console.log($('#edit-attraction-city').val())
+        
+        console.log("222",$('#edit-attraction-type').val())
 
         if($('#edit-attraction-city').val()==null){
             $('#edit-attraction-city').css('border-color','red');
@@ -72,10 +78,11 @@
         
         if($('#edit-attraction-name').val()!=null && $('#edit-attraction-type').val()!=null &&  $('#edit-attraction-name').val()!=null || $('#edit-attraction-name').val()!=''){
            
+           //console.log("333",$('#edit-attraction-type').val())
             axios({
                 method: 'post',
                 url: `/add/attraction`,
-                data: { cityid: $('#edit-attraction-city').val(), name:$('#edit-attraction-name').val() ,type: $('edit-attraction-type').val, latitude: 1.0, longitude: 1.0, image:null }
+                data: { cityid: $('#edit-attraction-city').val(), name:$('#edit-attraction-name').val() ,type:$('#edit-attraction-type').val(), latitude: 1.0, longitude: 1.0, image:null , description:$('#edit-attraction-description').val(), userid:userId}
                 })
                 .then(function(){
                     console.log('submited');
