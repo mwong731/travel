@@ -26,7 +26,7 @@ module.exports = class cityService {
     }
 
     getAttraction(cityName){
-        return this.knex.select("id")
+        return this.knex.select("*")
         .from("city")
         .where("name", cityName)
         .then((data)=> {

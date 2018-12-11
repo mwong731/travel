@@ -16,18 +16,18 @@ module.exports = class planService {
       ]);
    }
 
-   // deletePlanByID(ID) {
-   //    return this.deleteAllAttractionInPlanByPlanID(ID).then(()=>{
-   //       return this.knex('plan').where('id', ID).del();
-   //    })
-   // }
+   deletePlanByID(ID) {
+      return this.deleteAllAttractionInPlanByPlanID(ID).then(()=>{
+         return this.knex('plan').where('id', ID).del();
+      })
+   }
 
-   // deleteAttractioninPlanByID(ID) {
-   //    return this.knex('attractioninplan').where('id', ID).del();
-   // }
+   deleteAttractioninPlanByID(ID) {
+      return this.knex('attractioninplan').where('id', ID).del();
+   }
 
-   // deleteAllAttractionInPlanByPlanID(PlanID) {
-   //    return this.knex('attractioninplan').where('planid',PlanID).del();
-   // }
+   deleteAllAttractionInPlanByPlanID(PlanID) {
+      return this.knex('attractioninplan').where('planid',PlanID).del();
+   }
    //below function not even test
 }
