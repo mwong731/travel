@@ -5,43 +5,50 @@ module.exports = class AttractionService {
     constructor(knex) {
         this.knex = knex;
         this.query = {
-            selectAttraction: this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+            selectAttraction: this.knex.select("*")
                 .from("attraction")
+                .where("confirmstatus", "accept")
         }
     }
 
     listAttractionInCityID(cityID) {
-        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+        return this.knex.select("*")
             .from("attraction")
-            .where("cityid", cityID);
+            .where("confirmstatus", "accept")
+            .andWhere("cityid", cityID);
     }
 
     //no use
     listAttraction() {
-        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+        return this.knex.select("*")
             .from("attraction")
+            .where("confirmstatus", "accept");
     }
 
     getAttractionInAttractionID(attractionID) {
-        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+        return this.knex.select("*")
             .from("attraction")
-            .where("id", attractionID);
+            .where("confirmstatus", "accept")
+            .andWhere("id", attractionID);
+        ;
     }
 
     getAttractionInAttractionID(attractionID) {
-        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+        return this.knex.select("*")
             .from("attraction")
-            .where("id", attractionID);
+            .where("confirmstatus", "accept")
+            .andWhere("id", attractionID);
     }
 
     getAttractionByCityID(cityID) {
-        return this.knex.select("cityid", "name", "description", "type ", "latitude ", "longitude ", "image")
+        return this.knex.select("*")
             .from("attraction")
-            .where("cityid", cityID);
+            .where("confirmstatus", "accept")
+            .andWhere("cityid", cityID);
     }
 
     // updateAttractionWithID input can be null
-    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude, image) {
+    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude, image , confirmstatus) {
         let insertObject = new Object();
         if (cityid != null) {
             insertObject.cityid = cityid;
@@ -61,8 +68,8 @@ module.exports = class AttractionService {
         if (longitude != null) {
             insertObject.longitude = longitude;
         }
-        if (image != null) {
-            insertObject.image = image;
+        if (confirmstatus != null) {
+            insertObject.confirmstatus = confirmstatus;
         }
         return this.knex('attraction').update(insertObject).where("id", attractionID).catch((err) => {
             console.log(err);
@@ -82,9 +89,9 @@ module.exports = class AttractionService {
         })
     }
     // insert() input(latitude , longitude) can be null
-    insert(cityid, type, name, latitude, longitude, image) {
+    insert(cityid, type, name, latitude, longitude) {
         return this.knex('attraction').insert([
-            { cityid: cityid, name: name, type: type, latitude: latitude, longitude: longitude, image: image }
+            { cityid: cityid, name: name, type: type, latitude: latitude, longitude: longitude ,confirmstatus:"wait"}
         ]);
     }
     //below function not even test

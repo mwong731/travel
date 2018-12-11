@@ -45,7 +45,7 @@
 
     <div class="col-12 col-md-6" id="attraction-map">
         {{!-- Map API --}}
-        MAP
+        <div id="map"></div>
     </div>
 
 </div>
@@ -80,7 +80,9 @@
 
         <div id="add-comment-box">
             {{!-- need change the form action to /api/attraction/createComment/{{userid}} --}}
-            <form id="addComment" action="/attraction/createComment/1{{attraction.id}}"+ method="post" >
+            {{#each attraction}}{{id}}{{/each}}
+            {{#each attraction}}{{id}}{{/each}}
+            <form id="addComment" action="/attraction/createComment/{{#each attraction}}{{id}}{{/each}}" method="post">
                 <textarea name='rate' style="display:none" id="rate"></textarea>
                 <div id="comment-star">
                     <i id="1" class="far fa-star"></i>
@@ -101,3 +103,32 @@
 
 
 <script src="/js-file/attraction.js"></script>
+
+<script>
+    function initMap() {
+        var myLatLng = {
+            lat: {{#each attraction}}{{latitude}}{{/each}},
+            lng: {{#each attraction}}{{longitude}}{{/each}} 
+        };
+
+        // Create a map object and specify the DOM element
+        // for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          zoom: 4
+        });
+
+        // Create a marker and set its position.
+        var marker = new google.maps.Marker({
+          map: map,
+          position: myLatLng,
+          title: 'Hello World!'
+        });
+      }
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDV_frL3q7ZRupryhWep3AaXU4OoiS6ywc&callback=initMap"
+    async defer>
+    </script>

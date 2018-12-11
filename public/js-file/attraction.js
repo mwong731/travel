@@ -1,51 +1,36 @@
-// Show comment box when "write review" button clicked
+
+// set comment box have 1 rate(star) when page loaded
 var rates = 1;
 $(() => {
     reflashRate(rates);
 })
 
 
-
+// Show comment box when "write review" button clicked
 $('#add-comment').on('click', function () {
     $("#add-comment-box").slideDown("slow");
     $('#add-comment').fadeOut();
 })
 
+// reflashRate in mouse event on star in comment box
 $('#add-comment-box form div i').mouseover((e) => {
     reflashRate($(e.currentTarget).attr('id'));
 })
 $('#add-comment-box form div i').mouseout((e) => {
-    //console.log(rates);
     reflashRate(rates);
 })
 $('#add-comment-box form div i').on('click', (e) => {
     rates = $(e.currentTarget).attr('id');
 })
 
+
+
 $('#heart').on('click', (e) => {
     changeBookMark();
 })
 
-$('#addComment').on('click', (e) => {
-    changeBookMark();
-})
-$("#submit-comment").on('click', (e) => {
-
-});
-
-// $("addComment").submit(function (e) {
-//     e.preventDefault();
-//     $("#rate").val(rates);
-//     console.log($("#rate").attr("value"));
-//     this.submit();
-// })
-
 function changeBookMark() {
 
-}
-
-function returnRate() {
-    $(`#add-comment-box form div i#${i}`) = rates;
 }
 
 function reflashRate(rate) {
@@ -61,6 +46,8 @@ function reflashRate(rate) {
         $(`#add-comment-box form div i#${x}`).addClass("far fa-star");
     }
 }
+// google map function seting(require)
+
 
 
 
