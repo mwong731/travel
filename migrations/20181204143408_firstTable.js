@@ -11,6 +11,7 @@ exports.up = function (knex, Promise) {
          table.enu("gender", ["Male", "Female"]);
          table.date('birthday');
          table.enu("usertype", ["user", "admin"]);
+         table.string("image");
          //table.timestamps(false, true);
       }).createTable('city', (table) => {
          table.increments();
