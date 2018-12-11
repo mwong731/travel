@@ -18,12 +18,18 @@ module.exports = class UserSubmitAttractionService {
     }
 
     getAttractionByUser(userID) {
-        return this.knex.select("id", "name" , "type ", "latitude ", "longitude ", "image")
+        return this.knex.select()
             .from("attraction")
             .where({
                 userid: userID,
                 confirmstatus: 'accept'
             });
+    }
+
+     getImageAttractionByAttractionID(attractionID) {
+        return this.knex.select("id", "attractionid", "image")
+            .from("attractionimage")
+            .where("attractionid", attractionID);
     }
 
     updateAttractionByUser(attractionID, cityid, type, latitude, longitude, image) {

@@ -4,21 +4,15 @@
 
 <div class="d-flex">
     <form action="/plan" method="POST" class="d-flex flex-column " id="create-new-plan">
-        <div>
+        
+        <div class="form-row align-items-center">
+             <div class="col-12 col-md-6">
             <input type="text" name="planname" placeholder="Name you plan *" class="form-control sign-up-input"
                 required>
-        </div>
-        <div class="form-row align-items-center">
-            <div class="col-6">
-                <select class="form-control" id="plan-attraction-city">
-                    <option selected disabled value="notChosen">Choose a city</option>
-                    <option value="tokyo">Tokyo</option>
-                    <option value="osaka">Osaka</option>
-                    <option value="fukuoka">Fukuoka</option>
-                    <option value="hiroshima">Hiroshima</option>
-                </select>
-            </div>
-            <div class="col-6">
+
+             </div>
+          
+            <div class="col-12 col-md-6">
                 <select name="days" class="form-control sign-up-input" id="plan-day-number">
                     <option selected disabled value="notChosen">Number of days</option>
                     <option value="1">1</option>
@@ -56,6 +50,17 @@
         </button>
       </div>
       <div class="modal-body">
+                <select class="form-control" id="plan-attraction-city">
+                    <option selected disabled value="notChosen">Choose a city</option>
+                    <option value="Tokyo">Tokyo</option>
+                    <option value="Osaka">Osaka</option>
+                    <option value="Fukuoka">Fukuoka</option>
+                    <option value="Hiroshima">Hiroshima</option>
+                </select>
+           
+        <div id="plan-attraction">
+            {{!-- Put attraction here --}}
+        </div>
         ...
       </div>
       <div class="modal-footer">
@@ -85,7 +90,7 @@
                              <div class="col-md-6 day-col"> 
                                  <div class="day-night"><i class="fas fa-sun"></i> Day</div> 
                                  <div id="d-${i + 1}"> Some attraction here </div>
-                                 <button class="btn plan-button add-attraction" id="d-${i+1}"> Add attraction </button>
+                                 <button class="btn plan-button add-attraction" id="d-${i+1}" onClick="con(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
                             </div>
                              <div class="col-md-6">
                                  <div class="day-night"><i class="fas fa-moon"></i> Night</div>
@@ -104,4 +109,26 @@
       console.log(id);
       let city= $('#plan-attraction-city').val();
   }
+
+function getAttraction(cityName){
+         $.get( `/api/city/${cityName}`, function() {
+            })
+            .done(function(data) {
+                console.log(data)
+            //appendAttraction(data);
+            })
+            .fail(function() {
+                console.log( "Cannot get attraction" );
+            })
+}
+
+  $('#plan-attraction-city').change(function(){
+      if($('#plan-attraction-city').val()!='notChosen'){
+        let cityName=$('#plan-attraction-city').val();
+        getAttraction(cityName);
+    }
+      
+  })
+
+
 </script>

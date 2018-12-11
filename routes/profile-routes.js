@@ -39,6 +39,7 @@ class profileRouter{
     }
 
     myAttraction(req, res) {
+        
 
         console.log("myattraction",req.params.id);
         return this.UserSubmitAttractionService.getAttractionByUser(req.params.id)
