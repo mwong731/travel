@@ -1,12 +1,26 @@
-<div class="d-flex justify-content-center">
-    <form action="/plan" method="POST" class="d-flex flex-column form-wrapper" id="create-new-plan">
+<div class=" row edit-title">
+<h3>Add a plan </h3>
+</div>
+
+<div class="d-flex">
+    <form action="/plan" method="POST" class="d-flex flex-column " id="create-new-plan">
         <div>
-            <input type="text" name="planname" placeholder="The Name of Your Plan *" class="form-control sign-up-input" required>
+            <input type="text" name="planname" placeholder="Name you plan *" class="form-control sign-up-input" required>
         </div>
         <div class="form-row align-items-center">
-            <div class="col-3">Days:</div>
-            <div class="col-9">
-                <select name="days" class="form-control sign-up-input">
+            <div class="col-6">
+         <select class="form-control" id="plan-attraction-city">
+            <option selected disabled value="notChosen">Choose a city</option>
+            <option value="1">Tokyo</option>
+            <option value="2">Osaka</option>
+            <option value="3">Fukuoka</option>
+            <option value="4">Hiroshima</option>
+        </select>
+        </div>
+        <div class="col-6">
+            
+                <select name="days" class="form-control sign-up-input" id="plan-day-number">
+                    <option selected disabled value="notChosen">Number of days</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -18,10 +32,13 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                 </select>
+                </div>
             </div>
-        </div>
-        <div class="form-row align-items-center" id="plan-box">
 
+        </div>
+
+        <div class="form-row align-items-center" id="plan-box">
+            {{!-- Append boxes --}}
         </div>
         <div class="d-flex justify-content-center">
             <input type="submit" class="btn btn-primary" value="Add New Plan" />
@@ -35,4 +52,44 @@
 
 <script>
     // each div in "plan-box" should have different id to represent different day
+    $('#plan-day-number').change(function(){
+        if ($('#plan-day-number').val()!='notChosen'){
+            let days=$('#plan-day-number').val();
+            for(var i=0;i<days;i++){
+                $('#plan-box').append(
+                    `<div class='day-box'> 
+                        <h5>Day ${i+1}</h5>
+                        <div class="plan-line-grey"></div>
+                        <div class="row">
+                             <div class="col-md-6 day-col"> 
+                                 <div class="day-night"><i class="fas fa-sun"></i> Day</div> 
+                                 <div id="day${i+1}-day"> Some attraction here </div>
+                                 <button class="btn plan-button"> Add attraction </button>
+                                 
+                            </div>
+                             <div class="col-md-6">
+                                 <div class="day-night"><i class="fas fa-moon"></i> Night</div>
+                                 <div id="day${i+1}-night"> Some attraction here</div>
+                                 <button class="btn plan-button"> Add attraction </button>
+                            
+                            </div>
+                             
+                             
+
+
+                         </div>
+
+                         </div>
+                         
+
+
+
+
+
+                    `
+                )
+            }
+        }
+        
+    })
 </script>
