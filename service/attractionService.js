@@ -48,7 +48,7 @@ module.exports = class AttractionService {
     }
 
     // updateAttractionWithID input can be null
-    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude , confirmstatus) {
+    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude, confirmstatus) {
         let insertObject = new Object();
         if (cityid != null) {
             insertObject.cityid = cityid;
@@ -89,9 +89,9 @@ module.exports = class AttractionService {
         })
     }
     // insert() input(latitude , longitude) can be null
-    insert(cityid, type, name, latitude, longitude) {
+    insert(cityid, userid, type, name, latitude, longitude) {
         return this.knex('attraction').insert([
-            { cityid: cityid, name: name, type: type, latitude: latitude, longitude: longitude ,confirmstatus:"wait"}
+            { cityid: cityid, userid: userid, name: name, type: type, latitude: latitude, longitude: longitude, confirmstatus: "wait" }
         ]);
     }
     //below function not even test

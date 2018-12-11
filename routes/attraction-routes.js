@@ -38,10 +38,12 @@ class AttractionRouter {
             throw new Error ("Select Return no result!!");
          } else {
             let datajson = {};
+            console.log(data[0]);
             datajson.attraction = data[0];
             datajson.attractionComments = data[1];
             datajson.attractionImage = data[2];
             datajson.bookmark = data[3];
+            datajson.user = {};
             return datajson;
          }
       }).then((data) => {

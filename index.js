@@ -97,11 +97,11 @@ app.use('/attraction',
 app.use('/api/attraction',new attractionAPIRouter(new attractionService(db)).router());
 app.use('/city', new cityRouter(new cityService(db)).router());
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
-app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router())
-app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router())
+app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
+app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router());
 
 app.get('/error', (req, res) => {
-    res.send('error occurred')
+    res.send('error occurred');
 })
 
 //Set up https

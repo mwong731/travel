@@ -25,6 +25,8 @@ exports.up = function (knex, Promise) {
          table.increments();
          table.integer('cityid');
          table.foreign('cityid').references('city.id');
+         table.integer('userid');
+         table.foreign('userid').references('users.id');
          table.string('name');
          table.string('description');
          table.enu("type", ['shop', 'restaurant', 'sleep', 'go']);
