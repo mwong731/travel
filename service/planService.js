@@ -4,6 +4,7 @@ module.exports = class planService {
    }
    
    createNewPlan( userID, )
+   {}
    // insertPlan( userID , Name) {
    //    return this.knex('plan').insert([
    //       { userid: userID , name: Name}
