@@ -56,8 +56,15 @@ module.exports = class AttractionService {
             .andWhere("cityid", cityID);
     }
 
+    getCityNameByAttractionID(AttractionID) {
+        return this.knex.select("*")
+            .from("attraction")
+            .where("attractionid", AttractionID)
+            .andWhere("cityid", cityID);
+    }
+
     // updateAttractionWithID input can be null
-    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude, confirmstatus) {
+    updateAttractionWithID(attractionID, cityid, name, description, type, latitude, longitude, confirmstatus ,icon) {
         let insertObject = new Object();
         if (cityid != null) {
             insertObject.cityid = cityid;
@@ -80,6 +87,11 @@ module.exports = class AttractionService {
         if (confirmstatus != null) {
             insertObject.confirmstatus = confirmstatus;
         }
+        if (icon != null) {
+            insertObject.icon = icon;
+        }
+        
+
         return this.knex('attraction').update(insertObject).where("id", attractionID).catch((err) => {
             console.log(err);
         });
@@ -98,9 +110,9 @@ module.exports = class AttractionService {
         })
     }
     // insert() input(latitude , longitude) can be null
-    insert(cityid, userid, type, name, latitude, longitude) {
+    insert(cityid, userid, type, name, latitude, longitude , icon) {
         return this.knex('attraction').insert([
-            { cityid: cityid, userid: userid, name: name, type: type, latitude: latitude, longitude: longitude, confirmstatus: "wait" }
+            { cityid: cityid, userid: userid, name: name, type: type, latitude: latitude, longitude: longitude, confirmstatus: "wait" ,icon:icon}
         ]);
     }
     //below function not even test

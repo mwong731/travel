@@ -6,10 +6,11 @@
     <div class="col-md-6 edit-form">
         <select class="form-control" id="edit-attraction-city">
             <option selected disabled value="notChosen">Choose a city</option>
-            <option value="1">Tokyo</option>
-            <option value="2">Osaka</option>
-            <option value="3">Fukuoka</option>
-            <option value="4">Hiroshima</option>
+            {{!-- gen data --}}
+            {{#each city}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+
         </select>
         <div id="city-error-message"></div>
 
