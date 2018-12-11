@@ -25,7 +25,15 @@ class profileRouter{
     }
 
     get(req,res){
-        console.log(req.user);
+        
+        //format birthday
+        function changedateformat(input) {
+            var d = new Date(input);
+            return [d.getDate(), d.getMonth()+1, d.getFullYear()].join('/');
+          }
+          
+        req.user.birthday=changedateformat(req.user.birthday);
+        
         res.render('profile', {user: req.user});
     }
 
@@ -34,7 +42,6 @@ class profileRouter{
         console.log("myattraction",req.params.id);
         return this.UserSubmitAttractionService.getAttractionByUser(req.params.id)
             .then(function(data){
-                // console.log("data",data);
                 res.json(data);
             })
             .catch((err)=>res.status(500).json(err));

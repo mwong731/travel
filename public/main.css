@@ -79,6 +79,35 @@ nav{
     margin-bottom:10px;
 }
 
+#signup-line2{
+    width:100%;
+    border-bottom:1px solid #ccc;
+    margin-bottom:10px;
+    margin-top:20px;
+}
+
+.fab{
+    margin-right:10px;
+}
+
+.btn-google,.btn-facebook{
+    margin-top:10px;
+    border:1px #eb0045 solid;
+    padding:10px;
+    width:200px;
+    border-radius:10px;
+    color:#eb0045;
+    text-align: center
+}
+
+.btn-google:hover,.btn-facebook:hover{
+    color:#fff;
+    background-color:#eb0045;
+}
+
+
+
+
 @media only screen and (max-width: 480px) {
     .form-wrapper{
         width:80vw;
@@ -145,8 +174,24 @@ nav{
 .city-img{
     object-fit: cover;
     overflow: hidden;
-    max-height: 20vw ; 
-    max-width : 20vw ;  
+    height: 20vw ; 
+    width : 20vw ;  
+    border-radius:5px;
+}
+
+.index-overlay{
+    opacity: 0.9;
+    background-color:white;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    padding: 10px 15px 10px 15px;
+    
+}
+
+.indexPhotoCol>a{
+    color:#000;
 }
 
 @media only screen and (max-width: 480px) {
@@ -161,8 +206,8 @@ nav{
     .city-img{
         object-fit: cover;
         overflow: hidden;
-        max-height: 20vh; 
-        max-width : 20vh;  
+        height: 20vh; 
+        width : 20vh;  
     }
     
     #cityButton{

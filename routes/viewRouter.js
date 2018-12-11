@@ -11,17 +11,6 @@ module.exports = class ViewRouter{
             res.render("index",{user: req.user})
         }); 
 
-        // router.get('/city',(req,res)=>{
-        //     res.render("city",{user: req.user})
-        // });
-
-        // router.get('/attraction/',(req,res)=>{
-        //     res.render("attraction",{user: req.user})
-        // });
-
-        // router.get('/edit-attraction',(req,res)=>{
-        //     res.render("edit-attraction"),{user: req.user}
-        // });
 
         
         return router;
