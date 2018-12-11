@@ -35,15 +35,16 @@ class AttractionRouter {
          this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(userid, req.params.id)
       ]).then((data) => {
          if (data[0].length == 0) {
-            throw new Error ("Select Return no result!!");
+            throw new Error("Select Return no result!!");
          } else {
             let datajson = {};
-            console.log(data[0]);
+            // console.log(req.user);
             datajson.attraction = data[0];
             datajson.attractionComments = data[1];
             datajson.attractionImage = data[2];
             datajson.bookmark = data[3];
-            datajson.user = {};
+            datajson.user = [req.user];
+            //console.log(datajson);
             return datajson;
          }
       }).then((data) => {
@@ -53,7 +54,8 @@ class AttractionRouter {
          console.log(err);
          //return res.status(500).json(err);
          //for test only
-         return res.status(500).render('edit-attraction', { errorMessage: err });
+         return res.redirect("/error");
+         //return res.status(500).render('edit-attraction', { errorMessage: err });
          //return res.status(500).render('index', { errorMessage: err });
       });
    }

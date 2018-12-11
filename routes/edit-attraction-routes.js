@@ -2,7 +2,7 @@ const express = require("express");
 
 class editAttractionRouter {
 
-    constructor(attractionService ,attractionImageService) {
+    constructor(attractionService, attractionImageService) {
         this.attractionService = attractionService;
         this.attractionImageService = attractionImageService;
     }
@@ -10,7 +10,7 @@ class editAttractionRouter {
     router() {
         let router = express.Router();
         router.get("/:id", this.get.bind(this));
-        router.post("/", this.post.bind(this));
+        //router.post("/", this.post.bind(this));
         return router;
     }
 
@@ -18,30 +18,36 @@ class editAttractionRouter {
         Promise.all([
             this.attractionService.getAttractionInAttractionID(req.params.id)
             ,
-            this.attractionImageService.listAttractionCommentsByAttractionID(req.params.id)
-         ]).then((data) => {
+            this.attractionImageService.getImageAttractionByAttractionID(req.params.id)
+        ]).then((data) => {
+            // console.log("data[0]");
+            // console.log(data);
+            // console.log("data[0]");
             if (data[0].length == 0) {
-               throw new Error ("Select Return no result!!");
-            } else {
-               let datajson = {};
-               console.log(data[0]);
-               datajson.attraction = data[0];
-               datajson.attractionComments = data[1];
-               datajson.attractionImage = data[2];
-               datajson.bookmark = data[3];
-               datajson.user = {};
-               return datajson;
+                console.log("data[0].length == 0");
+                throw new Error("Select Return no result!!");
+            } else if(data[0][0].userid != req.user.id) {
+                //console.log("data[0].userid is "+ data[0].userid);
+                //console.log("req.user.id is "+req.user.id);
+                throw new Error("User not login");
+                //return res.redirect("/attraction/"+req.params.id);
+            }else{
+                let datajson = {};
+                console.log(data[0]);
+                datajson.attraction = data[0];
+                datajson.attractionImage = data[1];
+                datajson.user = [req.user];
+                return datajson;
             }
-         }).then((data) => {
+        }).then((data) => {
             //throw new Error('test error');
-            return res.render(("attraction"), data);
-         }).catch((err) => {
+            return res.render(("edit-attraction"), data);
+        }).catch((err) => {
             console.log(err);
             //return res.status(500).json(err);
             //for test only
-            return res.status(500).render('edit-attraction', { errorMessage: err });
-            //return res.status(500).render('index', { errorMessage: err });
-         });
+            return res.redirect("/error");
+        });
     }
 
     post(req, res) {
