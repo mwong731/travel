@@ -63,7 +63,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onClick="saveAttraction()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-primary" style="margin:0" onClick="saveAttraction()" data-dismiss="modal">Save</button>
             </div>
         </div>
     </div>
@@ -117,7 +117,7 @@
                 console.log(data)
                 for (var i = 0; i < data.length; i++) {
                     $('#plan-attraction').append(`
-                <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" onClick="getAttractionId(${data[i].id},'${data[i].name}','${data[i].icon}')"/>
+                <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" id="image${data[i].id}" onClick="getAttractionId(${data[i].id},'${data[i].name}','${data[i].icon}')"/>
                     <div class="plan-overlay">
                         <div class="profile-attraction-name">${data[i].name}</div>
                     </div>
@@ -132,11 +132,15 @@
     }
 
     function getDayAndTime(id) {
+        $('#plan-attraction-city').val('notChosen')
         console.log(id);
         dayAndTime = id;
     }
 
     function getAttractionId(id, name, iconURL) {
+        $('.plan-img').css('border','')
+        $(`#image${id}`).css('border','2px solid red')
+        
         console.log(id);
         console.log(name);
         console.log(iconURL);
@@ -217,6 +221,10 @@
         return true;
     }
 
+   
+
+    
 
 
+$('#plan-day-number').val('notChosen')
 </script>
