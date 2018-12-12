@@ -26,6 +26,13 @@ module.exports = class UserSubmitAttractionService {
             });
     }
 
+    getMyPlan(userID){
+        return this.knex.select('name')
+            .from("plan")
+            .where("userid", userID);
+
+    }
+
      getImageAttractionByAttractionID(attractionID) {
         return this.knex.select("id", "attractionid", "image")
             .from("attractionimage")
