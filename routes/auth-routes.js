@@ -20,14 +20,23 @@ router.get('/signup',(req,res)=>{
 
 //Callback route for local login
 router.post('/local', passport.authenticate('local-login', {
-    successRedirect: '/profile',
-    failureRedirect: '/error'
-}))
+    failureRedirect: '/login'
+  }), (req, res) => {
+    if (req.user.usertype === "user") {
+      res.redirect('/profile');
+    } else if (req.user.usertype === "admin") {
+      res.redirect('/admin');
+    } else{
+        res.redirect('/error');
+    }
+  });
+      
+
 
 //Callback route for local signup
 router.post('/signup',passport.authenticate('local-signup', {
     successRedirect: '/profile',
-    failureRedirect: '/error'
+    failureRedirect: '/signup'
 }))
 
 //Auth with google 

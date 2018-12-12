@@ -6,9 +6,15 @@ module.exports = class UserSubmitAttractionService {
     }
     // Select
     getAttractionByAttractionID(attractionID) {
-        return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
+        return this.knex.select()
             .from("attraction")
             .where("id", attractionID);
+    }
+
+    getAttractionPending() {
+        return this.knex.select()
+            .from("attraction")
+            .where("confirmstatus", 'wait');
     }
 
     getAttractionByCityID(cityID) {
@@ -66,12 +72,13 @@ module.exports = class UserSubmitAttractionService {
         return this.knex('attraction').update(updateObject).where("id", attractionID);
     }
 
-    confirmAttractionStatusByAdmin(ID, confirmStatus) {
-        let updateObject = new Object();
-        if (confirmStatus != null) {
-            updateObject.confirmstatus = confirmStatus;
-        }
-        return this.knex('attraction').update(updateObject).where("id", ID);
+    confirmAttractionStatusByAdmin(id) {
+        return this.knex('attraction').update('confirmstatus','accept').where("id", id);
+    }
+
+    declineAttractionStatusByAdmin(id) {
+        console.log("service",id)
+        return this.knex('attraction').update('confirmstatus','decline').where("id", id);
     }
     
     // Delete
