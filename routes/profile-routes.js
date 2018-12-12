@@ -21,6 +21,7 @@ class profileRouter{
         let router = express.Router();
         router.get("/",this.authCheck,this.get.bind(this));
         router.get("/myAttraction/:id", this.myAttraction.bind(this));
+        router.get("/myPlan/:id", this.myPlan.bind(this));
         return router;
     }
 
@@ -43,6 +44,17 @@ class profileRouter{
 
         console.log("myattraction",req.params.id);
         return this.UserSubmitAttractionService.getAttractionByUser(req.params.id)
+            .then(function(data){
+                res.json(data);
+            })
+            .catch((err)=>res.status(500).json(err));
+    }
+
+    myPlan(req, res) {
+        
+
+        console.log("myPlan",req.params.id);
+        return this.UserSubmitAttractionService.getMyPlan(req.params.id)
             .then(function(data){
                 res.json(data);
             })

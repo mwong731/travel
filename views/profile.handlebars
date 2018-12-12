@@ -49,17 +49,7 @@
     <div class="profile-subtitle-line"></div>
 </div>
 <div class="row no-gutters profile-attraction-row" id="myPlansRow" >
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/garden3.jpeg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/coffee.jpg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">
-        <img src="../assets/garden3.jpeg" class="profile-attraction">
-    </div>
-    <div class="col-md-3 col-5 profile-attraction-col">4</div>
-    <div class="col-md-3 col-5 profile-attraction-col">5</div>
+   
 </div>
 
 <script>
@@ -109,7 +99,7 @@
           
             $('#favourite-attraction-row').append(
                 `<div class="col-md-3 col-5 profile-attraction-col">
-                <img src="${(data[0])[0].icon} " class="profile-attraction">
+                <a href="/attraction/${(data[0])[0].id} "><img src="${(data[0])[0].icon} " class="profile-attraction"></a>
                 <div class="profile-overlay">
                         <div class="profile-attraction-name">${(data[0])[0].name}</div>
                     </div>
@@ -135,7 +125,7 @@
                  
                      $('#my-attraction-row').append(
                         `<div class="col-md-3 col-5 profile-attraction-col">
-                        <img src="${data[a].icon} " class="profile-attraction">
+                        <a href="/attraction/${data[a].id} "><img src="${data[a].icon} " class="profile-attraction"></a>
                         <div class="profile-overlay">
                                 <div class="profile-attraction-name">${data[a].name} <a href="/edit/attraction/"><i class="fas fa-edit"></a></i></div>
                             </div>
@@ -155,10 +145,41 @@
   
     }
 
-    //
+    //Check plans
 
-    getFavouriteAttraction()
-    checkMy(userId)
+    function checkMyPlan(id){
+      
+            $.get( `/profile/myPlan/${id}`, function() {
+            })
+            .done(function(data) {
+
+                for(var a=0; a<data.length;a++){
+                 
+                     $('#myPlansRow').append(
+                        `<div class="col-md-3 col-5 profile-attraction-col">
+                        <img src="${data[a].icon} " class="profile-attraction">
+                        <div class="profile-overlay">
+                                <div class="profile-attraction-name">${data[a].name} <a href="/edit/attraction/"><i class="fas fa-edit"></a></i></div>
+                            </div>
+                        </div>` )
+
+                }
+                
+            }
+            )
+            .fail(function() {
+                $('#myPlansRow').append(
+                        `No plans yet :( <a href="/plan" class="signup-link">Add one!</a>` )
+                console.log( "Cannot get attraction" );
+                return "no attraction"
+            })
+
+  
+    }
+
+    getFavouriteAttraction();
+    checkMy(userId);
+    checkMyPlan(userId);
     
 
 </script>
