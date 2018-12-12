@@ -391,21 +391,29 @@ nav{
 
 .info-and-map{
     padding:15px 15px 0 15px;;
-    height:30vh;
+    
 }
 
 #attraction-info{
     padding:15px;
+    margin-bottom:10px;
     border: #ccc solid 1px;
     border-radius: 15px;
+    height:30vh;
 }
 
+#attraction-map{
+   padding:0 5px 0 5px !important;
+    height:30vh;
+}
+
+
 #attraction-info-text{
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .review-row{
-    padding:15px;
+    padding:5px 15px 20px 15px;
 }
 
 .review-box{
