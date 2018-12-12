@@ -73,7 +73,11 @@
     let cityName=window.location.href.split('/')[4] ;
 
     function checkBookmark(id){
+
         return new Promise(function(resolve,reject){
+            if (!id){
+                resolve([]);
+            }else
             $.get( `/api/bookmark/${id}`, function() {
             })
             .done(function(data) {
@@ -93,7 +97,10 @@
     }
 
     function addNewBookmark(attractionId){
-        axios({
+        if(!userId){
+            window.location.replace('/auth/login')
+        }else{
+            axios({
             method: 'post',
             url: `/api/bookmark/`,
             data: { userID: userId, attractionID: attractionId }
@@ -103,6 +110,9 @@
                  $(`#heart${attractionId}`).html( `<i class="fas fa-heart full-heart" id=${attractionId} onClick="deleteBookmark(this.id)"></i>`)
 
             })
+
+        }
+        
     }
 
     function deleteBookmark(attractionId){
