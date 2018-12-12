@@ -545,6 +545,17 @@ nav{
     object-fit:cover;
 }
 
+.profile-remove-button{
+    position:absolute;
+    top:0;
+    left:18vw;
+    width:30px;
+    height:30px;
+    border-radius:20px;
+    text-shadow: -2px 0 #fff, 0 2px #fff, 2px 0 #fff, 0 -2px #fff;
+
+}
+
 .profile-line-grey{
     width:100%;
     margin: 20px 20px 20px 20px;
