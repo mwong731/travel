@@ -37,7 +37,10 @@ module.exports = class cityService {
           .then((cityId)=>{
               return this.knex.select()
               .from("attraction")
-              .where({cityid: cityId[0].id, confirmstatus:accept})
+              .where({
+                  cityid: cityId[0].id, 
+                  confirmstatus:'accept'
+                })
               .then((result)=>{
                   return result
               })
