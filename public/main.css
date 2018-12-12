@@ -189,8 +189,8 @@ nav{
 .city-img{
     object-fit: cover;
     overflow: hidden;
-    height: 20vw ; 
-    width : 20vw ;  
+    height: 18vw ; 
+    width : 18vw ;  
     border-radius:5px;
 }
 
@@ -346,7 +346,7 @@ nav{
   }
 
 .empty-heart,.full-heart,.fa-edit{
-    margin-left:10px;
+    margin-left:5px;
     color:#eb0045;
 }
 
@@ -543,6 +543,17 @@ nav{
     width:20vw;
     height:20vw;
     object-fit:cover;
+}
+
+.profile-remove-button{
+    position:absolute;
+    top:0;
+    left:18vw;
+    width:30px;
+    height:30px;
+    border-radius:20px;
+    text-shadow: -2px 0 #fff, 0 2px #fff, 2px 0 #fff, 0 -2px #fff;
+
 }
 
 .profile-line-grey{

@@ -69,7 +69,7 @@
                 if (bookmarkArray.length==0){
                       $('#favourite-attraction-row').append(
                         `No attractions yet :( ` )
-                    reject();
+                    resolve([]);
 
                 }else{
                     resolve(bookmarkArray)
@@ -85,23 +85,36 @@
     })
     }
 
+    function deleteBookmark(id){
+         axios({
+            method: 'delete',
+            url: `/api/bookmark/`,
+            data: { userID: userId, attractionID: id }
+            })
+            .then(function(){
+                 console.log('deleted bookmark');
+                 $(`#favAttraction${id}`).hide( "slow")
+            })
+
+    }
+
     async function getFavouriteAttraction(){
         let array=await checkFavourite(userId);
-        console.log('array', array)
-   
       
         for(var i = 0; i<array.length; i++){
             $.get( `/api/attraction/${array[i]}`, function() {
             })
             .done(function(data) {
 
-                console.log("attraction", data)
           
             $('#favourite-attraction-row').append(
-                `<div class="col-md-3 col-5 profile-attraction-col">
+                `<div class="col-md-3 col-5 profile-attraction-col" id="favAttraction${(data[0])[0].id}">
                 <a href="/attraction/${(data[0])[0].id} "><img src="${(data[0])[0].icon} " class="profile-attraction"></a>
                 <div class="profile-overlay">
                         <div class="profile-attraction-name">${(data[0])[0].name}</div>
+                    </div>
+                    <div class="profile-remove-button">
+                        <div class="remove-symbol"><i class="fas fa-times" onClick="deleteBookmark(${(data[0])[0].id})"></i></div>
                     </div>
             </div>` )
             })
@@ -121,6 +134,12 @@
             })
             .done(function(data) {
 
+                if(data.length==0){
+                      $('#my-attraction-row').append(
+                        `No attractions yet :( <a href="/add/attraction" class="signup-link">Add one!</a>` )
+
+                }
+
                 for(var a=0; a<data.length;a++){
                  
                      $('#my-attraction-row').append(
@@ -136,8 +155,6 @@
             }
             )
             .fail(function() {
-                $('#my-attraction-row').append(
-                        `No attractions yet :( <a href="/add/attraction" class="signup-link">Add one!</a>` )
                 console.log( "Cannot get attraction" );
                 return "no attraction"
             })
@@ -152,6 +169,11 @@
             $.get( `/profile/myPlan/${id}`, function() {
             })
             .done(function(data) {
+
+                if(data.length==0){
+                     $('#myPlansRow').append(
+                        `No plans yet :( <a href="/plan" class="signup-link">Make a new plan!</a>` )
+                }
 
                 for(var a=0; a<data.length;a++){
                  
@@ -168,8 +190,6 @@
             }
             )
             .fail(function() {
-                $('#myPlansRow').append(
-                        `No plans yet :( <a href="/plan" class="signup-link">Add one!</a>` )
                 console.log( "Cannot get attraction" );
                 return "no attraction"
             })
