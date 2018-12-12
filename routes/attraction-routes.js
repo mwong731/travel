@@ -30,9 +30,9 @@ class AttractionRouter {
          this.attractionCommentService.listAttractionCommentsByAttractionID(req.params.id)
          ,
          this.attractionImageService.getImageAttractionByAttractionID(req.params.id)
-         ,
+         //,
          //need get user id;
-         this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(req.user.id, req.params.id)
+         //this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(req.user.id, req.params.id)
       ]).then((data) => {
          if (data[0].length == 0) {
             throw new Error("Select Return no result!!");
@@ -42,7 +42,7 @@ class AttractionRouter {
             datajson.attraction = data[0];
             datajson.attractionComments = data[1];
             datajson.attractionImage = data[2];
-            datajson.bookmark = data[3];
+            //datajson.bookmark = data[3];
             datajson.user = req.user;
             //console.log(datajson);
             return datajson;
