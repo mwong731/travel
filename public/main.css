@@ -662,3 +662,33 @@ nav{
     left: 0;
     padding: 10px 15px 10px 15px;
   }
+
+
+  /* ========  Admin =========*/
+
+  .admin-title{
+      margin:10px;
+  }
+
+  .admin-list-row{
+      padding-top:10px;
+      padding-bottom:10px;
+      margin:10px;
+      background-color:#e7e7e7;
+      border-radius:10px;
+  }
+
+  .admin-list{
+    border:1px #ccc solid;
+    margin:10px;
+    border-radius:5px;
+  }
+
+  .btn-admin-open{
+      margin-top:0 !important;
+  }
+
+  .admin-img{
+      height:160px;
+      border: 1px #ccc dotted;
+  }

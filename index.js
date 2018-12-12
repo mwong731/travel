@@ -97,6 +97,7 @@ const UserSubmitAttractionService = require('./service/userSubmitAttractionServi
 const planRoutes = require('./routes/plan-routes');
 const planService = require('./service/planService');
 
+const adminRouter = require('./routes/admin-routes');
 
 
 app.use('/', new ViewRouter().router()); // only requests to '/' will be sent to new router
@@ -121,6 +122,7 @@ app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
 app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router());
 
 app.use('/api/attraction-image/', new attractionImageAPIRouter(new attractionImageService(db)).router());
+app.use('/admin', new adminRouter(new UserSubmitAttractionService(db)).router())
 
 app.get('/error', (req, res) => {
     res.render('error')

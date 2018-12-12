@@ -30,7 +30,8 @@ exports.seed = function (knex, Promise) {
         { email: "userman2@gmail.com", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman2', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
         { email: "userman3@gmail.com", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman3', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
         { email: "userman4@gmail.com", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman4', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
-        { email: "1234", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman4', gender: "Female", birthday: new Date(), usertype: "user", image: "" }
+        { email: "1234", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'userman4', gender: "Female", birthday: new Date(), usertype: "user", image: "" },
+        { email: "admin", password: '$2b$10$LydDZMcaY05OVJ1HLS4uUudeOhiUFCKmFoq3gl.5WLBowancCA6gO', facebookid: '', googleid: '', name: 'admin', gender: "Female", birthday: new Date(), usertype: "admin", image: "" }
 
       ]);
     }).then(function () {
@@ -44,7 +45,7 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('10');
       return knex('attraction').insert([
-        { cityid: 1, userid: 1, type: "go", name: 'Tokyo Tower', description: 'Tokyo Tower is a communications and observation tower in the Shiba-koen district of Minato, Tokyo, Japan. At 332.9 metres, it is the second-tallest structure in Japan. ', latitude: "35.6586", longitude: "39.7454", confirmstatus: "accept", icon: "../assets/tokyotower.jpg" },
+        { cityid: 1, userid: 1, type: "go", name: 'Tokyo Tower', description: 'Tokyo Tower is a communications and observation tower in the Shiba-koen district of Minato, Tokyo, Japan. At 332.9 metres, it is the second-tallest structure in Japan. ', latitude: "35.6586", longitude: "139.7454", confirmstatus: "accept", icon: "../assets/tokyotower.jpg" },
         { cityid: 1, userid: 1, type: "go", name: 'Sensō-ji', description: "Sensō-ji is an ancient Buddhist temple located in Asakusa, Tokyo, Japan. It is Tokyo's oldest temple, and one of its most significant. Formerly associated with the Tendai sect of Buddhism, it became independent after World War II.", latitude: "35.7148", longitude: "139.7967", confirmstatus: "accept", icon: "../assets/sensoji.jpg" },
         { cityid: 1, userid: 1, type: "restaurant", name: 'Hayashi Ramen', description: 'Hayashi has been the best ramen shop within easy walking distance of Shibuya Station since its debut in 2003.', latitude: "35.6573", longitude: "139.6980", confirmstatus: "accept", icon: "../assets/hayashiramen.jpg" },
         { cityid: 1, userid: 1, type: "restaurant", name: 'Sushi No Midori', description: 'Located near Shibuya Station, Sushi Nobu is like a secret getaway at the center of the city with a very relaxing atmosphere. They take great care in preparing their dishes, including their highly recommended Pacific Bluefin Tuna. ', latitude: "35.6583", longitude: "139.6990", confirmstatus: "accept", icon: "../assets/sushinomidori.jpg" },
@@ -63,11 +64,11 @@ exports.seed = function (knex, Promise) {
         { cityid: 3, userid: 3, type: "go", name: 'Fukuoka Castle', description: 'Fukuoka Castle is a Japanese castle located in Chūō-ku, Fukuoka, Japan. It is also known as Maizuru Castle or Seki Castle. Completed in the early Edo period.', latitude: "33.589542", longitude: "130.39307", confirmstatus: "accept", icon: "../assets/fukuokacastle.jpg" },
         
         
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "accept", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "accept", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "accept", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "accept", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "accept", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
       ]);
     }).then(function () {
       console.log('10.5');
