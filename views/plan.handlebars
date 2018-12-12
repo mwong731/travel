@@ -3,10 +3,10 @@
 </div>
 
 <div class="d-flex">
-    <form action="/plan" method="POST" class="d-flex flex-column " id="create-new-plan">
+    <div class="d-flex flex-column " id="create-new-plan">
         <div class="form-row align-items-center">
             <div class="col-12 col-md-6">
-                <input type="text" name="planname" placeholder="Name you plan *" class="form-control sign-up-input"
+                <input id="planname" type="text" name="planname" placeholder="Name you plan *" class="form-control sign-up-input"
                     required>
             </div>
             <div class="col-12 col-md-6">
@@ -25,7 +25,7 @@
                 </select>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 <div class="form-row align-items-center" id="plan-box">
@@ -174,8 +174,16 @@
     }
 
     function submit (){
+        axios({
+            method: 'post',
+            url: '/plan',
+            data: {planname: $('#planname').val(),savedAttractionArr: savedAttractionArr}
+        }).then(function () {
+                    console.log('submited');
 
+                })
     }
+
     $('#plan-attraction-city').change(function () {
         $('#plan-attraction').html('');
         if ($('#plan-attraction-city').val() != 'notChosen') {
