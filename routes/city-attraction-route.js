@@ -14,7 +14,7 @@ class cityAttractionRouter {
     }
 
     get(req, res) {
-        console.log("city ",req.params.id);
+ 
         return this.cityService.getAttraction(req.params.id)
             .then(function (result) {
                 console.log("city result",result);

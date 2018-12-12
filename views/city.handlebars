@@ -61,7 +61,15 @@
     })
 
     //Append attraction
-    let userId={{user.id}};
+    
+    {{#if user}}
+    let userId={{user.id}}
+
+    {{else}}
+     let userId=null;
+
+    {{/if}}
+    
     let cityName=window.location.href.split('/')[4] ;
 
     function checkBookmark(id){
@@ -111,9 +119,12 @@
 
 
     async function appendAttraction(data){
-        let arr=await checkBookmark(userId);
+       
         
+        let arr=await checkBookmark(userId);
+             
         for (var i=1;i<data.length+1;i++){
+       
 
             //Check if the heart is empty or full
             let heart=`<div id="heart${data[i-1].id}"><i class="far fa-heart empty-heart" id=${data[i-1].id} onClick="addNewBookmark(this.id)"></div>`;
@@ -160,8 +171,7 @@
          $.get( `/api/city/${cityName}`, function() {
             })
             .done(function(data) {
-                //get bookmarked array
-                //.done
+             
             appendAttraction(data);
             })
             .fail(function() {

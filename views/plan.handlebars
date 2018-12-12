@@ -95,7 +95,7 @@ $('#plan-day-number').change(function () {
                         <div class="row">
                             <div class="col-md-6 day-col"> 
                                  <div class="day-night" ><i class="fas fa-sun"></i> Day</div> 
-                                 <div id="attraction-container-d-${i+1}" class="row no-guttera"> Some attraction here </div>
+                                 <div id="attraction-container-d-${i+1}" class="row no-guttera">  </div>
                                  <button class="btn plan-button add-attraction" id="d-${i+1}" onClick="getDayAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
                             </div>
                             <div class="col-md-6">
@@ -173,6 +173,9 @@ function saveAttraction(){
                 <div class="plan-overlay">
                     <div class="profile-attraction-name">${attractionName}</div>
                 </div>
+                <div class="remove-button">
+                        <div class="remove-symbol"><i class="fas fa-times"></i></div>
+                    </div>
             </div>
         `)
 
