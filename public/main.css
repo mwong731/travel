@@ -189,8 +189,8 @@ nav{
 .city-img{
     object-fit: cover;
     overflow: hidden;
-    height: 20vw ; 
-    width : 20vw ;  
+    height: 18vw ; 
+    width : 18vw ;  
     border-radius:5px;
 }
 

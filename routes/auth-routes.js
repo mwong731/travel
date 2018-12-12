@@ -22,12 +22,10 @@ router.get('/signup',(req,res)=>{
 router.post('/local', passport.authenticate('local-login', {
     failureRedirect: '/auth/login'
   }), (req, res) => {
-    if (req.user.usertype === "user") {
-      res.redirect('/profile');
-    } else if (req.user.usertype === "admin") {
+  if (req.user.usertype === "admin") {
       res.redirect('/admin');
     } else{
-        res.redirect('/error');
+        res.redirect('/profile');
     }
   });
       
