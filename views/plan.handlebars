@@ -62,7 +62,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onClick="saveAttraction()">Save</button>
+                <button type="button" class="btn btn-primary" onClick="saveAttraction()" data-dismiss="modal">Save</button>
             </div>
         </div>
     </div>
@@ -77,8 +77,11 @@
 // each div in "plan-box" should have different id to represent different day
 let dayAndTime = '';
 let attractionId = '';
-let savedAttraction = {};
 let attractionIcon = '';
+let attractionName = '';
+let savedAttraction = {};
+let savedAttractionArr = [];
+let duplicateBoolean = true;
 
 $('#plan-day-number').change(function () {
     $('#plan-box').html('');
@@ -91,13 +94,13 @@ $('#plan-day-number').change(function () {
                         <div class="plan-line-grey"></div>
                         <div class="row">
                             <div class="col-md-6 day-col"> 
-                                 <div class="day-night"><i class="fas fa-sun"></i> Day</div> 
-                                 <div id="d-${i + 1}"> Some attraction here </div>
+                                 <div class="day-night" ><i class="fas fa-sun"></i> Day</div> 
+                                 <div id="attraction-container-d-${i+1}" class="row no-guttera"> Some attraction here </div>
                                  <button class="btn plan-button add-attraction" id="d-${i+1}" onClick="getDayAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
                             </div>
                             <div class="col-md-6">
-                                 <div class="day-night"><i class="fas fa-moon"></i> Night</div>
-                                 <div id="n-${i + 1}"> Some attraction here</div>
+                                 <div class="day-night" ><i class="fas fa-moon"></i> Night</div>
+                                 <div id="attraction-container-n-${i+1}" class="row no-guttera"> Some attraction here</div>
                                  <button class="btn plan-button add-attraction" id="n-${i+1}" onClick="getDayAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
                             </div>
                         <div>    
@@ -108,38 +111,13 @@ $('#plan-day-number').change(function () {
         }
 })
 
-function getDayAndTime(id){
-    console.log(id);
-    dayAndTime = id;
-}
-
-function getAttractionId(id,iconURL){
-    console.log(id);
-    console.log(iconURL);
-    attractionId = id;
-    attractionIcon = `${iconURL}`
-}
-
-function saveAttraction(){
-
-    savedAttraction.attractionId= attractionId;
-    savedAttraction.day = dayAndTime.substr(2);
-    if (dayAndTime.substr(0,1) == 'n'){
-        savedAttraction.time = 'night'
-    } else {
-        savedAttraction.time = 'day'
-    };
-
-    console.log(savedAttraction);
-}
-
 function getAttraction(cityName){
     $.get( `/api/city/${cityName}`, function() {})
         .done(function(data) {
             console.log(data)
             for(var i=0;i<data.length;i++){
                 $('#plan-attraction').append(`
-                <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" onClick="getAttractionId(${data[i].id},${data[i].icon})"/>
+                <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" onClick="getAttractionId(${data[i].id},'${data[i].name}','${data[i].icon}')"/>
                     <div class="plan-overlay">
                         <div class="profile-attraction-name">${data[i].name}</div>
                     </div>
@@ -153,7 +131,56 @@ function getAttraction(cityName){
         })
 }
 
+function getDayAndTime(id){
+    console.log(id);
+    dayAndTime = id;
+}
 
+function getAttractionId(id,name,iconURL){
+    console.log(id);
+    console.log(name);
+    console.log(iconURL);
+    attractionId = id;
+    attractionName = name
+    attractionIcon = iconURL;
+    let duplicateBoolean = true;
+}
+
+function saveAttraction(){
+    
+    
+    savedAttraction.attractionId= attractionId;
+    savedAttraction.day = dayAndTime.split('-')[1];
+    if (dayAndTime.split('-')[0] == 'n'){
+        savedAttraction.time = 'night'
+    } else {
+        savedAttraction.time = 'day'
+    };
+    console.log(savedAttraction);
+
+    for (let j = 0; j < savedAttractionArr.length - 1 ; j ++ ){
+        if (isEquivalent(savedAttractionArr[j],savedAttraction)){
+            alert("Attraction already added on this day.")
+            return duplicateBoolean = false;
+        } 
+    }
+
+    if (duplicateBoolean){ 
+        savedAttractionArr.push(savedAttraction);
+
+        $('#attraction-container-'+ dayAndTime ).append(`
+            <div id="attraction-${dayAndTime}-${attractionId}"class="col-4 img-col"><img class="plan-img" src="${attractionIcon}"/>
+                <div class="plan-overlay">
+                    <div class="profile-attraction-name">${attractionName}</div>
+                </div>
+            </div>
+        `)
+
+    }
+   
+
+    
+}
 
 $('#plan-attraction-city').change(function () {
     $('#plan-attraction').html('');
@@ -167,7 +194,31 @@ $(document).on('hidden.bs.modal', function () {
     $('#plan-attraction').html('');
 })
 
-    
+function isEquivalent(a, b) {
+    // Create arrays of property names
+    var aProps = Object.getOwnPropertyNames(a);
+    var bProps = Object.getOwnPropertyNames(b);
+
+    // If number of properties is different,
+    // objects are not equivalent
+    if (aProps.length != bProps.length) {
+        return false;
+    }
+
+    for (var i = 0; i < aProps.length; i++) {
+        var propName = aProps[i];
+
+        // If values of same property are not equal,
+        // objects are not equivalent
+        if (a[propName] !== b[propName]) {
+            return false;
+        }
+    }
+
+    // If we made it this far, objects
+    // are considered equivalent
+    return true;
+}    
 
 
 
