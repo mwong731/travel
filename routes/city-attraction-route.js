@@ -14,7 +14,6 @@ class cityAttractionRouter {
     }
 
     get(req, res) {
-        console.log("result length 11")
         return this.cityService.getAttraction(req.params.id)
             .then(function (result) {
                 

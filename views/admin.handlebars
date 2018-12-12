@@ -1,0 +1,141 @@
+<div class="admin-title"><h2>Attraction pending approval</h2></div>
+
+<div class="admin-list">
+
+
+</div>
+
+{{!-- Modal --}}
+<div class="modal" tabindex="-1" role="dialog" id="admin-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="admin-modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="admin-modal-body" >
+        
+      </div>
+      <div class="modal-footer" id="admin-modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+   
+
+
+    function appendList(data){
+        for(var i=0;i<data.length;i++){
+            
+            
+            $('.admin-list').append(
+                `<div class="admin-list-row row align-items-center"">
+                    <div class="col-md-1 col-4"> ID: ${data[i].id}</div>
+                    <div class="col-md-7 col-8"> Attraction: ${data[i].name}</div>
+                    <div class="col-md-2 col-8"> UserID: ${data[i].userid}</div>
+                    <div class="col-md-2 col-4"> <button type="button" class="btn btn-warning btn-admin-open" data-toggle="modal" data-target="#admin-modal" onClick="modalData(${data[i].id})">Open</button></div>
+                </div>`
+
+            )
+
+            
+        }
+
+    }
+
+
+    function accept(id){
+        $.post( `/admin/accept`, {id:id})
+            .done(function(data) {
+                alert( "Accepted" + id );
+                $('.admin-list').html('');
+                callList()
+            })
+            .fail(function() {
+                console.log( "Cannot accept" );
+            })
+          
+    }
+
+     function decline(id){
+        $.post( `/admin/decline`, {id:id})
+            .done(function(data) {
+                alert( `Declined ${id}` );
+                $('.admin-list').html('');
+                callList()
+            })
+            .fail(function() {
+                console.log( "Cannot decline" );
+            })
+          
+    }
+
+
+     function modalData(id){
+          $.get( `/admin/attraction/${id}`, function() {
+            })
+            .done(function(data) {
+             $('#admin-modal-title').html(data[0].name);
+
+             $('#admin-modal-body').html(
+                 `
+                <p> User id: ${data[0].userid}
+                <p> City id: ${data[0].cityid}
+                <p> Type: ${data[0].type}
+                <p> Description: ${data[0].description}
+                <p> Location: ${data[0].latitude} , ${data[0].longitude}
+                <p> Image:
+                <p>   <img class="admin-img" src="${data[0].icon}"/>
+                 `
+             );
+
+             $('#admin-modal-footer').html(
+                 ` <button type="button" class="btn btn-success" onClick="accept(${id})" data-dismiss="modal">Accept</button>
+                 
+                 <button type="button" class="btn btn-danger" onClick="decline(${id})" data-dismiss="modal">Decline</button>`
+             );
+
+
+            
+
+
+
+            })
+            .fail(function() {
+                console.log( "Cannot get list" );
+            })
+        
+    }
+
+    function callList(){
+         $.get( `/admin/list`, function() {
+            })
+            .done(function(data) {
+                
+            console.log( data.length);
+            if(data.length==0){
+                 $('.admin-list').append(
+                `<div class="admin-list-row row align-items-center"">
+                    <div class="col-12"> No pending items :)</div>
+                   
+                </div>`)
+
+            }else{
+                appendList(data);
+            }
+          
+            })
+            .fail(function() {
+                console.log( "Cannot get list" );
+            })
+    }
+
+
+ callList()
+
+</script>
