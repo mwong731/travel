@@ -667,14 +667,28 @@ nav{
   .remove-button{
       position:absolute;
       top:0;
-      left:130px;
+      left:11.5vw;
       width:30px;
       height:30px;
       border-radius:20px;
+      text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
       
-      opacity:0.9;
+     
   }
 
+  .plan-added-img{
+    width:13vw;
+    height:13vw;
+    object-fit:cover;
+    margin-bottom:10px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .plan-added-img{
+        width:40vw;
+        height:40vw;
+    }
+  }
 
 
   /* ========  Admin =========*/

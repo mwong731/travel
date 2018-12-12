@@ -95,12 +95,12 @@
                         <div class="row">
                             <div class="col-md-6 day-col"> 
                                  <div class="day-night" ><i class="fas fa-sun"></i> Day</div> 
-                                 <div id="attraction-container-d-${i + 1}" class="row no-guttera">  </div>
+                                 <div id="attraction-container-d-${i + 1}" class="row no-gutters plan-inside-row">  </div>
                                  <button class="btn plan-button add-attraction" id="d-${i + 1}" onClick="getDayAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
                             </div>
                             <div class="col-md-6">
                                  <div class="day-night" ><i class="fas fa-moon"></i> Night</div>
-                                 <div id="attraction-container-n-${i + 1}" class="row no-guttera"> </div>
+                                 <div id="attraction-container-n-${i + 1}" class="row no-gutters plan-inside-row"> </div>
                                  <button class="btn plan-button add-attraction" id="n-${i + 1}" onClick="getDayAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
                             </div>
                         <div>    
@@ -169,7 +169,7 @@
         savedAttractionArr.push(savedAttraction);
         savedAttraction = {};
         $('#attraction-container-' + dayAndTime).append(`
-            <div id="attraction-${dayAndTime}-${attractionId}"class="col-4 img-col"><img class="plan-img" src="${attractionIcon}"/>
+            <div id="attraction-${dayAndTime}-${attractionId}"class="col-6 col-lg-4 img-col"><img class="plan-added-img" src="${attractionIcon}"/>
                 <div class="plan-overlay">
                     <div class="profile-attraction-name">${attractionName}</div>
                 </div>
