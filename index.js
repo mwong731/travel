@@ -38,7 +38,16 @@ app.engine('handlebars', hb({
                 string += `<img class="d-block carousel-image" src=${attractionImage[i].image}></div>`;
             }
             return string;
+        },
+        genSelectString: function (attractionType, optionValue) {
+            //console.log(attractionType + " " + optionValue);
+            if (attractionType == optionValue) {
+                return "selected";
+            } else {
+                return "";
+            }
         }
+
     }
 })); //so that handlebar files can be used
 app.set('view engine', 'handlebars');
@@ -51,8 +60,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //Setup coockie session
 app.use(cookieSession({
-    maxAge:60*60*1000,
-    keys:[process.env.SESSION_COOKIE_KEY]
+    maxAge: 60 * 60 * 1000,
+    keys: [process.env.SESSION_COOKIE_KEY]
 }));
 
 //Initialize passport
@@ -78,10 +87,12 @@ const attractionAPIRouter = require('./routes/attraction-api-routes');
 
 const attractionService = require('./service/attractionService');
 const attractionCommentService = require('./service/attractionCommentService');
+
+const attractionImageAPIRouter = require('./routes/attraction-image-api-routes');
 const attractionImageService = require('./service/AttractionImageService');
 
-const addRouter = require ('./routes/add-routes');
-const UserSubmitAttractionService =  require('./service/userSubmitAttractionService');
+const addRouter = require('./routes/add-routes');
+const UserSubmitAttractionService = require('./service/userSubmitAttractionService');
 
 const planRoutes = require('./routes/plan-routes');
 const planService = require('./service/planService');
@@ -100,15 +111,16 @@ app.use('/attraction',
     ).router()
 );
 app.use('/plan', new planRoutes().router())
-app.use('/api/attraction',new attractionAPIRouter(new attractionService(db),new attractionImageService(db)).router());
+app.use('/api/attraction', new attractionAPIRouter(new attractionService(db), new attractionImageService(db)).router());
 app.use('/city', new cityRouter(new cityService(db)).router());
 
-app.use('/attraction/edit', new editAttractionRouter(new attractionService(db) , new attractionImageService(db) , new cityService(db)) .router());
+app.use('/attraction/edit', new editAttractionRouter(new attractionService(db), new attractionImageService(db), new cityService(db)).router());
 
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
 app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
 app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router());
 
+app.use('/api/attraction-image/', new attractionImageAPIRouter(new attractionImageService(db)).router());
 
 app.get('/error', (req, res) => {
     res.render('error')

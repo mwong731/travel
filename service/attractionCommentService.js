@@ -8,7 +8,7 @@ module.exports = class attractionComment {
             .from("attractioncomment").innerJoin('users', 'users.id', 'attractioncomment.userid')
       }
    }
-
+   // Select 
    listUserCommentsByUserID(UserID) {
       return this.knex.select("attractioncomment.id", "attractioncomment.userid", "users.name",
          "attractioncomment.attractionid ", "attractioncomment.comment", "attractioncomment.rate")
@@ -26,17 +26,13 @@ module.exports = class attractionComment {
 
          .where("attractioncomment.attractionid", AttractionID);
    }
-
+   // Insert
    insertComment(UserID, AttractionID, comment, Rate) {
       return this.knex('attractioncomment').insert([
          { userid: UserID, attractionid: AttractionID, comment: comment, rate: Rate }
       ]);
    }
-
-   deleteComment(ID) {
-      return this.knex('attractioncomment').where('id', ID).del();
-   }
-
+   // Update
    updateCommentRateByID(ID, comment, Rate) {
       let updateObject = new Object();
       if (comment != null) {
@@ -47,5 +43,11 @@ module.exports = class attractionComment {
       }
       return this.knex('attractioncomment').update(updateObject).where("id", ID);
    }
+   // Delete
+   deleteComment(ID) {
+      return this.knex('attractioncomment').where('id', ID).del();
+   }
+
+
 
 }
