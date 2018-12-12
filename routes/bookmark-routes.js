@@ -9,6 +9,7 @@ class bookmarkRouter{
     router(){
         let router = express.Router();
         router.get("/:id",this.get.bind(this));
+        router.post("/check",this.check.bind(this));
         router.post("/",this.post.bind(this));
         router.delete("/",this.delete.bind(this));
         return router;
@@ -38,6 +39,17 @@ class bookmarkRouter{
                 console.log("deleted bookmark")
                 res.json()})
             .catch((err)=> res.status(500).json(err));
+    }
+
+    check(req,res){
+        
+        return this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(req.body.userid, req.body.attractionid)
+            .then(function(result){
+
+               
+                res.json(result);
+            })
+            .catch((err)=>res.status(500).json(err));
     }
 
     

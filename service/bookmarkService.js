@@ -12,6 +12,7 @@ module.exports = class bookmarkService {
    }
 
    getUserBookmarkWithUserIDAndAttractionID(userID, attractionID) {
+
       return this.knex.select("userid", "attractionid")
          .from("bookmark")
          .where("userid", userID)
@@ -34,4 +35,6 @@ module.exports = class bookmarkService {
    deleteBookmark(userID, attractionID) {
       return this.knex('bookmark').where({ userid: userID, attractionid: attractionID }).del();
    }
+
+ 
 }

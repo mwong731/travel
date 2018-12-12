@@ -43,7 +43,7 @@ class AttractionRouter {
             datajson.attractionComments = data[1];
             datajson.attractionImage = data[2];
             datajson.bookmark = data[3];
-            datajson.user = [req.user];
+            datajson.user = req.user;
             //console.log(datajson);
             return datajson;
          }
