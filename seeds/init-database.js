@@ -85,10 +85,10 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('12');
       return knex('attractioninplan').insert([
-        { planid: 1, attractionid: 1, date: new Date(), time: "day" },
-        { planid: 1, attractionid: 2, date: new Date(), time: "night" },
-        { planid: 1, attractionid: 3, date: new Date(), time: "night" },
-        { planid: 1, attractionid: 4, date: new Date(), time: "night" }
+        { planid: 1, attractionid: 1, days: 1, time: "day" },
+        { planid: 1, attractionid: 2, days: 2, time: "night" },
+        { planid: 1, attractionid: 3, days: 3, time: "night" },
+        { planid: 1, attractionid: 4, days: 2, time: "night" }
       ]);
     }).then(function () {
       console.log('14');
