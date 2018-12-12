@@ -14,7 +14,9 @@
         <input type="password" name="password" id="password"  placeholder="Password *" class="form-control sign-up-input" required>
     </div>
     <div>
-        <input type="password" name="confirmPassword" placeholder="Re-enter password *" class="form-control sign-up-input" id="confirm_password" onChange="checkPasswordMatch();" required>
+        <input type="password" name="confirmPassword" placeholder="Re-enter password *" class="form-control sign-up-input" id="confirm_password" required>
+    </div>
+     <div  id="divCheckPasswordMatch">
     </div>
     <div class="form-row align-items-center">
        <div class="col-3">Birthday:</div>
@@ -34,8 +36,7 @@
         <input type="submit" class="btn btn-primary" value="Create account" />
     </div>
     </div>
-    <div class="registrationFormAlert" id="divCheckPasswordMatch">
-    </div>
+   
 </form>
 
 <script src="../js-file/signup.js">

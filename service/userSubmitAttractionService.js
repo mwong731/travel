@@ -4,7 +4,7 @@ module.exports = class UserSubmitAttractionService {
     constructor(knex) {
         this.knex = knex;
     }
-
+    // Select
     getAttractionByAttractionID(attractionID) {
         return this.knex.select("id", "cityid", "type ", "latitude ", "longitude ", "image")
             .from("attraction")
@@ -26,12 +26,26 @@ module.exports = class UserSubmitAttractionService {
             });
     }
 
+    getMyPlan(userID){
+        return this.knex.select('name')
+            .from("plan")
+            .where("userid", userID);
+
+    }
+
      getImageAttractionByAttractionID(attractionID) {
         return this.knex.select("id", "attractionid", "image")
             .from("attractionimage")
             .where("attractionid", attractionID);
     }
-
+    // Insert
+    insertAttraction(cityid, name, type, latitude, longitude, image, description,userid) {
+        console.log("insertin",cityid, name, type, latitude, longitude, image, description,userid)
+        return this.knex('attraction').insert(
+            { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude , description: description,confirmstatus:"wait",userid:userid}
+        );
+    }
+    // Update
     updateAttractionByUser(attractionID, cityid, type, latitude, longitude, image) {
         let updateObject = new Object();
         if (cityid != null) {
@@ -59,16 +73,10 @@ module.exports = class UserSubmitAttractionService {
         }
         return this.knex('attraction').update(updateObject).where("id", ID);
     }
-
+    
+    // Delete
     deleteAttractionBy(attractionID) {
         return this.knex('attraction').where('id', attractionID).del();
     }
 
-    insertAttraction(cityid, name, type, latitude, longitude, image, description,userid) {
-        console.log("insertin",cityid, name, type, latitude, longitude, image, description,userid)
-        return this.knex('attraction').insert(
-            { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude , description: description,confirmstatus:"wait",userid:userid}
-        );
-    }
-    //below function not even test
 }

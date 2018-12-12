@@ -16,7 +16,7 @@ class planRouter{
     get(req,res){
         console.log('welcome to itinerary page')
         
-        return res.render("plan");
+        return res.render("plan",{user:req.user});
     }
 
     async post(req,res){

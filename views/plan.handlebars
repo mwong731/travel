@@ -4,14 +4,11 @@
 
 <div class="d-flex">
     <form action="/plan" method="POST" class="d-flex flex-column " id="create-new-plan">
-        
         <div class="form-row align-items-center">
-             <div class="col-12 col-md-6">
-            <input type="text" name="planname" placeholder="Name you plan *" class="form-control sign-up-input"
+            <div class="col-12 col-md-6">
+                <input type="text" name="planname" placeholder="Name you plan *" class="form-control sign-up-input"
                 required>
-
              </div>
-          
             <div class="col-12 col-md-6">
                 <select name="days" class="form-control sign-up-input" id="plan-day-number">
                     <option selected disabled value="notChosen">Number of days</option>
@@ -42,15 +39,15 @@
 
 <!-- Modal -->
 <div class="modal fade" id="attractionModal" tabindex="-1" role="dialog" aria-labelledby="attractionModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="attractionModalLongTitle">Attractions</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="attractionModalLongTitle">Attractions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+            <div class="modal-body">
                 <select class="form-control" id="plan-attraction-city">
                     <option selected disabled value="notChosen">Choose a city</option>
                     <option value="Tokyo">Tokyo</option>
@@ -59,61 +56,81 @@
                     <option value="Hiroshima">Hiroshima</option>
                 </select>
            
-        <div id="plan-attraction" class="row no-guttera">
-            {{!-- Put attraction here --}}
+            <div id="plan-attraction" class="row no-guttera">
+                {{!-- Put attraction here --}}
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onClick="saveAttraction()">Save</button>
+            </div>
         </div>
-        ...
-      </div>
-      <div class="modal-footer">
-        
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-        
-      </div>
     </div>
-  </div>
 </div>
 
 
 
 
-</div>
+
 
 <script>
-    // each div in "plan-box" should have different id to represent different day
+// each div in "plan-box" should have different id to represent different day
+let dayAndTime = '';
+let attractionId = '';
+let savedAttraction = {};
+let attractionIcon = '';
+
 $('#plan-day-number').change(function () {
-    if ($('#plan-day-number').val() != 'notChosen') {
-        let days = $('#plan-day-number').val();
-        for (var i = 0; i < days; i++) {
-            $('#plan-box').append(
-                `<div class='day-box'> 
-                    <h5>Day ${i + 1}</h5>
-                    <div class="plan-line-grey"></div>
+    $('#plan-box').html('');
+        if ($('#plan-day-number').val() != 'notChosen') {
+            let days = $('#plan-day-number').val();
+            for (var i = 0; i < days; i++) {
+                $('#plan-box').append(
+                    `<div class='day-box'> 
+                        <h5>Day ${i + 1}</h5>
+                        <div class="plan-line-grey"></div>
                         <div class="row">
                             <div class="col-md-6 day-col"> 
                                  <div class="day-night"><i class="fas fa-sun"></i> Day</div> 
                                  <div id="d-${i + 1}"> Some attraction here </div>
-                                 <button class="btn plan-button add-attraction" id="d-${i+1}" onClick="getDaysAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
+                                 <button class="btn plan-button add-attraction" id="d-${i+1}" onClick="getDayAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
                             </div>
                             <div class="col-md-6">
                                  <div class="day-night"><i class="fas fa-moon"></i> Night</div>
                                  <div id="n-${i + 1}"> Some attraction here</div>
-                                 <button class="btn plan-button add-attraction" id="n-${i+1}" onClick="getDaysAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
+                                 <button class="btn plan-button add-attraction" id="n-${i+1}" onClick="getDayAndTime(this.id)"data-toggle="modal" data-target="#attractionModal"> Add attraction </button>
                             </div>
                         <div>    
                     </div>
                 </div>`
                 )
-            }
+             }
         }
-    })
+})
 
-function getDaysAndTime(id){
+function getDayAndTime(id){
     console.log(id);
+    dayAndTime = id;
 }
 
-function checkId(id){
+function getAttractionId(id,iconURL){
     console.log(id);
+    console.log(iconURL);
+    attractionId = id;
+    attractionIcon = `${iconURL}`
+}
+
+function saveAttraction(){
+
+    savedAttraction.attractionId= attractionId;
+    savedAttraction.day = dayAndTime.substr(2);
+    if (dayAndTime.substr(0,1) == 'n'){
+        savedAttraction.time = 'night'
+    } else {
+        savedAttraction.time = 'day'
+    };
+
+    console.log(savedAttraction);
 }
 
 function getAttraction(cityName){
@@ -122,7 +139,7 @@ function getAttraction(cityName){
             console.log(data)
             for(var i=0;i<data.length;i++){
                 $('#plan-attraction').append(`
-                <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" onClick="checkId(${data[i].id})"/>
+                <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" onClick="getAttractionId(${data[i].id},${data[i].icon})"/>
                     <div class="plan-overlay">
                         <div class="profile-attraction-name">${data[i].name}</div>
                     </div>

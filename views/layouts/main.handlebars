@@ -28,7 +28,7 @@
 
             {{!-- Nav bar --}}
             <nav class="navbar navbar-expand navbar-light fixed-top">
-                <a href="/"><img id="navBarLogo" src="../assets/logo.png"></a>
+                <a href="/"><img id="navBarLogo" src="/assets/logo.png"></a>
 
                 {{!-- If logged in, display this div (with add button and profile pic) --}}
                 {{#if user }}
@@ -43,13 +43,13 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/add/attraction">Attraction</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Itinerary</a>
+                            <a class="dropdown-item" href="/plan">Itinerary</a>
 
                         </div>
                     </li>
                     <li class="nav-item" id="navBarProfile">
                         {{!-- Profile image --}}
-                        <a href="/profile"><img src="../assets/profile.jpg" id="profilePicture"></a>
+                        <a href="/profile"><img src="/assets/profile.jpg" id="profilePicture"></a>
 
                     </li>
                     <li>
