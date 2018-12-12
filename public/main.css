@@ -642,6 +642,7 @@ nav{
 .plan-img{
     width:145px;
     height:145px;
+    object-fit:cover;
     margin-bottom:10px;
 }
 
@@ -662,6 +663,18 @@ nav{
     left: 0;
     padding: 10px 15px 10px 15px;
   }
+
+  .remove-button{
+      position:absolute;
+      top:0;
+      left:130px;
+      width:30px;
+      height:30px;
+      border-radius:20px;
+      
+      opacity:0.9;
+  }
+
 
 
   /* ========  Admin =========*/
