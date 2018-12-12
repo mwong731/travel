@@ -1,11 +1,9 @@
 var formArray = {
-    updateData: {}, 
-    deleteImage: [], 
+    updateData: {},
+    deleteImage: [],
     insertImage: []
 }
 var addImageDivIndex = 1;
-
-
 
 // add new image in new btn 
 $(document).on('click', '#add-image', function (e) {
@@ -23,7 +21,6 @@ $(document).on('click', '#delete-old-attraction', function (e) {
         $(e.target).parent().find("button#delete-old-attraction").html('Save');
         //
     }
-
 });
 
 // handle event in current attraction field (image not include)
@@ -53,11 +50,13 @@ $(document).on('change', '#edit-attraction-longitude', function (e) {
 
 /* handle event in add new attraction image div */
 $(document).on('change', '#add-attraction-photo-input', function (e) {
-    formArray.insertImage.push($(e.target).data("id"));
+    //console.log(formArray.insertImage.length);
     var parentTarget = $(e.target).parent();
     if (e.target.files[0]) {
         parentTarget.find("img").attr("src", URL.createObjectURL(e.target.files[0]));
         parentTarget.find("input#isChange").val("true");
+        // insert image into array
+        insertImageInFormArray($(e.target).data("id"), e.target.files[0]);
     } else {
         parentTarget.find("img").attr("src", parentTarget.find(".currentImg").val());
         parentTarget.find("input#isChange").val("false");
@@ -69,9 +68,41 @@ $(document).on('click', '#add-attraction-photo', function (e) {
 });
 // button clicked in delete new attraction button
 $(document).on('click', '#delete-new-attraction', function (e) {
+    // console.log($(e.target).parent().find("#add-attraction-photo-input").data("id"));
+    deleteImageInFormArray($(e.target).parent().find("#add-attraction-photo-input").data("id"));
     $(e.target).parent().remove();
 });
-
+function deleteImageInFormArray(id) {
+    if (formArray.insertImage.length > 0) {
+        for (let i = 0; i < formArray.insertImage.length; i++) {
+            if (formArray.insertImage[i].id == id) {
+                console.log("delete have record in formArray");
+                formArray.insertImage.splice(i,1);
+                break;
+            }
+        }
+    }
+}
+//add image in formArray
+function insertImageInFormArray(id, file) {
+    if (formArray.insertImage.length > 0) {
+        let haveRecord = false;
+        for (let i = 0; i < formArray.insertImage.length; i++) {
+            if (formArray.insertImage[i].id == id) {
+                console.log("have record in formArray");
+                formArray.insertImage[i].file = file;
+                break;
+            } else if ((i == formArray.insertImage.length - 1) && (haveRecord == false)) {
+                console.log("no record in formArray");
+                formArray.insertImage.push({ id: id, file: file });
+                break;
+            }
+        }
+    } else {
+        console.log("array is empty");
+        formArray.insertImage.push({ id: id, file: file });
+    }
+}
 
 
 
