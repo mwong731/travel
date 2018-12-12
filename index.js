@@ -39,9 +39,18 @@ app.engine('handlebars', hb({
             }
             return string;
         },
-        genSelectString: function (attractionType, optionValue) {
+        genAttractionSelectString: function (attractionType, optionValue) {
             //console.log(attractionType + " " + optionValue);
             if (attractionType == optionValue) {
+                return "selected";
+            } else {
+                return "";
+            }
+        },
+
+        genCitySelectString: function (cityid, attractionCityid) {
+            // console.log(cityid + " " + attractionCityid);
+            if (cityid == attractionCityid) {
                 return "selected";
             } else {
                 return "";

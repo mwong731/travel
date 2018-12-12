@@ -6,6 +6,7 @@ class AttractionImageAPIRouter {
    router() {
       let router = express.Router();
       router.get("/:id", this.get.bind(this));
+      router.post("/:id",this.post.bind(this));
       return router;
    }
 
@@ -19,6 +20,11 @@ class AttractionImageAPIRouter {
          .catch((err) => res.status(500).json(err));
 
 
+   }
+   post(req,res){
+      // need modify
+      console.log(req.body);
+      return res.send("data");
    }
 
 }

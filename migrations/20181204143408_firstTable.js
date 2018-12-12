@@ -70,7 +70,7 @@ exports.up = function (knex, Promise) {
          table.foreign('planid').references('plan.id');
          table.integer('attractionid');
          table.foreign('attractionid').references('attraction.id');
-         table.integer('days');
+         table.integer('day');
          table.enu("time" , ["day","night"]);
          //table.timestamps(false, true);
       }).then(() => {

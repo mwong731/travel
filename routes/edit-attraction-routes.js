@@ -11,6 +11,7 @@ class editAttractionRouter {
     router() {
         let router = express.Router();
         router.get("/:id", this.get.bind(this));
+        router.post("/:id", this.post.bind(this));
         //router.post("/", this.post.bind(this));
         return router;
     }
@@ -55,14 +56,17 @@ class editAttractionRouter {
     }
 
     post(req, res) {
-        console.log('filter city', req.body)
+        console.log('edit attraction Image ', req.body)
+        return Promise.all([
+            this.attractionService.getAttractionInAttractionID(req.params.id)
+            ,
+            this.attractionImageService.getImageAttractionByAttractionID(req.params.id)
+            ,
+            this.cityService.listCity()
+        ]).then((data)=>{
 
-        return this.cityService.filter(req.body)
-            .then((result) => {
-                console.log("result", result)
-                res.json(result)
-            })
-            .catch((err) => res.status(500).json(err));
+        })
+        .catch((err) => res.status(500).json(err));
     }
 
 
