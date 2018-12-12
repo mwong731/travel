@@ -81,6 +81,7 @@
 <script>
     // each div in "plan-box" should have different id to represent different day
     $('#plan-day-number').change(function () {
+        $('#plan-box').html('');
         if ($('#plan-day-number').val() != 'notChosen') {
             let days = $('#plan-day-number').val();
             for (var i = 0; i < days; i++) {
