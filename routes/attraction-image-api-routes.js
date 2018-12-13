@@ -38,7 +38,8 @@ class AttractionImageAPIRouter {
       console.log(req.file.filename);
       let insertObj = {attractionid:req.params.id , image:`/assets/uploads/${req.file.filename}`};
       return this.attractionImageService.insertImage(insertObj).then((data) => {
-         console.log(data)
+         console.log('ssjsjsjsjsjsjsjsjjsjsjsjsjsjsjsjs');
+         console.log(data);
       });
    }
 
