@@ -133,8 +133,6 @@ app.use('/add', new addRouter(new cityService(db)).router());
 app.use('/api/attraction-image/', new attractionImageAPIRouter(new attractionImageService(db)).router());
 app.use('/admin', new adminRouter(new UserSubmitAttractionService(db)).router());
 
-
-
 app.get('/error', (req, res) => {
     res.render('error')
 })
@@ -153,10 +151,4 @@ https.createServer(options, app).listen(3000);
 //     console.log("Application started at port:3000");
 // });
 
-//Set up express sessions - with the secret to encode the session
-// const expressSession = require('express-session')
-// app.use(expressSession({
-//     secret: 'thisRealSecret',
-//     resave: true,
-//     saveUninitialized: true
-// }));
+
