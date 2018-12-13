@@ -7,6 +7,7 @@ class AttractionApiroutesRouter {
    router() {
       let router = express.Router();
       router.get("/:id", this.get.bind(this));
+      router.post("/", this.post.bind(this));
       return router;
    }
 
@@ -24,8 +25,11 @@ class AttractionApiroutesRouter {
                  res.json([data[0],(data[1])[0]])
             })
             .catch((err) => res.status(500).json(err));
+   }
 
-      
+   post (req , res){
+      console.log(req.body.formArray.insertAttraction);
+      return this.attractionService.insert()
    }
 
 }

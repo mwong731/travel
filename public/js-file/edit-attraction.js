@@ -94,12 +94,10 @@ $(document).on('change', '#add-attraction-photo-input', function (e) {
     var parentTarget = $(e.target).parent();
     if (e.target.files[0]) {
         parentTarget.find("img").attr("src", URL.createObjectURL(e.target.files[0]));
-        parentTarget.find("input#isChange").val("true");
         // insert image into array
         insertImageInFormArray($(e.target).data("id"), e.target.files[0]);
     } else {
         parentTarget.find("img").attr("src", parentTarget.find(".currentImg").val());
-        parentTarget.find("input#isChange").val("false");
     }
 });
 // image clicked in add new attraction img

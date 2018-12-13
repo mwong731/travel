@@ -8,17 +8,17 @@
             <option selected disabled value="notChosen">Choose a city</option>
             {{!-- gen data --}}
             {{#each city}}
-            <option value="{{id}}" {{genCitySelectString id ../attraction.0.cityid }}>{{name}}</option>
+            <option value="{{id}}">{{name}}</option>
             {{/each}}
 
         </select>
         <div id="city-error-message"></div>
 
         <select class="form-control" id="edit-attraction-type">
-            <option disabled value="notChosen" >Choose a type</option>
-            <option value="go" >Tourist attraction</option>
-            <option value="restaurant" >Restaurant</option>
-            <option value="shop" >Shop</option>
+            <option disabled value="notChosen">Choose a type</option>
+            <option value="go">Tourist attraction</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="shop">Shop</option>
         </select>
         <div id="type-error-message"></div>
 
@@ -37,18 +37,12 @@
     </div>
 
     <div id="photo-upload-form" class="col-md-6 edit-form edit-form-right">
-        <div id="edit-form-right">
-            {{!-- gen image here --}}
+        <div id="add-form-right">
+            {{!-- gen new image div --}}
         </div>
 
         <button class="btn-lg btn-primary" id="add-image">+</button>
     </div>
-    <div id="photo-upload-form" class="col-md-6 edit-form edit-form-right">
-        <div id="add-form-right">
-            {{!-- gen new image div --}}
-        </div>
-    </div>
-
 
 </div>
 
@@ -60,16 +54,30 @@
 
 <script>
     function addAttraction() {
+
+
         var formdata = new FormData();
         formArray.insertImage.forEach(function (element) {
             formdata.append('image', element.file);
             //console.log("aaa");
         });
+        addAttractionToAttractionDatabase();
         //console.log(formdata);
         //formdata.append('image', formArray.insertImage[0].file);
         if (formArray.insertImage.length > 0) {
-            addImageToAttractionImage('{{attraction.0.id}}', formdata);
+            //need modify
+            //addImageToAttractionImage('{{attraction.0.id}}', formdata);
         }
+    }
+    function addAttractionToAttractionDatabase() {
+        axios({
+            method: 'post',
+            url: "/api/attraction",
+            data: { formArray }
+        })
+            .then(function () {
+
+            })
     }
     function addImageToAttractionImage(attractionID, formdata) {
         let ajaxUrl = '/api/attraction-image/';
