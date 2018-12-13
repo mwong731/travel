@@ -2,6 +2,7 @@
     <h3>Edit an attraction </h3>
 </div>
 
+
 <div class="row">
     <div class="col-md-6 edit-form">
         <select class="form-control" id="edit-attraction-city">
@@ -50,7 +51,10 @@
         
         <div id="edit-form-right" class="row" >
             {{!-- gen image here --}}
+            
+        </div>
 
+        <div id="add-form-right" class="row" >
             {{!-- gen new image div --}}
             
         </div>
@@ -92,24 +96,32 @@
 
     function updateAttraction() {
 
-
+        let a=false;
+        let b=false;
+        let c=false;
         var formdata = new FormData();
         formArray.insertImage.forEach(function (element) {
             formdata.append('image', element.file);
-            //console.log("aaa");
+       
         });
         //console.log(formdata);
         //formdata.append('image', formArray.insertImage[0].file);
         if (formArray.insertImage.length > 0) {
-            addImageToAttractionImage('{{attraction.0.id}}', formdata);
+             addImageToAttractionImage('{{attraction.0.id}}', formdata);
         }
+
         if (!isEmpty(formArray.updateData)) {
             //console.log(formArray.updateData);
-            updateAttractionContent(`/attraction/edit/{{attraction.0.id}}`);
+             updateAttractionContent(`/attraction/edit/{{attraction.0.id}}`);
         }
+
         if (formArray.deleteImage.length > 0) {
             deleteAttractionImage(formArray.deleteImage);
         }
+
+
+        alert('Sucessfully updated this attraction!')
+        window.location.replace(window.location.origin+`/profile`);
 
     }
     function addImageToAttractionImage(attractionID, formdata) {
@@ -127,32 +139,41 @@
             processData: false,
             type: 'POST',
             'success': function (data) {
-                //alert(data);
-            }
-        });
+            }})
+            .then(function(){
+    
+            })
+    
+      
     }
 
     function updateAttractionContent(url) {
-        axios({
+
+
+             axios({
             method: 'post',
             url: url,
             data: { formArray }
         })
             .then(function () {
-                //location.reload();
-                //window.location.replace(window.location.origin+`/attraction/edit/{{attraction.0.id}}`);
-                //console.log('submited');
+         
             })
+
+     
+       
     }
 
     function deleteAttractionImage(ids) {
+        
         axios({
             method: 'post',
             url: "/api/attraction-image/delete/",
             data: { ids }
         })
             .then(function () {
+              
             })
+       
     }
 </script>
 
@@ -161,9 +182,6 @@
 
     function userAdd() {
 
-
-
-        console.log("222", $('#edit-attraction-type').val())
 
         if ($('#edit-attraction-city').val() == null) {
             $('#edit-attraction-city').css('border-color', 'red');
