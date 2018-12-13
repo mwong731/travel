@@ -40,7 +40,7 @@ class adminRouter{
         
         return this.UserSubmitAttractionService.getAttractionPending()
         .then((data) => {
-            console.log("list data",data)
+            //console.log("list data",data)
             res.json(data)
         })
         .catch((err) => res.status(500).json(err));

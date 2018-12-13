@@ -41,8 +41,6 @@ class profileRouter{
 
     myAttraction(req, res) {
         
-
-        console.log("myattraction",req.params.id);
         return this.UserSubmitAttractionService.getAttractionByUser(req.params.id)
             .then(function(data){
                 res.json(data);
@@ -52,8 +50,6 @@ class profileRouter{
 
     myPlan(req, res) {
         
-
-        console.log("myPlan",req.params.id);
         return this.UserSubmitAttractionService.getMyPlan(req.params.id)
             .then(function(data){
                 res.json(data);
