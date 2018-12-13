@@ -16,9 +16,21 @@ module.exports = class planService {
       ]);
    }
 
+   readPlan(planId){
+      return this.knex('plan').select('days').where('id', planId);
+   }
+
    readAttractionplan (planId){
       return this.knex('attractioninplan').where('planid',planId);
    }
+
+   // async updateAttractionplan(planId, Object){
+   //    try{
+   //       await this.knex('attractioninplan').where('planid',planId).del();
+   //    }  catch (err) {
+   //       return (err);
+   //   }
+   // }
 
    deletePlanByID(ID) {
       return this.deleteAllAttractionInPlanByPlanID(ID).then(()=>{
@@ -30,8 +42,8 @@ module.exports = class planService {
       return this.knex('attractioninplan').where('id', ID).del();
    }
 
-   deleteAllAttractionInPlanByPlanID(PlanID) {
-      return this.knex('attractioninplan').where('planid',PlanID).del();
+   deleteAllAttractionInPlanByPlanID(planId) {
+      return this.knex('attractioninplan').where('planid',planId).del();
    }
    //below function not even test
 }
