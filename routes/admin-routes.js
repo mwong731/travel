@@ -25,6 +25,7 @@ class adminRouter{
         router.get("/",this.authCheck,this.get.bind(this));
         router.get("/list",this.list.bind(this));
         router.get("/attraction/:id",this.attraction.bind(this));
+        router.get("/attraction/image/:id",this.image.bind(this));
         router.post("/accept", this.accept.bind(this));
         router.post("/decline",this.decline.bind(this));
 
@@ -39,6 +40,15 @@ class adminRouter{
     list(req,res){
         
         return this.UserSubmitAttractionService.getAttractionPending()
+        .then((data) => {
+            //console.log("list data",data)
+            res.json(data)
+        })
+        .catch((err) => res.status(500).json(err));
+    }
+
+    image(req,res){
+        return this.UserSubmitAttractionService.getImageAttractionByAttractionID(req.params.id)
         .then((data) => {
             //console.log("list data",data)
             res.json(data)
