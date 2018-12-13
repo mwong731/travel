@@ -64,26 +64,26 @@ exports.seed = function (knex, Promise) {
         { cityid: 3, userid: 3, type: "go", name: 'Fukuoka Castle', description: 'Fukuoka Castle is a Japanese castle located in Chūō-ku, Fukuoka, Japan. It is also known as Maizuru Castle or Seki Castle. Completed in the early Edo period.', latitude: "33.589542", longitude: "130.39307", confirmstatus: "accept", icon: "../assets/fukuokacastle.jpg" },
         
         
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "393.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
       ]);
     }).then(function () {
       console.log('10.5');
       return knex('attractionimage').insert([
-        { attractionid: 1, image: '/assets/banner.png' },
-        { attractionid: 1, image: '/assets/banner.png' },
-        { attractionid: 1, image: '/assets/banner.png' },
-        { attractionid: 1, image: '/assets/banner.png' },
-        { attractionid: 1, image: '/assets/banner.png' },
+        { attractionid: 1, image: '/assets/tokyotower.jpg' },
+        { attractionid: 1, image: '/assets/tokyo.jpg' },
+        { attractionid: 1, image: '/assets/tokyotower2.jpg' },
+        { attractionid: 2, image: '/assets/sensoji.jpg' },
+        { attractionid: 2, image: '/assets/tokyo.jpg' },
       ]);
     }).then(function () {
       console.log('11');
       return knex('plan').insert([
-        { userid: 1, name: 'plan1' ,days:3},
-        { userid: 2, name: 'plan2' ,days:3},
+        { userid: 1, name: 'Tokyo 3 Days' ,days:3},
+        { userid: 1, name: 'My Birthday' ,days:3},
       ]);
     }).then(function () {
       console.log('12');
