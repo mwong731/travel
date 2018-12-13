@@ -150,10 +150,4 @@ const options = {
 https.createServer(options, app).listen(3000);
 
 
-//Set up express sessions - with the secret to encode the session
-// const expressSession = require('express-session')
-// app.use(expressSession({
-//     secret: 'thisRealSecret',
-//     resave: true,
-//     saveUninitialized: true
-// }));
+
