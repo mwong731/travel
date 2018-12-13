@@ -72,6 +72,8 @@ class planRouter{
 
         let inputArr = req.body.attractionArr;
 
+        console.log(inputArr);
+
         inputArr.forEach(element => {
             this.planService.insertAttractioninplan(planId,element).then(console.log('data inserted' + JSON.stringify(element)));
             
