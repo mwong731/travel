@@ -66,8 +66,7 @@ class adminRouter{
     }
 
     decline(req,res){
-        
-        
+  
         return this.UserSubmitAttractionService.declineAttractionStatusByAdmin(req.body.id)
         .then(() => {
             res.json("success")
