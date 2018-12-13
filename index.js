@@ -140,18 +140,18 @@ app.get('/error', (req, res) => {
 })
 
 //Set up https
-// const https = require('https');
-// const fs = require('fs');
-// const options = {
-//     cert: fs.readFileSync('./config/localhost.crt'),
-//     key: fs.readFileSync('./config/localhost.key')
-// };
+const https = require('https');
+const fs = require('fs');
+const options = {
+    cert: fs.readFileSync('./config/localhost.crt'),
+    key: fs.readFileSync('./config/localhost.key')
+};
 
-// https.createServer(options, app).listen(3000);
+https.createServer(options, app).listen(3000);
 
-app.listen(3000,()=>{
-    console.log("Application started at port:3000");
-});
+// app.listen(3000,()=>{
+//     console.log("Application started at port:3000");
+// });
 
 //Set up express sessions - with the secret to encode the session
 // const expressSession = require('express-session')
