@@ -75,7 +75,7 @@
             if (formArray.insertImage.length > 0) {
                 console.log("formArray.insertImage.length > 0");
                 //need modify
-                //addImageToAttractionImage('{{attraction.0.id}}', formdata);
+                await addImageToAttractionImage(newAttractionID, formdata);
             }
         }
         //console.log(formdata);
@@ -83,24 +83,27 @@
 
         console.log("addAttraction() end");
     }
-    function addAttractionToAttractionDatabase() {
+    async function addAttractionToAttractionDatabase() {
         //console.log("addAttractionToAttractionDatabase start");
         //console.log(formArray);
+        // ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+        formArray.userid = {{user.0.id}}
+        console.log(formArray);
         let resultId = "";
-        axios({
+        await axios({
             method: 'post',
             url: "/api/attraction",
             data: formArray
         })
             .then(function (data) {
-                console.log("addAttractionToAttractionDatabase() axios return data : "+ JSON.stringify(data) );
-                resultId = data;
+                //console.log("addAttractionToAttractionDatabase() axios return data : "+ JSON.stringify(data.data) );
+                resultId = JSON.stringify(data.data);
             })
         console.log("resultId is "+resultId);
         return resultId;
         //console.log("addAttractionToAttractionDatabase end");
     }
-    function addImageToAttractionImage(attractionID, formdata) {
+    async function addImageToAttractionImage(attractionID, formdata) {
         let ajaxUrl = '/api/attraction-image/';
         if (formArray.insertImage.length > 1) {
             ajaxUrl += `muti/${attractionID}`;
@@ -108,7 +111,7 @@
             ajaxUrl += `single/${attractionID}`;
         }
         //console.log("ajaxUrl is : "+ajaxUrl);
-        $.ajax({
+        await $.ajax({
             url: ajaxUrl,
             data: formdata,
             contentType: false,

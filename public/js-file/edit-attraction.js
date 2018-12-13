@@ -103,14 +103,10 @@ $(document).on('change', '.upload-new-image', function (e) {
     //console.log(formArray.insertImage.length);
     var parentTarget = $(e.target).parent();
     if (e.target.files[0]) {
-<<<<<<< HEAD
-        parentTarget.find("img").attr("src", URL.createObjectURL(e.target.files[0]));
-=======
         let url=URL.createObjectURL(e.target.files[0]);
         parentTarget.append(`<img class="edit-upload-image img-fluid" src="${url}"/> <i class="fas fa-times delete-new-attraction edit-remove-button" ></i>`);
         //parentTarget.find("img").attr("src", URL.createObjectURL(e.target.files[0]));
         parentTarget.find("input#isChange").val("true");
->>>>>>> 94f2015ef37c8411de1e2068c3f45281ee237886
         // insert image into array
         insertImageInFormArray($(e.target).data("id"), e.target.files[0]);
         console.log("112",formArray)

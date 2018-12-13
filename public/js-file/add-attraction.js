@@ -59,9 +59,7 @@ $(document).on('click', '#delete-new-attraction', function (e) {
 });
 // Submit btn
 $(document).on('click', '#submit-attraction', function (e) {
-    // console.log($(e.target).parent().find("#add-attraction-photo-input").data("id"));
     addAttraction();
-    //window.location.replace("http://stackoverflow.com");
 });
 
 //delete image in formArray.insertImage
