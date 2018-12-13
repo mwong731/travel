@@ -53,31 +53,52 @@
 <script src="/js-file/add-attraction.js"></script>
 
 <script>
+    function isEmpty(obj) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
     function addAttraction() {
 
-
+        //console.log("addAttraction() start");
         var formdata = new FormData();
         formArray.insertImage.forEach(function (element) {
             formdata.append('image', element.file);
             //console.log("aaa");
         });
-        addAttractionToAttractionDatabase();
+        if (!isEmpty(formArray.insertAttraction)) {
+            let newAttractionID = addAttractionToAttractionDatabase();
+            console.log("addAttraction() addAttractionToAttractionDatabase() return id "+newAttractionID);
+            if (formArray.insertImage.length > 0) {
+                console.log("formArray.insertImage.length > 0");
+                //need modify
+                //addImageToAttractionImage('{{attraction.0.id}}', formdata);
+            }
+        }
         //console.log(formdata);
         //formdata.append('image', formArray.insertImage[0].file);
-        if (formArray.insertImage.length > 0) {
-            //need modify
-            //addImageToAttractionImage('{{attraction.0.id}}', formdata);
-        }
+
+        console.log("addAttraction() end");
     }
     function addAttractionToAttractionDatabase() {
+        //console.log("addAttractionToAttractionDatabase start");
+        //console.log(formArray);
+        let resultId = "";
         axios({
             method: 'post',
             url: "/api/attraction",
-            data: { formArray }
+            data: formArray
         })
-            .then(function () {
-
+            .then(function (data) {
+                console.dir("addAttractionToAttractionDatabase() axios return data : "+data );
+                resultId = data;
             })
+        console.log("resultId is "+resultId);
+        return resultId;
+        //console.log("addAttractionToAttractionDatabase end");
     }
     function addImageToAttractionImage(attractionID, formdata) {
         let ajaxUrl = '/api/attraction-image/';

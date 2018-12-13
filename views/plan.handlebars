@@ -3,10 +3,10 @@
 </div>
 
 <div class="d-flex">
-    <form action="/plan" method="POST" class="d-flex flex-column " id="create-new-plan">
+    <div class="d-flex flex-column " id="create-new-plan">
         <div class="form-row align-items-center">
             <div class="col-12 col-md-6">
-                <input type="text" name="planname" placeholder="Name you plan *" class="form-control sign-up-input"
+                <input id="planname" type="text" name="planname" placeholder="Name you plan *" class="form-control sign-up-input"
                     required>
             </div>
             <div class="col-12 col-md-6">
@@ -25,7 +25,7 @@
                 </select>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 <div class="form-row align-items-center" id="plan-box">
@@ -77,11 +77,11 @@
 <script>
     // each div in "plan-box" should have different id to represent different day
     let dayAndTime = '';
-    let attractionId = '';
+    let attractionId = 0;
     let attractionIcon = '';
     let attractionName = '';
-    let savedAttraction = {};
-    let savedAttractionArr = [];
+    let currentAttraction = {};
+    let attractionArr = [];
 
     $('#plan-day-number').change(function () {
         $('#plan-box').html('');
@@ -114,7 +114,7 @@
     function getAttraction(cityName) {
         $.get(`/api/city/${cityName}`, function () { })
             .done(function (data) {
-                console.log(data)
+                //console.log(data)
                 for (var i = 0; i < data.length; i++) {
                     $('#plan-attraction').append(`
                 <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" id="image${data[i].id}" onClick="getAttractionId(${data[i].id},'${data[i].name}','${data[i].icon}')"/>
@@ -133,56 +133,83 @@
 
     function getDayAndTime(id) {
         $('#plan-attraction-city').val('notChosen')
-        console.log(id);
         dayAndTime = id;
     }
 
     function getAttractionId(id, name, iconURL) {
-        $('.plan-img').css('border','')
-        $(`#image${id}`).css('border','2px solid red')
-        
-        console.log(id);
-        console.log(name);
-        console.log(iconURL);
+        $('.plan-img').css('border', '')
+        $(`#image${id}`).css('border', '2px solid red')
         attractionId = id;
         attractionName = name
         attractionIcon = iconURL;
     }
 
     function saveAttraction() {
-        savedAttraction.attractionId = attractionId;
-        savedAttraction.day = dayAndTime.split('-')[1];
+        currentAttraction.attractionId = attractionId;
+        currentAttraction.day = dayAndTime.split('-')[1];
         if (dayAndTime.split('-')[0] == 'n') {
-            savedAttraction.time = 'night'
+            currentAttraction.time = 'night'
         } else {
-            savedAttraction.time = 'day'
+            currentAttraction.time = 'day'
         };
-        console.log("current" + savedAttraction);
+        currentAttraction.id = dayAndTime + '-' + attractionId;
 
-        for (let j = 0; j < savedAttractionArr.length - 1; j++) {
-            if (isEquivalent(savedAttractionArr[j], savedAttraction)) {
-                console.log("in array" + savedAttractionArr[j]);
-                alert("Attraction already added on this day.");
-
-            }
-        }
-        savedAttractionArr.push(savedAttraction);
-        savedAttraction = {};
-        $('#attraction-container-' + dayAndTime).append(`
-            <div id="attraction-${dayAndTime}-${attractionId}"class="col-6 col-lg-4 img-col"><img class="plan-added-img" src="${attractionIcon}"/>
+        console.log(currentAttraction.id);
+    
+        if (attractionArr.some(e => {
+            /*return e.attractionId == currentAttraction.attractionId && e.day == currentAttraction.day && e.time == currentAttraction.time*/
+            return e.id == currentAttraction.id
+        })) {
+            alert('This attraction is already added.')
+        } else {
+            
+            $('#attraction-container-' + dayAndTime).append(`
+            <div id="attraction-${dayAndTime}-${attractionId}"class="col-4 img-col"><img class="plan-img" src="${attractionIcon}"/>
                 <div class="plan-overlay">
                     <div class="profile-attraction-name">${attractionName}</div>
                 </div>
-                <div class="remove-button">
+                <div id="remove-${dayAndTime}-${attractionId}" class="remove-button" onClick='remove(this.id)'>
                         <div class="remove-symbol"><i class="fas fa-times"></i></div>
                     </div>
             </div>
-        `)
+            `)
+
+            attractionArr.push(currentAttraction);
+            console.log(attractionArr);
+            currentAttraction = {};
+            attractionId = 0;
+            attractionIcon = '';
+            attractionName = '';
+        }
     }
 
-    function submit (){
-
+    function submit() {
+        axios({
+            method: 'post',
+            url: '/plan',
+            data: { planname: $('#planname').val(), attractionArr: attractionArr }
+        }).then(function (message) {
+            console.log(message);
+            window.location.replace(window.location.origin + '/profile');
+          
+        })
     }
+
+    function remove(buttonId) {
+
+        let id = buttonId.split('-').slice(1).join('-')
+        console.log('remove-' + id);
+        $('#attraction-' + id).remove();
+
+        let pos = attractionArr.map(function(e){return e.id;}).indexOf(id);
+        if (pos > -1){
+            attractionArr.splice(pos,1);
+        }
+        
+        console.log(attractionArr);
+        
+    }
+
     $('#plan-attraction-city').change(function () {
         $('#plan-attraction').html('');
         if ($('#plan-attraction-city').val() != 'notChosen') {
@@ -195,36 +222,5 @@
         $('#plan-attraction').html('');
     })
 
-    function isEquivalent(a, b) {
-        // Create arrays of property names
-        var aProps = Object.getOwnPropertyNames(a);
-        var bProps = Object.getOwnPropertyNames(b);
-
-        // If number of properties is different,
-        // objects are not equivalent
-        if (aProps.length != bProps.length) {
-            return false;
-        }
-
-        for (var i = 0; i < aProps.length; i++) {
-            var propName = aProps[i];
-
-            // If values of same property are not equal,
-            // objects are not equivalent
-            if (a[propName] !== b[propName]) {
-                return false;
-            }
-        }
-
-        // If we made it this far, objects
-        // are considered equivalent
-        return true;
-    }
-
-   
-
-    
-
-
-$('#plan-day-number').val('notChosen')
+    $('#plan-day-number').val('notChosen')
 </script>

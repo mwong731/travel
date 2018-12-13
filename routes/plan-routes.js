@@ -1,9 +1,9 @@
 const express = require("express");
 
 class planRouter{
-    constructor(planService,cityService){
+    constructor(planService){
        this.planService = planService;
-       this.cityService = cityService;
+      
     }
     router(){
         let router = express.Router();
@@ -21,10 +21,16 @@ class planRouter{
 
     async post(req,res){
         try{
+            console.log(req.body);
             let planId = await this.planService.insertPlan(req.user.id,req.body.planname);
             console.log(planId[0]);
-            // suppose receive 
-            // let  = await this.planService.insertAttractioninplan(planId[0])
+            let inputArr = req.body.attractionArr;
+            
+            inputArr.forEach(element => {
+                this.planService.insertAttractioninplan(planId[0],element).then(console.log('data inserted'));
+                
+            });
+            res.send('done');
         }
         catch(err){
             return res.send(err);

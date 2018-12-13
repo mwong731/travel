@@ -10,9 +10,9 @@ module.exports = class planService {
       ]).returning('id');
    }
 
-   insertAttractioninplan(planId, attractionId, date ,time) {
+   insertAttractioninplan(planId, Object) {
       return this.knex('attractioninplan').insert([
-         { planid: planId, attractionid: attractionId, date:date , time:time}
+         { planid: planId, attractionid: Object.attractionId, day:Object.day , time:Object.time}
       ]);
    }
 

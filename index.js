@@ -120,7 +120,7 @@ app.use('/attraction',
         new bookmarkService(db)
     ).router()
 );
-app.use('/plan', new planRoutes().router())
+app.use('/plan', new planRoutes(new planService(db)).router());
 app.use('/api/attraction', new attractionAPIRouter(new attractionService(db), new attractionImageService(db)).router());
 app.use('/city', new cityRouter(new cityService(db)).router());
 
@@ -131,7 +131,9 @@ app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
 app.use('/add', new addRouter(new cityService(db)).router());
 
 app.use('/api/attraction-image/', new attractionImageAPIRouter(new attractionImageService(db)).router());
-app.use('/admin', new adminRouter(new UserSubmitAttractionService(db)).router())
+app.use('/admin', new adminRouter(new UserSubmitAttractionService(db)).router());
+
+
 
 app.get('/error', (req, res) => {
     res.render('error')
