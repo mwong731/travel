@@ -1,5 +1,5 @@
 <div class=" row edit-title">
-    <h3>{{data}} an attraction </h3>
+    <h3>Add an attraction </h3>
 </div>
 
 <div class="row">
@@ -8,17 +8,17 @@
             <option selected disabled value="notChosen">Choose a city</option>
             {{!-- gen data --}}
             {{#each city}}
-            <option value="{{id}}" {{genCitySelectString id ../attraction.0.cityid }}>{{name}}</option>
+            <option value="{{id}}">{{name}}</option>
             {{/each}}
 
         </select>
         <div id="city-error-message"></div>
 
         <select class="form-control" id="edit-attraction-type">
-            <option disabled value="notChosen" >Choose a type</option>
-            <option value="go" >Tourist attraction</option>
-            <option value="restaurant" >Restaurant</option>
-            <option value="shop" >Shop</option>
+            <option disabled value="notChosen">Choose a type</option>
+            <option value="go">Tourist attraction</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="shop">Shop</option>
         </select>
         <div id="type-error-message"></div>
 
@@ -26,30 +26,35 @@
         <div id="name-error-message"></div>
 
         <textarea class="form-control" id="edit-attraction-description" rows="3" placeholder="Describe the attraction">{{attraction.0.description}}</textarea>
+        
+        <div class="form-row align-items-center">
 
-        <input type="text" class="form-control" id="edit-attraction-latitude" placeholder="Attraction latitude" value="{{attraction.0.latitude}}">
+        <div class='col-2'>Location: </div>
+
+        <div class='col-5'>
+        <input type="text" class="form-control" id="edit-attraction-latitude" placeholder="Latitude" value="{{attraction.0.latitude}}">
         <div id="latitude-error-message"></div>
-
-        <input type="text" class="form-control" id="edit-attraction-longitude" placeholder="Attraction longitude" value="{{attraction.0.longitude}}">
-        <div id="longitude-error-message"></div>
-
-
-    </div>
-
-    <div id="photo-upload-form" class="col-md-6 edit-form edit-form-right">
-        <div id="edit-form-right">
-            {{!-- gen image here --}}
         </div>
 
-        <button class="btn-lg btn-primary" id="add-image">+</button>
+        <div class='col-5'>
+        <input type="text" class="form-control" id="edit-attraction-longitude" placeholder="Longitude" value="{{attraction.0.longitude}}">
+        <div id="longitude-error-message"></div>
+        </div>
+
+        </div>
+
     </div>
+
     <div id="photo-upload-form" class="col-md-6 edit-form edit-form-right">
-        <div id="add-form-right">
+        <div class="edit-image-container">
+        <div id="add-form-right" class="row">
             {{!-- gen new image div --}}
         </div>
+
+        <button class="btn btn-primary" id="add-image">+ Add image</button>
     </div>
 
-
+</div>
 </div>
 
 <div class="d-flex justify-content-center">
@@ -59,19 +64,80 @@
 <script src="/js-file/add-attraction.js"></script>
 
 <script>
-    function addAttraction() {
+    function isEmpty(obj) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
+    async function addAttraction() {
+
+        console.log("this is testing point start");
         var formdata = new FormData();
         formArray.insertImage.forEach(function (element) {
             formdata.append('image', element.file);
             //console.log("aaa");
         });
+        if (!isEmpty(formArray.insertAttraction)) {
+            console.log("this is testing point0");
+            console.log("formArray.insertImage.length :"+ formArray.insertImage.length);
+            let newAttractionID = await addAttractionToAttractionDatabase();
+            console.log("addAttraction() addAttractionToAttractionDatabase() return id "+newAttractionID);
+            if (formArray.insertImage.length > 0) {
+                console.log("formArray.insertImage.length > 0");
+                //need modify
+                
+                 addImageToAttractionImage(newAttractionID, formdata);
+                console.log("this is testing point1");
+                 setIconInAttractionTable(newAttractionID);
+                console.log("this is testing point2");
+            }
+        }
         //console.log(formdata);
         //formdata.append('image', formArray.insertImage[0].file);
-        if (formArray.insertImage.length > 0) {
-            addImageToAttractionImage('{{attraction.0.id}}', formdata);
-        }
+
+        console.log("addAttraction() end");
     }
-    function addImageToAttractionImage(attractionID, formdata) {
+
+    async function setIconInAttractionTable(id){
+        console.log("this is testing point3");
+        console.log("addAttraction() start in add Attraction()");
+        await axios({
+            method: 'get',
+            url: `/api/attraction-image/${id}`
+        })
+            .then(function (data) {
+                console.log("this is testing point4");
+                console.log("setIconInAttractionTable(id) .then");
+                console.log(JSON.stringify(data) );
+                //console.log("addAttractionToAttractionDatabase() axios return data : "+ JSON.stringify(data.data) );
+                resultId = JSON.stringify(data.data);
+            })
+    }
+
+    async function addAttractionToAttractionDatabase() {
+        //console.log("addAttractionToAttractionDatabase start");
+        //console.log(formArray);
+        // ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+        formArray.userid = {{user.0.id}}
+        console.log(formArray);
+        let resultId = "";
+        await axios({
+            method: 'post',
+            url: "/api/attraction",
+            data: formArray
+        })
+            .then(function (data) {
+                //console.log("addAttractionToAttractionDatabase() axios return data : "+ JSON.stringify(data.data) );
+                resultId = JSON.stringify(data.data);
+            })
+        console.log("resultId is "+resultId);
+        return resultId;
+        //console.log("addAttractionToAttractionDatabase end");
+    }
+    async function addImageToAttractionImage(attractionID, formdata) {
         let ajaxUrl = '/api/attraction-image/';
         if (formArray.insertImage.length > 1) {
             ajaxUrl += `muti/${attractionID}`;
@@ -79,14 +145,14 @@
             ajaxUrl += `single/${attractionID}`;
         }
         //console.log("ajaxUrl is : "+ajaxUrl);
-        $.ajax({
+        await $.ajax({
             url: ajaxUrl,
             data: formdata,
             contentType: false,
             processData: false,
             type: 'POST',
             'success': function (data) {
-                //alert(data);
+                console.log(data);
             }
         });
     }

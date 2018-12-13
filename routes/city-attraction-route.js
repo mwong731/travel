@@ -24,7 +24,7 @@ class cityAttractionRouter {
     }
 
     post(req, res) {
-        console.log('filter city', req.body)
+        
 
         return this.cityService.filter(req.body)
             .then((result) => {

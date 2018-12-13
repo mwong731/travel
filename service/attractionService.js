@@ -75,14 +75,13 @@ module.exports = class AttractionService {
     }
     // Insert
     // insert() input(latitude , longitude) can be null
-    insert(cityid, name, type, latitude, longitude, icon, description, userid) {
-        console.log("insertin", cityid, name, type, latitude, longitude, icon, description, userid)
-        return this.knex('attraction').insert(
-            { cityid: cityid, name: name, type: type, latitude: latitude, longitude: longitude, description: description, confirmstatus: "wait", userid: userid ,icon:icon}
-        );
+    insert(data) {
+        //console.log(data);
+        return this.knex('attraction').insert(data);
     }
+    
     insertAttraction(cityid, name, type, latitude, longitude, image, description, userid) {
-        console.log("insertin", cityid, name, type, latitude, longitude, image, description, userid)
+        //console.log("insertin", cityid, name, type, latitude, longitude, image, description, userid)
         return this.knex('attraction').insert(
             
             { cityid: cityid, name: name, type: type, latitude: latitude, longitude: longitude, description: description, confirmstatus: "wait", userid: userid }
