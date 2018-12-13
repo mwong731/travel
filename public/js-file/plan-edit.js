@@ -147,14 +147,15 @@ function saveAttraction() {
     } else {
         currentAttraction.attractionid = attractionId;
         currentAttraction.day = dayAndTime.split('-')[1];
-        if (dayAndTime.split('-')[0] == 'n') {
-            currentAttraction.time = 'night'
-        } else {
-            currentAttraction.time = 'day'
-        };
+        // if (dayAndTime.split('-')[0] == 'n') {
+        //     currentAttraction.time = 'night'
+        // } else {
+        //     currentAttraction.time = 'day'
+        // };
+        currentAttraction.time = dayAndTime.split('-')[0];
         currentAttraction.divId = dayAndTime + '-' + attractionId;
 
-        console.log(currentAttraction.divId);
+        console.log(currentAttraction);
 
         if (attractionArr.some(e => {
             return e.divId == currentAttraction.divId
