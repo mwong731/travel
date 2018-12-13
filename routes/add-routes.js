@@ -14,7 +14,7 @@ class addRouter{
     }
 
     get(req,res){
-        res.render("edit-attraction",{data:'Add',user:req.user})
+        res.render("add-attraction",{data:'Add',user:req.user})
     }
 
     post(req, res) {

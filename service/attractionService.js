@@ -75,14 +75,16 @@ module.exports = class AttractionService {
     }
     // Insert
     // insert() input(latitude , longitude) can be null
-    insert(cityid, userid, type, name, latitude, longitude, icon) {
-        return this.knex('attraction').insert([
-            { cityid: cityid, userid: userid, name: name, type: type, latitude: latitude, longitude: longitude, confirmstatus: "wait", icon: icon }
-        ]);
+    insert(cityid, name, type, latitude, longitude, icon, description, userid) {
+        console.log("insertin", cityid, name, type, latitude, longitude, icon, description, userid)
+        return this.knex('attraction').insert(
+            { cityid: cityid, name: name, type: type, latitude: latitude, longitude: longitude, description: description, confirmstatus: "wait", userid: userid ,icon:icon}
+        );
     }
     insertAttraction(cityid, name, type, latitude, longitude, image, description, userid) {
         console.log("insertin", cityid, name, type, latitude, longitude, image, description, userid)
         return this.knex('attraction').insert(
+            
             { cityid: cityid, name: name, type: type, latitude: latitude, longitude: longitude, description: description, confirmstatus: "wait", userid: userid }
         );
     }
@@ -115,7 +117,7 @@ module.exports = class AttractionService {
             insertObject.icon = icon;
         }
         return this.knex('attraction').update(insertObject).where("id", attractionID).catch((err) => {
-            console.log(err);
+            console.log( err);
         });
     }
     // Delete

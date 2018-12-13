@@ -2,7 +2,7 @@ const express = require("express");
 
 class editAttractionRouter {
 
-    constructor(attractionService, attractionImageService , cityService) {
+    constructor(attractionService, attractionImageService, cityService) {
         this.attractionService = attractionService;
         this.attractionImageService = attractionImageService;
         this.cityService = cityService;
@@ -30,12 +30,12 @@ class editAttractionRouter {
             if (data[0].length == 0) {
                 console.log("data[0].length == 0");
                 throw new Error("Select Return no result!!");
-            } else if(data[0][0].userid != req.user.id) {
+            } else if (data[0][0].userid != req.user.id) {
                 //console.log("data[0].userid is "+ data[0].userid);
                 //console.log("req.user.id is "+req.user.id);
                 throw new Error("User not login");
                 //return res.redirect("/attraction/"+req.params.id);
-            }else{
+            } else {
                 let datajson = {};
                 //console.log(data[2]);
                 datajson.attraction = data[0];
@@ -56,17 +56,13 @@ class editAttractionRouter {
     }
 
     post(req, res) {
-        console.log('edit attraction Image ', req.body)
+        let updateValue = req.body.formArray.updateData;
         return Promise.all([
-            this.attractionService.getAttractionInAttractionID(req.params.id)
-            ,
-            this.attractionImageService.getImageAttractionByAttractionID(req.params.id)
-            ,
-            this.cityService.listCity()
-        ]).then((data)=>{
-
+            this.attractionService.updateAttractionWithID(req.params.id, updateValue.cityid, updateValue.name, updateValue.description, updateValue.type, updateValue.latitude, updateValue.longitude, null, null)
+        ]).then((data) => {
+            //return res.redirect("/");
         })
-        .catch((err) => res.status(500).json(err));
+            .catch((err) => res.status(500).json(err));
     }
 
 

@@ -48,7 +48,8 @@ module.exports = class UserSubmitAttractionService {
     insertAttraction(cityid, name, type, latitude, longitude, image, description,userid) {
         console.log("insertin",cityid, name, type, latitude, longitude, image, description,userid)
         return this.knex('attraction').insert(
-            { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude , description: description,confirmstatus:"wait",userid:userid}
+            // change column (confirmstatus) to "wait" below if admin can confirm attraction status
+            { cityid: cityid, name:name, type: type, latitude: latitude, longitude: longitude , description: description,confirmstatus:"accept",userid:userid}
         );
     }
     // Update

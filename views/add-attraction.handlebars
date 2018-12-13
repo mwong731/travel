@@ -15,10 +15,10 @@
         <div id="city-error-message"></div>
 
         <select class="form-control" id="edit-attraction-type">
-            <option disabled value="notChosen" {{genAttractionSelectString "null" attraction.0.type }}>Choose a type</option>
-            <option value="go" {{genAttractionSelectString "go" attraction.0.type}}>Tourist attraction</option>
-            <option value="restaurant" {{genAttractionSelectString "restaurant" attraction.0.type}}>Restaurant</option>
-            <option value="shop" {{genAttractionSelectString "shop" attraction.0.type}}>Shop</option>
+            <option disabled value="notChosen" >Choose a type</option>
+            <option value="go" >Tourist attraction</option>
+            <option value="restaurant" >Restaurant</option>
+            <option value="shop" >Shop</option>
         </select>
         <div id="type-error-message"></div>
 
@@ -47,7 +47,6 @@
         <div id="add-form-right">
             {{!-- gen new image div --}}
         </div>
-        
     </div>
 
 
@@ -57,29 +56,10 @@
     <button class="btn-lg btn-primary" id="submit-attraction">Submit<i class="fas fa-paper-plane"></i></button>
 </div>
 
-<script src="/js-file/edit-attraction.js"></script>
+<script src="/js-file/add-attraction.js"></script>
 
 <script>
-    $(() => {
-        $.get(`/api/attraction-image/{{attraction.0.id}}`).then((data) => {
-            data.forEach((value, index) => {
-                $('#edit-form-right').append(attraction(value));
-            });
-        });
-
-    })
-
-    function isEmpty(obj) {
-        for (var key in obj) {
-            if (obj.hasOwnProperty(key))
-                return false;
-        }
-        return true;
-    }
-
-    function updateAttraction() {
-
-
+    function addAttraction() {
         var formdata = new FormData();
         formArray.insertImage.forEach(function (element) {
             formdata.append('image', element.file);
@@ -90,14 +70,6 @@
         if (formArray.insertImage.length > 0) {
             addImageToAttractionImage('{{attraction.0.id}}', formdata);
         }
-        if (!isEmpty(formArray.updateData)) {
-            //console.log(formArray.updateData);
-            updateAttractionContent(`/attraction/edit/{{attraction.0.id}}`);
-        }
-        if (formArray.deleteImage.length > 0) {
-            deleteAttractionImage(formArray.deleteImage);
-        }
-
     }
     function addImageToAttractionImage(attractionID, formdata) {
         let ajaxUrl = '/api/attraction-image/';
@@ -117,29 +89,6 @@
                 //alert(data);
             }
         });
-    }
-
-    function updateAttractionContent(url) {
-        axios({
-            method: 'post',
-            url: url,
-            data: { formArray }
-        })
-            .then(function () {
-                //location.reload();
-                //window.location.replace(window.location.origin+`/attraction/edit/{{attraction.0.id}}`);
-                //console.log('submited');
-            })
-    }
-
-    function deleteAttractionImage(ids) {
-        axios({
-            method: 'post',
-            url: "/api/attraction-image/delete/",
-            data: { ids }
-        })
-            .then(function () {
-            })
     }
 </script>
 
