@@ -32,7 +32,7 @@ class AttractionRouter {
          this.attractionImageService.getImageAttractionByAttractionID(req.params.id)
          ,
          //need get user id;
-         this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(userid, req.params.id)
+         this.bookmarkService.getUserBookmarkWithUserIDAndAttractionID(req.user.id, req.params.id)
       ]).then((data) => {
          if (data[0].length == 0) {
             throw new Error("Select Return no result!!");
@@ -63,7 +63,7 @@ class AttractionRouter {
    createComment(req, res) {
       console.log(req.body);
       // console.log(req.user);
-      this.attractionCommentService.insertComment(userid, req.params.id, req.body.text, req.body.rate).then();
+      this.attractionCommentService.insertComment(req.user.id, req.params.id, req.body.text, req.body.rate).then();
       return res.redirect('back');
    }
 
