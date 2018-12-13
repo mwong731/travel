@@ -39,7 +39,7 @@ function getAttraction(cityName) {
             //console.log(data)
             for (var i = 0; i < data.length; i++) {
                 $('#plan-attraction').append(`
-            <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" id="image${data[i].id}" onClick="getAttractionId(${data[i].id},'${data[i].name}','${data[i].icon}')"/>
+            <div class="col-6 col-md-4 img-col"><img class="plan-img" src="${data[i].icon}" id="image${data[i].id}" onClick="getAttractionId(${data[i].id},'${data[i].name}','${data[i].icon}')"/>
                 <div class="plan-overlay">
                     <div class="profile-attraction-name">${data[i].name}</div>
                 </div>

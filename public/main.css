@@ -705,7 +705,7 @@ nav{
   .remove-button{
       position:absolute;
       top:0;
-      left:11.5vw;
+      left:5px;
       width:30px;
       height:30px;
       border-radius:20px;
