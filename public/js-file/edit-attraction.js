@@ -109,7 +109,6 @@ $(document).on('change', '.upload-new-image', function (e) {
         parentTarget.find("input#isChange").val("true");
         // insert image into array
         insertImageInFormArray($(e.target).data("id"), e.target.files[0]);
-        console.log("112",formArray)
     } else {
         parentTarget.find("img").attr("src", parentTarget.find(".currentImg").val());
         parentTarget.find("input#isChange").val("false");
