@@ -50,7 +50,9 @@
 
 
     function accept(id){
-        $.post( `/admin/accept`, {id:id})
+        let uploadURL=$( "#adminImage ").children().attr('src')
+        console.log(uploadURL)
+        $.post( `/admin/accept`, {id:id, icon:uploadURL})
             .done(function(data) {
                 alert( "Accepted" + id );
                 $('.admin-list').html('');
@@ -105,6 +107,8 @@
                  `
              );
 
+
+
              $('#admin-modal-footer').html(
                  ` <button type="button" class="btn btn-success" onClick="accept(${id})" data-dismiss="modal">Accept</button>
                  
@@ -112,6 +116,8 @@
              );
 
              getImage(id)
+
+             
 
 
             

@@ -68,7 +68,7 @@ class adminRouter{
 
     accept(req,res){
      
-        return this.UserSubmitAttractionService.confirmAttractionStatusByAdmin(req.body.id)
+        return this.UserSubmitAttractionService.confirmAttractionStatusByAdmin(req.body.id,req.body.icon)
         .then(() => {
             res.json("success")
         })
