@@ -70,7 +70,7 @@ function saveAttraction() {
     if (attractionId == 0) {
         alert("You need to choose one attraction to add");
     } else {
-        currentAttraction.attractionId = attractionId;
+        currentAttraction.attractionid = attractionId;
         currentAttraction.day = dayAndTime.split('-')[1];
         if (dayAndTime.split('-')[0] == 'n') {
             currentAttraction.time = 'night'
@@ -82,7 +82,6 @@ function saveAttraction() {
         console.log(currentAttraction.id);
 
         if (attractionArr.some(e => {
-            /*return e.attractionId == currentAttraction.attractionId && e.day == currentAttraction.day && e.time == currentAttraction.time*/
             return e.id == currentAttraction.id
         })) {
             alert('This attraction is already added.')

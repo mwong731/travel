@@ -16,7 +16,7 @@ attractionArr.forEach((e) => {
 console.log(attractionArr);
 
 attractionArr.forEach((e) => {
-    console.log(e);
+    
     let id = e.attractionid;
     let day = e.day;
     let time = e.time;
@@ -106,7 +106,7 @@ function submit() {
     axios({
         method: 'post',
         url: '/plan/'+ window.location.href.split('/')[4],
-        data: { planname: $('#planname').val(), plandays: $('#plan-day-number').val(), attractionArr: attractionArr }
+        data: {attractionArr: attractionArr }
     }).then(function (message) {
         console.log(message);
         window.location.replace(window.location.origin + '/profile');
@@ -130,6 +130,7 @@ function remove(buttonId) {
 function getDayAndTime(id) {
     $('#plan-attraction-city').val('notChosen')
     dayAndTime = id;
+    console.log(dayAndTime);
 }
 
 function getAttractionId(id, name, iconURL) {
@@ -144,7 +145,7 @@ function saveAttraction() {
     if (attractionId == 0) {
         alert("You need to choose one attraction to add");
     } else {
-        currentAttraction.attractionId = attractionId;
+        currentAttraction.attractionid = attractionId;
         currentAttraction.day = dayAndTime.split('-')[1];
         if (dayAndTime.split('-')[0] == 'n') {
             currentAttraction.time = 'night'
@@ -156,7 +157,6 @@ function saveAttraction() {
         console.log(currentAttraction.divId);
 
         if (attractionArr.some(e => {
-            /*return e.attractionId == currentAttraction.attractionId && e.day == currentAttraction.day && e.time == currentAttraction.time*/
             return e.divId == currentAttraction.divId
         })) {
             alert('This attraction is already added.')
