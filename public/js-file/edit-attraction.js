@@ -111,7 +111,6 @@ $(document).on('change', '.upload-new-image', function (e) {
         insertImageInFormArray($(e.target).data("id"), e.target.files[0]);
     } else {
         parentTarget.find("img").attr("src", parentTarget.find(".currentImg").val());
-        parentTarget.find("input#isChange").val("false");
     }
 });
 // image clicked in add new attraction img

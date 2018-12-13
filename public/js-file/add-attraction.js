@@ -1,4 +1,5 @@
 var formArray = {
+    insertAttraction: {},
     insertImage: []
 }
 var addImageDivIndex = 1;
@@ -11,27 +12,27 @@ $(document).on('click', '#add-image', function (e) {
 
 // handle event in current attraction field (image not include)
 $(document).on('change', '#edit-attraction-city', function (e) {
-    formArray.updateData.cityid = $(e.target).val();
+    formArray.insertAttraction.cityid = $(e.target).val();
 });
 
 $(document).on('change', '#edit-attraction-type', function (e) {
-    formArray.updateData.type = $(e.target).val();
+    formArray.insertAttraction.type = $(e.target).val();
 });
 
 $(document).on('change', '#edit-attraction-name', function (e) {
-    formArray.updateData.name = $(e.target).val();
+    formArray.insertAttraction.name = $(e.target).val();
 });
 
 $(document).on('change', '#edit-attraction-description', function (e) {
-    formArray.updateData.description = $(e.target).val();
+    formArray.insertAttraction.description = $(e.target).val();
 });
 
 $(document).on('change', '#edit-attraction-latitude', function (e) {
-    formArray.updateData.latitude = $(e.target).val();
+    formArray.insertAttraction.latitude = $(e.target).val();
 });
 
 $(document).on('change', '#edit-attraction-longitude', function (e) {
-    formArray.updateData.longitude = $(e.target).val();
+    formArray.insertAttraction.longitude = $(e.target).val();
 });
 
 /* handle event in add new attraction image div */
@@ -40,12 +41,10 @@ $(document).on('change', '#add-attraction-photo-input', function (e) {
     var parentTarget = $(e.target).parent();
     if (e.target.files[0]) {
         parentTarget.find("img").attr("src", URL.createObjectURL(e.target.files[0]));
-        parentTarget.find("input#isChange").val("true");
         // insert image into array
         insertImageInFormArray($(e.target).data("id"), e.target.files[0]);
     } else {
         parentTarget.find("img").attr("src", parentTarget.find(".currentImg").val());
-        parentTarget.find("input#isChange").val("false");
     }
 });
 // image clicked in add new attraction img
@@ -60,9 +59,7 @@ $(document).on('click', '#delete-new-attraction', function (e) {
 });
 // Submit btn
 $(document).on('click', '#submit-attraction', function (e) {
-    // console.log($(e.target).parent().find("#add-attraction-photo-input").data("id"));
     addAttraction();
-    //window.location.replace("http://stackoverflow.com");
 });
 
 //delete image in formArray.insertImage

@@ -7,6 +7,7 @@ class AttractionApiroutesRouter {
    router() {
       let router = express.Router();
       router.get("/:id", this.get.bind(this));
+      router.post("/", this.post.bind(this));
       return router;
    }
 
@@ -24,8 +25,20 @@ class AttractionApiroutesRouter {
                  res.json([data[0],(data[1])[0]])
             })
             .catch((err) => res.status(500).json(err));
+   }
 
-      
+   async post (req , res){
+      let insertData = req.body.insertAttraction;
+      insertData.userid = req.body.userid;
+      console.log("sssssssssssssssssssssssssssssssss"+req.body.insertAttraction.userid);
+      var id = await this.attractionService.insert(req.body.insertAttraction ).returning('id');
+      console.log("AttractionApiroutesRouter posted id "+id[0]);
+      // console.log("req.body.formArray.insertAttraction return id : "+id);
+      return res.status(200).send((id[0]).toString());
+
+      // console.log(req.body.insertAttraction)
+      // res.json(req.body.insertAttraction.cityid);
+      //return this.attractionService.insert("");
    }
 
 }
