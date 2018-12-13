@@ -20,7 +20,8 @@ class addRouter{
             if (data[0].length == 0) {
                 console.log("data[0].length == 0");
                 throw new Error("Select Return no result!!");
-            } else if (!req.user.id) {
+                //
+            } else if (req.user.id == undefined) {
                 throw new Error("User not login");
             } else {
                 let datajson = {};
