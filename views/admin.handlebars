@@ -75,6 +75,17 @@
           
     }
 
+    function getImage(id){
+        $.get( `/admin/attraction/image/${id}`, function() {
+            })
+            .done(function(data){
+                for (var i=0; i<data.length; i++){
+                    $('#adminImage').append(`<img class="admin-img" src = "${data[i].image}">`)
+                }
+                
+            })
+    }
+
 
      function modalData(id){
           $.get( `/admin/attraction/${id}`, function() {
@@ -89,8 +100,8 @@
                 <p> Type: ${data[0].type}
                 <p> Description: ${data[0].description}
                 <p> Location: ${data[0].latitude} , ${data[0].longitude}
-                <p> Image:
-                <p>   <img class="admin-img" src="${data[0].icon}"/>
+                <p> Image: 
+                <div id="adminImage"></div>
                  `
              );
 
@@ -99,6 +110,8 @@
                  
                  <button type="button" class="btn btn-danger" onClick="decline(${id})" data-dismiss="modal">Decline</button>`
              );
+
+             getImage(id)
 
 
             
