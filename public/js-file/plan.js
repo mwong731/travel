@@ -88,7 +88,7 @@ function saveAttraction() {
         } else {
 
             $('#attraction-container-' + dayAndTime).append(`
-        <div id="attraction-${dayAndTime}-${attractionId}"class="col-4 img-col"><img class="plan-img" src="${attractionIcon}"/>
+        <div id="attraction-${dayAndTime}-${attractionId}"class="col-6 col-md-4 img-col"><img class="plan-added-img" src="${attractionIcon}"/>
             <div class="plan-overlay">
                 <div class="profile-attraction-name">${attractionName}</div>
             </div>
