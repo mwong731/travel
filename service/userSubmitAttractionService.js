@@ -73,8 +73,12 @@ module.exports = class UserSubmitAttractionService {
         return this.knex('attraction').update(updateObject).where("id", attractionID);
     }
 
-    confirmAttractionStatusByAdmin(id) {
-        return this.knex('attraction').update('confirmstatus','accept').where("id", id);
+    confirmAttractionStatusByAdmin(id,icon) {
+        console.log("confirm",icon)
+        return this.knex('attraction').update(
+            {confirmstatus:'accept',
+            icon:icon}
+            ).where("id", id);
     }
 
     declineAttractionStatusByAdmin(id) {
