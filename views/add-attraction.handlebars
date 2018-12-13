@@ -61,7 +61,7 @@
         return true;
     }
 
-    function addAttraction() {
+    async function addAttraction() {
 
         //console.log("addAttraction() start");
         var formdata = new FormData();
@@ -70,7 +70,7 @@
             //console.log("aaa");
         });
         if (!isEmpty(formArray.insertAttraction)) {
-            let newAttractionID = addAttractionToAttractionDatabase();
+            let newAttractionID = await addAttractionToAttractionDatabase();
             console.log("addAttraction() addAttractionToAttractionDatabase() return id "+newAttractionID);
             if (formArray.insertImage.length > 0) {
                 console.log("formArray.insertImage.length > 0");
@@ -93,7 +93,7 @@
             data: formArray
         })
             .then(function (data) {
-                console.dir("addAttractionToAttractionDatabase() axios return data : "+data );
+                console.log("addAttractionToAttractionDatabase() axios return data : "+ JSON.stringify(data) );
                 resultId = data;
             })
         console.log("resultId is "+resultId);

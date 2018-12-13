@@ -31,7 +31,7 @@ class AttractionApiroutesRouter {
       var id = await this.attractionService.insert(req.body.insertAttraction).returning('id');
       console.log("AttractionApiroutesRouter posted id "+id[0]);
       // console.log("req.body.formArray.insertAttraction return id : "+id);
-      return res.send(JSON.(id[0]));
+      return res.json(id[0]);
 
       // console.log(req.body.insertAttraction)
       // res.json(req.body.insertAttraction.cityid);
