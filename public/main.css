@@ -479,7 +479,7 @@ nav{
     padding:10px 20px 10px 20px;
 }
 
-#edit-image-container{
+.edit-image-container{
     border-radius:5px;
     border: 1px #ccc solid;   
     padding:10px; 
