@@ -30,8 +30,9 @@ class AttractionApiroutesRouter {
    async post (req , res){
       let insertData = req.body.insertAttraction;
       insertData.userid = req.body.userid;
-      console.log("sssssssssssssssssssssssssssssssss"+req.body.insertAttraction.userid);
-      var id = await this.attractionService.insert(req.body.insertAttraction ).returning('id');
+      insertData.confirmstatus = "wait";
+      console.log("sssssssssssssssssssssssssssssssss"+insertData.userid);
+      var id = await this.attractionService.insert(insertData ).returning('id');
       console.log("AttractionApiroutesRouter posted id "+id[0]);
       // console.log("req.body.formArray.insertAttraction return id : "+id);
       return res.status(200).send((id[0]).toString());

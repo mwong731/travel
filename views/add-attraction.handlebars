@@ -63,19 +63,25 @@
 
     async function addAttraction() {
 
-        //console.log("addAttraction() start");
+        console.log("this is testing point start");
         var formdata = new FormData();
         formArray.insertImage.forEach(function (element) {
             formdata.append('image', element.file);
             //console.log("aaa");
         });
         if (!isEmpty(formArray.insertAttraction)) {
+            console.log("this is testing point0");
+            console.log("formArray.insertImage.length :"+ formArray.insertImage.length);
             let newAttractionID = await addAttractionToAttractionDatabase();
             console.log("addAttraction() addAttractionToAttractionDatabase() return id "+newAttractionID);
             if (formArray.insertImage.length > 0) {
                 console.log("formArray.insertImage.length > 0");
                 //need modify
-                await addImageToAttractionImage(newAttractionID, formdata);
+                
+                 addImageToAttractionImage(newAttractionID, formdata);
+                console.log("this is testing point1");
+                 setIconInAttractionTable(newAttractionID);
+                console.log("this is testing point2");
             }
         }
         //console.log(formdata);
@@ -83,6 +89,23 @@
 
         console.log("addAttraction() end");
     }
+
+    async function setIconInAttractionTable(id){
+        console.log("this is testing point3");
+        console.log("addAttraction() start in add Attraction()");
+        await axios({
+            method: 'get',
+            url: `/api/attraction-image/${id}`
+        })
+            .then(function (data) {
+                console.log("this is testing point4");
+                console.log("setIconInAttractionTable(id) .then");
+                console.log(JSON.stringify(data) );
+                //console.log("addAttractionToAttractionDatabase() axios return data : "+ JSON.stringify(data.data) );
+                resultId = JSON.stringify(data.data);
+            })
+    }
+
     async function addAttractionToAttractionDatabase() {
         //console.log("addAttractionToAttractionDatabase start");
         //console.log(formArray);
@@ -118,7 +141,7 @@
             processData: false,
             type: 'POST',
             'success': function (data) {
-                //alert(data);
+                console.log(data);
             }
         });
     }
