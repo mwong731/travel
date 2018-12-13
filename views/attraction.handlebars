@@ -4,11 +4,8 @@
     <h2 id="attraction-name">{{name}}</h2>
     {{/each}}
     {{!-- Check whether user favourited this attraction --}}
-    {{#if bookmark}}
-    <h2><i id="heart" class="fas fa-heart empty-heart"></i></h2>
-    {{else}}
-    <h2><i id="heart" class="far fa-heart empty-heart"></i></h2>
-    {{/if}}
+    <div id="attraction-title-heart"></div>
+    
 </div>
 
 {{!-- Attraction image --}}
@@ -106,6 +103,7 @@
 <script src="/js-file/attraction.js"></script>
 
 <script>
+
     function initMap() {
         //alert(typeof(-123546.1919292));
         var myLatLng = {
@@ -127,6 +125,79 @@
           title: 'Hello World!'
         });
       }
+
+      //Check bookmark
+
+      
+        let attractionid= window.location.href.split('/')[4]
+        
+        
+
+      function checkBookmark(id){
+            if (!id){
+                $('#attraction-title-heart').html(`<h2><i class="far fa-heart empty-heart" onClick="addNewBookmark(${id})"></i></h2>`)
+            }else
+            $.post( `/api/bookmark/check`, {userid:id,attractionid:attractionid},function() {
+            })
+            .done(function(data) {
+                if(data.length>0){
+                    $('#attraction-title-heart').html(`<h2><i class="fas fa-heart full-heart" onClick="deleteBookmark(${id})"></i></h2>`)
+                }else{
+                    $('#attraction-title-heart').html(`<h2><i class="far fa-heart empty-heart" onClick="addNewBookmark(${id})"></i></h2>`)
+                }
+            }
+            )
+            .fail(function() {
+                console.log( "Cannot get attraction" );
+                
+            })
+
+      
+         
+    }
+
+    function addNewBookmark(id){
+        if(!id){
+            window.location.replace('/auth/login')
+        }else{
+            axios({
+            method: 'post',
+            url: `/api/bookmark/`,
+            data: { userID: id, attractionID: attractionid }
+            })
+            .then(function(){
+                 console.log('added new bookmark');
+                 $('#attraction-title-heart').html(`<h2><i class="fas fa-heart full-heart" onClick="deleteBookmark(${id})"></i></h2>`)
+
+            })
+
+        }
+        
+    }
+
+     function deleteBookmark(id){
+         console.log(id,attractionid)
+       axios({
+            method: 'delete',
+            url: `/api/bookmark/`,
+            data: { userID: id, attractionID: attractionid }
+            })
+            .then(function(){
+                 console.log('deleted bookmark');
+                 $('#attraction-title-heart').html(`<h2><i class="far fa-heart empty-heart" onClick="addNewBookmark(${id})"></i></h2>`)
+            })
+    }
+    
+
+
+
+
+
+    console.log({{user.id}})
+
+    checkBookmark({{user.id}});
+    
+        
 
 </script>
 

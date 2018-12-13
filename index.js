@@ -39,9 +39,18 @@ app.engine('handlebars', hb({
             }
             return string;
         },
-        genSelectString: function (attractionType, optionValue) {
+        genAttractionSelectString: function (attractionType, optionValue) {
             //console.log(attractionType + " " + optionValue);
             if (attractionType == optionValue) {
+                return "selected";
+            } else {
+                return "";
+            }
+        },
+
+        genCitySelectString: function (cityid, attractionCityid) {
+            // console.log(cityid + " " + attractionCityid);
+            if (cityid == attractionCityid) {
                 return "selected";
             } else {
                 return "";
@@ -119,7 +128,7 @@ app.use('/attraction/edit', new editAttractionRouter(new attractionService(db), 
 
 app.use('/api/city', new cityAttractionRouter(new cityService(db)).router());
 app.use('/api/bookmark', new bookmarkRouter(new bookmarkService(db)).router());
-app.use('/add', new addRouter(new UserSubmitAttractionService(db)).router());
+app.use('/add', new addRouter(new attractionService(db)).router());
 
 app.use('/api/attraction-image/', new attractionImageAPIRouter(new attractionImageService(db)).router());
 app.use('/admin', new adminRouter(new UserSubmitAttractionService(db)).router());
