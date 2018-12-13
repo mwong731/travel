@@ -36,7 +36,7 @@ $('#plan-day-number').change(function () {
 function getAttraction(cityName) {
     $.get(`/api/city/${cityName}`, function () { })
         .done(function (data) {
-            //console.log(data)
+            
             for (var i = 0; i < data.length; i++) {
                 $('#plan-attraction').append(`
             <div class="col-4 img-col"><img class="plan-img" src="${data[i].icon}" id="image${data[i].id}" onClick="getAttractionId(${data[i].id},'${data[i].name}','${data[i].icon}')"/>
@@ -46,7 +46,7 @@ function getAttraction(cityName) {
             </div>
             `)
             }
-            //appendAttraction(data);
+            
         })
         .fail(function () {
             console.log("Cannot get attraction");
@@ -79,8 +79,6 @@ function saveAttraction() {
         };
         currentAttraction.id = dayAndTime + '-' + attractionId;
 
-        console.log(currentAttraction.id);
-
         if (attractionArr.some(e => {
             return e.id == currentAttraction.id
         })) {
@@ -99,7 +97,6 @@ function saveAttraction() {
         `)
 
             attractionArr.push(currentAttraction);
-            console.log(attractionArr);
             currentAttraction = {};
             attractionId = 0;
             attractionIcon = '';
@@ -125,7 +122,7 @@ function submit() {
 function remove(buttonId) {
 
     let id = buttonId.split('-').slice(1).join('-')
-    console.log('remove-' + id);
+    
     $('#attraction-' + id).remove();
 
     let pos = attractionArr.map(function (e) { return e.id; }).indexOf(id);
@@ -133,7 +130,7 @@ function remove(buttonId) {
         attractionArr.splice(pos, 1);
     }
 
-    console.log(attractionArr);
+    
 
 }
 
@@ -151,7 +148,7 @@ $(document).on('hidden.bs.modal', function () {
     attractionName = '';
     attractionIcon = '';
     dayAndTime = '';
-    console.log(attractionId, attractionName, attractionIcon, dayAndTime);
+    
 })
 
 $('#plan-day-number').val('notChosen')

@@ -24,14 +24,6 @@ module.exports = class planService {
       return this.knex('attractioninplan').where('planid',planId);
    }
 
-   // async updateAttractionplan(planId, Object){
-   //    try{
-   //       await this.knex('attractioninplan').where('planid',planId).del();
-   //    }  catch (err) {
-   //       return (err);
-   //   }
-   // }
-
    deletePlanByID(ID) {
       return this.deleteAllAttractionInPlanByPlanID(ID).then(()=>{
          return this.knex('plan').where('id', ID).del();

@@ -81,7 +81,6 @@ passport.use('local-signup', new LocalStrategy({
             };
 
             let userId = await knex('users').insert(newUser).returning('id');
-            console.log(userId[0])
             newUser.id = userId[0];
             console.log('new user created' + newUser)
             done(null, newUser);
@@ -114,7 +113,6 @@ passport.use(
                     googleid: profile.id,
                 };
                 let userId = await knex('users').insert(newUser).returning('id');
-                console.log(userId[0])
                 newUser.id = userId[0];
                 console.log('new user created' + newUser)
                 done(null, newUser);
@@ -134,9 +132,6 @@ passport.use('facebook',
         callbackURL: '/auth/facebook/redirect',
         profileFields: ['id','displayName','emails','photos']
     }, async (accessToken, refreshToken, profile, done) => {
-        console.log('using facebook...... ')
-        console.log(profile);
-    
         try {
             let users = await knex('users').where({facebookid: profile.id });
             if (users.length > 0) {
@@ -150,7 +145,6 @@ passport.use('facebook',
                     facebookid: profile.id,
                 };
                 let userId = await knex('users').insert(newUser).returning('id');
-                console.log(userId[0])
                 newUser.id = userId[0];
                 console.log('new user created' + newUser)
                 done(null, newUser);
