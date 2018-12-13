@@ -133,21 +133,9 @@ app.use('/add', new addRouter(new cityService(db)).router());
 app.use('/api/attraction-image/', new attractionImageAPIRouter(new attractionImageService(db)).router());
 app.use('/admin', new adminRouter(new UserSubmitAttractionService(db)).router());
 
-
-
 app.get('/error', (req, res) => {
     res.render('error')
 })
-
-//Set up https
-// const https = require('https');
-// const fs = require('fs');
-// const options = {
-//     cert: fs.readFileSync('./config/localhost.crt'),
-//     key: fs.readFileSync('./config/localhost.key')
-// };
-
-// https.createServer(options, app).listen(3000);
 
 app.listen(3000,()=>{
     console.log("Application started at port:3000");
