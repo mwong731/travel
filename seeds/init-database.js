@@ -82,8 +82,8 @@ exports.seed = function (knex, Promise) {
     }).then(function () {
       console.log('11');
       return knex('plan').insert([
-        { userid: 1, name: 'plan1' },
-        { userid: 2, name: 'plan2' },
+        { userid: 1, name: 'plan1' ,days:3},
+        { userid: 2, name: 'plan2' ,days:3},
       ]);
     }).then(function () {
       console.log('12');

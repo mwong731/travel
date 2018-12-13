@@ -63,6 +63,7 @@ exports.up = function (knex, Promise) {
          table.integer('userid');
          table.foreign('userid').references('users.id');
          table.string('name');
+         table.integer('days');
          //table.timestamps(false, true);
       }).createTable('attractioninplan', (table) => {
          table.increments();
