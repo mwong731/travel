@@ -12,10 +12,18 @@ $(document).on('click', '#add-image', function (e) {
 });
 
 // click delete btn in old attraction div
-$(document).on('click', '#delete-old-attraction', function (e) {
+$(document).on('click', '.delete-old-attraction', function (e) {
     //console.log('xxxxx');
     //need modify when melody finish her work
-    if ($(e.target).parent().find("#delete-old-attraction").html() == 'Delete') {
+    let img_id=$(e.target).parent().find("img").attr("id")
+    console.log("img",img_id);
+
+    insertFormArrayDeleteImage($(e.target).parent().find("img").attr("id"));
+    $(`#attraction-photo-div${img_id}`).slideUp()
+
+
+
+    /*if ($(e.target).parent().find("#delete-old-attraction").html() == 'Delete') {
         //console.log('xxxxxDelete');
         $(e.target).parent().find("#delete-old-attraction").html('Undo');
         //console.log($(e.target).parent().find("img").attr("id"));
@@ -26,7 +34,8 @@ $(document).on('click', '#delete-old-attraction', function (e) {
         $(e.target).parent().find("#delete-old-attraction").html('Delete');
         deleteFormArrayDeleteImage($(e.target).parent().find("img").attr("id"));
         //formArray.deleteImage.push($(e.target).parent().find("img").attr("id"));
-    }
+        
+    }*/
 });
 // delete image id that will be delete in formArray.deleteImage
 function deleteFormArrayDeleteImage(id){
@@ -36,7 +45,7 @@ function deleteFormArrayDeleteImage(id){
             formArray.deleteImage.splice(i, 1);
             break;
         } else if ((i == formArray.deleteImage.length - 1) && (haveRecord == false)) {
-            console.log("delete: no record in formArray");
+            console.log("delete: no record in formArray", formArray);
             break;
         }
     }
@@ -52,13 +61,13 @@ function insertFormArrayDeleteImage(id){
                 console.log("delete: have record in formArray");
                 break;
             } else if ((i == formArray.deleteImage.length - 1) && (haveRecord == false)) {
-                console.log("delete: no record in formArray");
+                console.log("delete: no record in formArray", formArray);
                 formArray.deleteImage.push({ id: id});
                 break;
             }
         }
     } else {
-        console.log("delete: array is empty");
+        console.log("delete: array is empty", formArray);
         formArray.deleteImage.push({ id: id });
     }
 }
@@ -156,9 +165,9 @@ function insertImageInFormArray(id, file) {
 
 const attraction = (value) => {
     return `
-    <div id="attraction-photo-div">
-        <img id=${value.id} class="d-block carousel-image" src=${window.location.origin}${value.image}>
-        <button class="btn-lg btn-primary" id="delete-old-attraction" onClick="">Delete</button>
+    <div id="attraction-photo-div${value.id}" class="col-6">
+        <img id=${value.id} class="edit-upload-image img-fluid " src=${window.location.origin}${value.image}>
+        <i class="fas fa-times delete-old-attraction edit-remove-button" ></i>
         <input id="isChange" style="display:none" value="false">
         <input class="defauleImg" style="display:none" value=${window.location.origin}${value.image}>
     </div>
@@ -167,10 +176,10 @@ const attraction = (value) => {
 
 const newAttraction = (id) => {
     return `
-    <div id="new-attraction-photo-div">
-        <img class="d-block carousel-image" id="add-attraction-photo" src="/assets/male-profile.png">
+    <div id="new-attraction-photo-div" class="col-6">
+        <img class="edit-upload-image img-fluid" id="add-attraction-photo" src="/assets/male-profile.png">
         <input data-id="${id}" style="display:none" type="file" class="form-control-file" id="add-attraction-photo-input">
-        <button class="btn-lg btn-primary" id="delete-new-attraction" >X</button> 
+        <button class="btn btn-primary" id="delete-new-attraction" >Cancel</button> 
         <input id="isChange" style="display:none" value="false">
         <input class="currentImg" style="display:none">
         </div>
