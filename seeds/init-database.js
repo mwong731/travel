@@ -64,20 +64,22 @@ exports.seed = function (knex, Promise) {
         { cityid: 3, userid: 3, type: "go", name: 'Fukuoka Castle', description: 'Fukuoka Castle is a Japanese castle located in Chūō-ku, Fukuoka, Japan. It is also known as Maizuru Castle or Seki Castle. Completed in the early Edo period.', latitude: "33.589542", longitude: "130.39307", confirmstatus: "accept", icon: "../assets/fukuokacastle.jpg" },
         
         
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
-        { cityid: 4, userid: 1, type: "go", name: 'go1', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'Hiroshima Temple', description: ' If the selector is supplied, the elements will be filtered by testing whether they match it.', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "go", name: 'Peace Park', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "restaurant", name: 'Kimi Ramen', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "restaurant", name: 'Shabu Shabu', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
+        { cityid: 4, userid: 1, type: "shop", name: 'Tokyu Hands', description: 'description5', latitude: "39.292919", longitude: "114.041271", confirmstatus: "wait", icon: "/assets/banner.png" },
       ]);
     }).then(function () {
       console.log('10.5');
       return knex('attractionimage').insert([
         { attractionid: 1, image: '/assets/tokyotower.jpg' },
         { attractionid: 1, image: '/assets/tokyo.jpg' },
-        { attractionid: 1, image: '/assets/tokyotower2.jpg' },
+        { attractionid: 3, image: '/assets/assets/sushinomidori.jpg' },
         { attractionid: 2, image: '/assets/sensoji.jpg' },
         { attractionid: 2, image: '/assets/tokyo.jpg' },
+        { attractionid: 16, image: '/assets/hiroshima.jpg' },
+        { attractionid: 16, image: '/assets/coffee.jpg' },
       ]);
     }).then(function () {
       console.log('11');

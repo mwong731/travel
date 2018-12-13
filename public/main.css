@@ -575,7 +575,7 @@ nav{
 .profile-remove-button{
     position:absolute;
     top:0;
-    left:18vw;
+    left:5px;
     width:30px;
     height:30px;
     border-radius:20px;
@@ -705,7 +705,7 @@ nav{
   .remove-button{
       position:absolute;
       top:0;
-      left:11.5vw;
+      left:5px;
       width:30px;
       height:30px;
       border-radius:20px;
@@ -715,8 +715,8 @@ nav{
   }
 
   .plan-added-img{
-    width:13vw;
-    height:13vw;
+    width:14vw;
+    height:14vw;
     object-fit:cover;
     margin-bottom:10px;
   }

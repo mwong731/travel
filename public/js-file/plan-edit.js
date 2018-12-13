@@ -57,8 +57,8 @@ function getAttraction(id, time, day) {
             
             let attractionData = data[0][0];
             $('#attraction-container-' + time + '-' + day).append(`
-        <div id="attraction-${time}-${day}-${id}" class="col-4 img-col">
-            <img class="plan-img" src="${attractionData.icon}" id="image${attractionData.id}" />
+        <div id="attraction-${time}-${day}-${id}" class="col-6 col-md-4 img-col">
+            <img class="plan-added-img" src="${attractionData.icon}" id="image${attractionData.id}" />
             <div class="plan-overlay">
                 <div class="profile-attraction-name">${attractionData.name}</div>
             </div>
