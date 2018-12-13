@@ -33,7 +33,7 @@ module.exports = class UserSubmitAttractionService {
     }
 
     getMyPlan(userID){
-        return this.knex.select('name')
+        return this.knex.select()
             .from("plan")
             .where("userid", userID);
 

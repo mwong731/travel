@@ -4,9 +4,9 @@ module.exports = class planService {
    }
    
    
-   insertPlan( userId , name) {
+   insertPlan( userId , name, days) {
       return this.knex('plan').insert([
-         { userid: userId , name: name}
+         { userid: userId , name: name , days:days}
       ]).returning('id');
    }
 
@@ -14,6 +14,10 @@ module.exports = class planService {
       return this.knex('attractioninplan').insert([
          { planid: planId, attractionid: Object.attractionId, day:Object.day , time:Object.time}
       ]);
+   }
+
+   readAttractionplan (planId){
+      return this.knex('attractioninplan').where('planid',planId);
    }
 
    deletePlanByID(ID) {
